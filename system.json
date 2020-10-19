@@ -1,0 +1,38 @@
+{
+  "name": "carrotroyale",
+  "title": "Carrot Royale",
+  "description": "A Foundry VTT Implementation of Carrot Royale.",
+  "version": "0.0.1",
+  "templateVersion": 2,
+  "author": "HeikaHaku",
+  "scripts": [],
+  "esmodules": [],
+  "styles": [],
+  "packs": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "it",
+      "name": "Italian",
+      "path": "lang/it.json"
+     },
+     {
+      "lang": "es",
+      "name": "Spanish",
+      "path": "lang/es.json"
+     }
+  ],
+  "socket": false,
+  "initiative": "1d20",
+  "gridDistance": 10,
+  "gridUnits": "ft",
+  "primaryTokenAttribute": "resources.health",
+  "secondaryTokenAttribute": "resources.power",
+  "url": "https://github.com/HeikaHaku/fvtt-carrot-royale",
+  "manifest": "https://github.com/HeikaHaku/fvtt-carrot-royale/system.json",
+  "download": "https://github.com/HeikaHaku/fvtt-carrot-royale/archive.zip"
+}
