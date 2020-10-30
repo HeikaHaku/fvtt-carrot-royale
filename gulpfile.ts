@@ -1,4 +1,6 @@
 const gulp = require('gulp');
+const bump = require('gulp-bump');
+const fs = require('fs');
 const ts = require('gulp-typescript');
 const project = ts.createProject('tsconfig.json');
 
@@ -27,3 +29,28 @@ gulp.task('foundry', () => {
   return gulp.src('dist/**').pipe(gulp.dest(SYSTEMPATH));
 });
 gulp.task('update', gulp.series('build', 'foundry'));
+
+//Bump version
+const version = JSON.parse(fs.readFileSync('./package.json')).version;
+gulp.task('bump', () =>
+  gulp
+    .src('src/system.json')
+    .pipe(bump({ version: version }))
+    .pipe(gulp.dest('src/'))
+);
+
+gulp.task('patch', () => gulp.src('src/system.json').pipe(bump()).pipe(gulp.dest('src/')));
+
+gulp.task('minor', () =>
+  gulp
+    .src('src/system.json')
+    .pipe(bump({ type: 'minor' }))
+    .pipe(gulp.dest('src/'))
+);
+
+gulp.task('major', () =>
+  gulp
+    .src('src/system.json')
+    .pipe(bump({ type: 'major' }))
+    .pipe(gulp.dest('src/'))
+);

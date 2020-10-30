@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "build": "gulp build",
-    "update": "gulp update"
+    "update": "gulp update",
+    "major": "changelog -M && git add CHANGELOG.md && git commit -S -m \"updated CHANGELOG.md\" && npm version major -s",
+    "minor": "changelog -m && git add CHANGELOG.md && git commit -S -m \"updated CHANGELOG.md\" && npm version minor -s",
+    "patch": "changelog -p && git add CHANGELOG.md && git commit -S -m \"updated CHANGELOG.md\" && npm version patch -s",
+    "postversion": "gulp bump && git push && git push --tags && git push origin --tags"
   },
   "repository": {
     "type": "git",
@@ -38,6 +42,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-promise": "^4.2.1",
     "gulp": "^4.0.2",
+    "gulp-bump": "^3.2.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-typescript": "^6.0.0-alpha.1",
     "prettier": "2.1.2",
