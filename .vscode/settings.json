@@ -2,5 +2,6 @@
     "editor.formatOnSave": true,
     "eslint.format.enable": true,
     "html.format.indentHandlebars": true,
-    "prettier.requirePragma": true
+    "prettier.requirePragma": true,
+    "prettier.insertPragma": true
 }
