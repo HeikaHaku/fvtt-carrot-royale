@@ -2,5 +2,27 @@
   "ACTOR.TypeCharacter": "Character",
   "ACTOR.TypeSummon": "Summon",
   "ITEM.TypeClass": "Class",
-  "ITEM.TypeSpell": "Spell"
+  "ITEM.TypeSpell": "Spell",
+
+  "CarRoy.Title": "Carrot Royale Game System",
+  "CarRoy.Ability": "Ability",
+  "CarRoy.AbilityStr": "Strength",
+  "CarRoy.AbilityStrAbbr": "str",
+  "CarRoy.AbilityCon": "Constitution",
+  "CarRoy.AbilityConAbbr": "con",
+  "CarRoy.AbilityDex": "Dexterity",
+  "CarRoy.AbilityDexAbbr": "dex",
+  "CarRoy.AbilityInt": "Intelligence",
+  "CarRoy.AbilityIntAbbr": "int",
+  "CarRoy.AbilityWis": "Wisdom",
+  "CarRoy.AbilityWisAbbr": "wis",
+  "CarRoy.AbilityCha": "Charisma",
+  "CarRoy.AbilityChaAbbr": "cha",
+  "CarRoy.AbilityModifier": "Ability Modifier",
+
+  "CarRoy.ArmorClass": "Armor Class",
+  "CarRoy.AC": "AC",
+
+  "CarRoy.HitPoints": "Hit Points",
+  "CarRoy.HP": "HP"
 }
