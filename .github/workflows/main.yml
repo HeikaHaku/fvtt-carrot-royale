@@ -23,9 +23,12 @@ jobs:
         id: get-includes
         run: echo "::set-output name=files::$(node ./.github/workflows/get-includes.js)"
 
+      # Setup Node
+      - name: Setup Node
+        uses: actions/setup-node@v1
+
       # Compile to dist folder
       - name: Compile
-        uses: actions/setup-node@v1
         run: |
           npm ci
           npm run build
