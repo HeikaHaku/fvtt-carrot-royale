@@ -9,7 +9,7 @@
     "major": "changelog -M && git add CHANGELOG.md && git commit -S -m \"updated CHANGELOG.md\" && npm version major -s",
     "minor": "changelog -m && git add CHANGELOG.md && git commit -S -m \"updated CHANGELOG.md\" && npm version minor -s",
     "patch": "changelog -p && git add CHANGELOG.md && git commit -S -m \"updated CHANGELOG.md\" && npm version patch -s",
-    "postversion": "gulp bump && git add src/system.json && git commit -S -m \"Version Bump\" && git push && git push --tags && git push origin --tags"
+    "postversion": "gulp bump && git add src/system.json && git commit -S --amend --no-edit && git push && git push --tags && git push origin --tags"
   },
   "repository": {
     "type": "git",
