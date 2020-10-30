@@ -1,5 +1,5 @@
 {
-  "name": "carrotroyale",
+  "name": "carrot-royale",
   "title": "Carrot Royale",
   "description": "A Foundry VTT Implementation of Carrot Royale.",
   "version": "0.0.1",
@@ -19,12 +19,12 @@
       "lang": "it",
       "name": "Italian",
       "path": "lang/it.json"
-     },
-     {
+    },
+    {
       "lang": "es",
       "name": "Spanish",
       "path": "lang/es.json"
-     }
+    }
   ],
   "socket": false,
   "initiative": "1d20",
@@ -32,6 +32,8 @@
   "gridUnits": "ft",
   "primaryTokenAttribute": "resources.health",
   "secondaryTokenAttribute": "resources.power",
+  "minimumCoreVersion": "0.6.0",
+  "compatibleCoreVersion": "0.7.5",
   "url": "https://github.com/HeikaHaku/fvtt-carrot-royale",
   "manifest": "https://github.com/HeikaHaku/fvtt-carrot-royale/system.json",
   "download": "https://github.com/HeikaHaku/fvtt-carrot-royale/archive.zip"

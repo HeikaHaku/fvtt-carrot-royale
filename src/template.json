@@ -1,0 +1,17 @@
+{
+  "Actor": {
+    "types": ["character", "summon"],
+    "templates": {
+      "common": {}
+    },
+    "player": {
+      "templates": ["common"]
+    },
+    "summon": {
+      "templates": ["common"]
+    }
+  },
+  "Item": {
+    "types": ["class", "spell"]
+  }
+}

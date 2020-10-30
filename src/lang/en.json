@@ -1,0 +1,6 @@
+{
+  "ACTOR.TypeCharacter": "Character",
+  "ACTOR.TypeSummon": "Summon",
+  "ITEM.TypeClass": "Class",
+  "ITEM.TypeSpell": "Spell"
+}

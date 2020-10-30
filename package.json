@@ -1,0 +1,47 @@
+{
+  "name": "fvtt-carrot-royale",
+  "version": "0.0.1",
+  "description": "Carrot Royale System for FoundryVTT",
+  "main": "index.js",
+  "scripts": {
+    "build": "gulp build",
+    "update": "gulp update"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HeikaHaku/fvtt-carrot-royale.git"
+  },
+  "author": "HeikaHaku",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HeikaHaku/fvtt-carrot-royale/issues"
+  },
+  "homepage": "https://github.com/HeikaHaku/fvtt-carrot-royale#readme",
+  "dependencies": {
+    "foundry-pc-types": "gitlab:foundry-projects/foundry-pc/foundry-pc-types",
+    "generate-changelog": "^1.8.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/register": "^7.12.1",
+    "@types/node": "^14.14.6",
+    "@typescript-eslint/eslint-plugin": "^4.6.0",
+    "@typescript-eslint/parser": "^4.6.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
+    "babelify": "^10.0.0",
+    "eslint": "^7.12.1",
+    "eslint-config-standard": "^16.0.0",
+    "eslint-plugin-foundry-vtt": "0.0.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-promise": "^4.2.1",
+    "gulp": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "prettier": "2.1.2",
+    "typescript": "^4.0.5",
+    "vinyl-buffer": "^1.0.1"
+  }
+}
