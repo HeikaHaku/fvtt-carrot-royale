@@ -1,8 +1,14 @@
 {
   "ACTOR.TypeCharacter": "Character",
   "ACTOR.TypeSummon": "Summon",
+  "ITEM.TypeArmor": "Armor",
   "ITEM.TypeClass": "Class",
+  "ITEM.TypeEnchantment": "Enchantment",
+  "ITEM.TypeFeature": "Feature",
+  "ITEM.TypeMagicItem": "Magic Item",
+  "ITEM.TypeRace": "Race",
   "ITEM.TypeSpell": "Spell",
+  "ITEM.TypeWeapon": "Weapon",
 
   "CarRoy.Title": "Carrot Royale Game System",
   "CarRoy.Ability": "Ability",
