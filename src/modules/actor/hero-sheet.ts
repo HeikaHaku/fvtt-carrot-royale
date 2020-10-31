@@ -6,7 +6,7 @@ export class HeroSheet extends ActorSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ['carrot-royale', 'hero-sheet'],
-      template: 'systems/fvtt-carrot-royal/templates/actor/hero-sheet.html',
+      template: 'systems/carrot-royale/templates/actor/hero-sheet.html',
       width: 600,
       height: 400,
       tabs: [
