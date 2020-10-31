@@ -1,8 +1,19 @@
 const gulp = require('gulp');
 const bump = require('gulp-bump');
+const sass = require('gulp-sass');
 const fs = require('fs');
 const ts = require('gulp-typescript');
 const project = ts.createProject('tsconfig.json');
+
+sass.compiler = require('node-sass');
+
+gulp.task('sass', function () {
+  return gulp.src('src/styles/*.scss').pipe(sass().on('error', sass.logError)).pipe(gulp.dest('dist/assets'));
+});
+
+gulp.task('sass:watch', function () {
+  gulp.watch('./sass/**/*.scss', ['sass']);
+});
 
 gulp.task('compile', () => {
   return gulp.src('src/**/*.ts').pipe(project()).pipe(gulp.dest('dist/'));
@@ -14,13 +25,13 @@ gulp.task('copy', async () => {
     gulp.src(['src/**.json', '!src/tsconfig.json']).pipe(gulp.dest('dist/'));
     gulp.src('src/lang/**').pipe(gulp.dest('dist/lang/'));
     gulp.src('src/templates/**').pipe(gulp.dest('dist/templates/'));
-    gulp.src('src/styles/**').pipe(gulp.dest('dist/styles/'));
+    gulp.src('src/styles/**.css').pipe(gulp.dest('dist/styles/'));
     gulp.src('src/assets/**').pipe(gulp.dest('dist/assets/'));
     resolve();
   });
 });
 
-gulp.task('build', gulp.parallel('compile', 'copy'));
+gulp.task('build', gulp.parallel('compile', 'copy', 'sass'));
 
 // This is supposed to copy the dist folder into the modules directory for testing. Only works if you've set it up the right way
 // This works if development path is FoundryVTT/Data/dev/modules/swade-item-macros

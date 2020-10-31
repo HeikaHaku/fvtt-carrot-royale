@@ -34,6 +34,7 @@
     "babel-core": "^6.26.3",
     "babel-preset-es2015": "^6.24.1",
     "babelify": "^10.0.0",
+    "del": "^6.0.0",
     "eslint": "^7.12.1",
     "eslint-config-standard": "^16.0.0",
     "eslint-plugin-foundry-vtt": "0.0.1",
@@ -43,8 +44,10 @@
     "eslint-plugin-promise": "^4.2.1",
     "gulp": "^4.0.2",
     "gulp-bump": "^3.2.0",
+    "gulp-sass": "^4.1.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-typescript": "^6.0.0-alpha.1",
+    "node-sass": "^4.14.1",
     "prettier": "2.1.2",
     "typescript": "^4.0.5",
     "vinyl-buffer": "^1.0.1"
