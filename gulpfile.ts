@@ -8,7 +8,7 @@ const project = ts.createProject('tsconfig.json');
 sass.compiler = require('node-sass');
 
 gulp.task('sass', function () {
-  return gulp.src('src/styles/*.scss').pipe(sass().on('error', sass.logError)).pipe(gulp.dest('dist/assets'));
+  return gulp.src('src/styles/*.scss').pipe(sass().on('error', sass.logError)).pipe(gulp.dest('dist/styles'));
 });
 
 gulp.task('sass:watch', function () {
@@ -22,7 +22,7 @@ gulp.task('compile', () => {
 gulp.task('copy', async () => {
   return new Promise((resolve) => {
     gulp.src('README.md').pipe(gulp.dest('dist/'));
-    gulp.src(['src/**.json', '!src/tsconfig.json']).pipe(gulp.dest('dist/'));
+    gulp.src(['src/**.json', '!src/tsconfig.json', 'src/**/**.js']).pipe(gulp.dest('dist/'));
     gulp.src('src/lang/**').pipe(gulp.dest('dist/lang/'));
     gulp.src('src/templates/**').pipe(gulp.dest('dist/templates/'));
     gulp.src('src/styles/**.css').pipe(gulp.dest('dist/styles/'));
