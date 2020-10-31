@@ -1,15 +1,16 @@
 {
-  "ACTOR.TypeCharacter": "Character",
+  "ACTOR.TypeHero": "Hero",
   "ACTOR.TypeSummon": "Summon",
   "ITEM.TypeArmor": "Armor",
   "ITEM.TypeClass": "Class",
   "ITEM.TypeEnchantment": "Enchantment",
   "ITEM.TypeFeature": "Feature",
-  "ITEM.TypeMagicItem": "Magic Item",
+  "ITEM.TypeMagic": "Magic Item",
   "ITEM.TypeRace": "Race",
   "ITEM.TypeSpell": "Spell",
   "ITEM.TypeWeapon": "Weapon",
 
+  "CarRoy.CarrotRoyale": "Carrot Royale",
   "CarRoy.Title": "Carrot Royale Game System",
   "CarRoy.Ability": "Ability",
   "CarRoy.AbilityStr": "Strength",
@@ -30,5 +31,24 @@
   "CarRoy.AC": "AC",
 
   "CarRoy.HitPoints": "Hit Points",
-  "CarRoy.HP": "HP"
+  "CarRoy.HP": "HP",
+
+  "CarRoy.Action": "Action",
+  "CarRoy.BonusAction": "Bonus Action",
+  "CarRoy.FreeAction": "Free Action",
+  "CarRoy.Reaction": "Reaction",
+
+  "CarRoy.Move": "Move",
+  "CarRoy.Movement": "Movement",
+
+  "CarRoy.Init": "Init",
+  "CarRoy.Initiative": "Initiative",
+
+  "CarRoy.Weapon": "Weapon",
+  "CarRoy.Light": "Light",
+  "CarRoy.LightWeapon": "Light Weapon",
+  "CarRoy.Medium": "Medium",
+  "CarRoy.MediumWeapon": "Medium Weapon",
+  "CarRoy.Heavy": "Heavy",
+  "CarRoy.HeavyWeapon": "Heavy Weapon"
 }
