@@ -1,7 +1,7 @@
-import { CarrotRoyale } from './modules/config';
-import { registerSystemSettings } from './modules/settings';
+import { CarrotRoyale } from './modules/config.js';
+import { registerSystemSettings } from './modules/settings.js';
 
-import { HeroSheet } from './modules/actor/hero-sheet';
+import { HeroSheet } from './modules/actor/hero-sheet.js';
 
 export const log = (...args: unknown[]) => console.log('Carrot Royale | ' + args);
 
