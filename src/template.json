@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["character", "summon"],
+    "types": ["hero", "summon"],
     "templates": {
       "common": {
         "abilities": {
@@ -47,7 +47,7 @@
         }
       }
     },
-    "player": {
+    "hero": {
       "templates": ["common"]
     },
     "summon": {
@@ -55,6 +55,65 @@
     }
   },
   "Item": {
-    "types": ["armor", "class", "enchantment", "feature", "race", "magic item", "spell", "weapon"]
+    "types": ["armor", "class", "enchantment", "feature", "race", "magic", "spell", "weapon"],
+    "templates": {
+      "common": {
+        "name": "",
+        "image": ""
+      },
+      "damage": {
+        "damage": 0,
+        "damagetype": "",
+        "bonus": "",
+        "bonustype": "",
+        "range": 0,
+        "area": 0,
+        "action": ""
+      },
+      "equippable": {
+        "cost": 0,
+        "tags": []
+      }
+    },
+    "armor": {
+      "templates": ["common", "equippable"],
+      "ac": 0,
+      "movement": 0,
+      "extra": ""
+    },
+    "class": {
+      "templates": ["common"],
+      "stats": {
+        "hp": 0,
+        "str": 0,
+        "dex": 0,
+        "con": 0,
+        "int": 0,
+        "wis": 0,
+        "cha": 0
+      }
+    },
+    "feature": {
+      "templates": ["common"],
+      "action": "",
+      "uses": "",
+      "duration": 0
+    },
+    "race": {
+      "templates": ["common"],
+      "ac": 0,
+      "movement": 0,
+      "description": "",
+      "traits": []
+    },
+    "spell": {
+      "templates": ["common", "damage"],
+      "duration": "",
+      "description": ""
+    },
+    "weapon": {
+      "templates": ["common", "equippable", "damage"],
+      "extra": ""
+    }
   }
 }
