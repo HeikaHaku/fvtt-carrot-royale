@@ -50,5 +50,7 @@
   "CarRoy.Medium": "Medium",
   "CarRoy.MediumWeapon": "Medium Weapon",
   "CarRoy.Heavy": "Heavy",
-  "CarRoy.HeavyWeapon": "Heavy Weapon"
+  "CarRoy.HeavyWeapon": "Heavy Weapon",
+
+  "CarRoy.SheetClassHero": "Default Carrot Royale Hero Sheet"
 }

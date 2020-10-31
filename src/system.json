@@ -6,7 +6,7 @@
   "templateVersion": 2,
   "author": "HeikaHaku",
   "scripts": [],
-  "esmodules": [],
+  "esmodules": ["carrot-royale.js"],
   "styles": [],
   "packs": [],
   "languages": [
