@@ -1,13 +1,13 @@
 {
   "name": "carrot-royale",
   "title": "Carrot Royale",
-  "description": "A Foundry VTT Implementation of Carrot Royale.",
-  "version": "0.0.1",
+  "description": "A Foundry VTT Implementation of Carrot Royale",
+  "version": "0.0.2",
   "templateVersion": 2,
   "author": "HeikaHaku",
   "scripts": [],
-  "esmodules": [],
-  "styles": [],
+  "esmodules": ["carrot-royale.js", "modules/registerHandlebarHelpers.js"],
+  "styles": ["styles/carrot-royale.css"],
   "packs": [],
   "languages": [
     {

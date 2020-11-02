@@ -4,7 +4,7 @@ module.exports = {
     es2020: true,
     node: true,
   },
-  extends: ['eslint:recommended', 'plugin:foundry-vtt/recommended'],
+  extends: ['eslint:recommended', 'plugin:foundry-vtt/recommended', 'stylelint'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 12,
