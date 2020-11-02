@@ -37,6 +37,7 @@
     "del": "^6.0.0",
     "eslint": "^7.12.1",
     "eslint-config-standard": "^16.0.0",
+    "eslint-config-stylelint": "^13.0.0",
     "eslint-plugin-foundry-vtt": "0.0.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
@@ -49,6 +50,7 @@
     "gulp-typescript": "^6.0.0-alpha.1",
     "node-sass": "^4.14.1",
     "prettier": "2.1.2",
+    "stylelint": "^13.7.2",
     "typescript": "^4.0.5",
     "vinyl-buffer": "^1.0.1"
   }
