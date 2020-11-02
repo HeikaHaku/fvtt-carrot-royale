@@ -2,7 +2,7 @@
   "name": "carrot-royale",
   "title": "Carrot Royale",
   "description": "A Foundry VTT Implementation of Carrot Royale",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "templateVersion": 2,
   "author": "HeikaHaku",
   "scripts": [],
