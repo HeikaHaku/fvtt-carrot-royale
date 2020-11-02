@@ -1,0 +1,9 @@
+form.hero-sheet {
+  display: grid;
+  grid-template-rows: 100px 1em auto;
+
+  header .header-fields {
+    display: grid;
+    grid-template-columns: 100px 300px;
+  }
+}
