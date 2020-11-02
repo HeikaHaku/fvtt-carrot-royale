@@ -62,8 +62,7 @@
     "types": ["armor", "class", "enchantment", "feature", "race", "magic", "spell", "weapon"],
     "templates": {
       "common": {
-        "name": "",
-        "image": ""
+        "description": ""
       },
       "damage": {
         "damage": 0,
@@ -107,18 +106,19 @@
       "templates": ["common"],
       "ac": 0,
       "movement": 0,
-      "description": "",
       "bonuses": {},
       "traits": []
     },
     "spell": {
       "templates": ["common", "damage"],
-      "duration": "",
-      "description": ""
+      "duration": ""
     },
     "weapon": {
       "templates": ["common", "equippable", "damage"],
-      "extra": ""
+      "extra": "",
+      "melee": false,
+      "ranged": false,
+      "weight": ""
     }
   }
 }
