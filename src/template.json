@@ -46,14 +46,16 @@
           }
         },
         "name": "",
-        "img": ""
+        "img": "",
+        "team": 1
       }
     },
     "hero": {
       "templates": ["common"]
     },
     "summon": {
-      "templates": ["common"]
+      "templates": ["common"],
+      "summoner": ""
     }
   },
   "Item": {
@@ -106,6 +108,7 @@
       "ac": 0,
       "movement": 0,
       "description": "",
+      "bonuses": {},
       "traits": []
     },
     "spell": {

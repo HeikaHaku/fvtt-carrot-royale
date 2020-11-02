@@ -27,6 +27,10 @@
   "CarRoy.AbilityChaAbbr": "cha",
   "CarRoy.AbilityModifier": "Ability Modifier",
 
+  "CarRoy.Attributes": "Attributes",
+  "CarRoy.Traits": "Traits",
+  "CarRoy.Inventory": "Inventory",
+
   "CarRoy.ArmorClass": "Armor Class",
   "CarRoy.AC": "AC",
 
