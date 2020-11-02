@@ -1,4 +1,4 @@
-name: Module CI/CD
+name: System CI/CD
 
 on:
   push:
@@ -33,21 +33,21 @@ jobs:
         id: get-includes
         run: echo "::set-output name=files::$(node ./.github/workflows/get-includes.js)"
 
-      # create a zip file with all files required by the module to add to the release
+      # create a zip file with all files required by the system to add to the release
       - name: Zip Files
         working-directory: ./dist #SORRY BUT YOU HAVE TO USE DIST JUST LIKE GET OVER IT OR FIGURE OUT A BETTER WAY
-        run: zip -r ../module.zip ${{steps.get-includes.outputs.files}}
+        run: zip -r ../system.zip ${{steps.get-includes.outputs.files}}
 
       #Useful only for the template so we can leave the manifest and download urls empty
       - name: Substitute Manifest and Download Links For Versioned Ones
         id: sub_manifest_link_latest
         uses: microsoft/variable-substitution@v1
         with:
-          files: './dist/module.json'
+          files: './dist/system.json'
         env:
           url: https://github.com/${{github.repository}}
-          manifest: https://github.com/${{github.repository}}/releases/latest/download/module.json
-          download: https://github.com/${{github.repository}}/releases/latest/download/module.zip
+          manifest: https://github.com/${{github.repository}}/releases/latest/download/system.json
+          download: https://github.com/${{github.repository}}/releases/latest/download/system.zip
 
       # Update the 'latest' release
       - name: Update Latest Release
@@ -60,19 +60,19 @@ jobs:
           draft: false
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: './dist/module.json, ./module.zip'
+          artifacts: './dist/system.json, ./system.zip'
           tag: latest
 
-      #Substitute the Manifest and Download URLs in the module.json
+      #Substitute the Manifest and Download URLs in the system.json
       - name: Substitute Manifest and Download Links For Versioned Ones
         id: sub_manifest_link_version
         uses: microsoft/variable-substitution@v1
         with:
-          files: './dist/module.json'
+          files: './dist/system.json'
         env:
           url: https://github.com/${{github.repository}}
-          manifest: https://github.com/${{github.repository}}/releases/latest/download/module.json
-          download: https://github.com/${{github.repository}}/releases/download/${{steps.get-version.outputs.version}}/module.zip
+          manifest: https://github.com/${{github.repository}}/releases/latest/download/system.json
+          download: https://github.com/${{github.repository}}/releases/download/${{steps.get-version.outputs.version}}/system.zip
 
       # Create a release for this specific version
       - name: Create Version Release
@@ -84,5 +84,5 @@ jobs:
           draft: false
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: './dist/module.json,./module.zip'
+          artifacts: './dist/system.json,./system.zip'
           tag: ${{ steps.get-version.outputs.version }}
