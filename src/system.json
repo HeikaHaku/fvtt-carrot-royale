@@ -6,7 +6,7 @@
   "templateVersion": 2,
   "author": "HeikaHaku",
   "scripts": [],
-  "esmodules": ["carrot-royale.js"],
+  "esmodules": ["carrot-royale.js", "modules/registerHandlebarHelpers.js"],
   "styles": ["styles/carrot-royale.css"],
   "packs": [],
   "languages": [
