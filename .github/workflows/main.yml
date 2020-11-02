@@ -11,18 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # Get the version from 'module.json'
-      - name: Get Version
-        shell: bash
-        id: get-version
-        run: echo "::set-output name=version::$(node ./.github/workflows/get-version.js)"
-
-      # Get the name from 'module.json'
-      - name: Get Includes
-        shell: bash
-        id: get-includes
-        run: echo "::set-output name=files::$(node ./.github/workflows/get-includes.js)"
-
       # Setup Node
       - name: Setup Node
         uses: actions/setup-node@v1
@@ -32,6 +20,18 @@ jobs:
         run: |
           npm ci
           npm run build
+
+      # Get the version from 'system.json'
+      - name: Get Version
+        shell: bash
+        id: get-version
+        run: echo "::set-output name=version::$(node ./.github/workflows/get-version.js)"
+
+      # Get the name from 'system.json'
+      - name: Get Includes
+        shell: bash
+        id: get-includes
+        run: echo "::set-output name=files::$(node ./.github/workflows/get-includes.js)"
 
       # create a zip file with all files required by the module to add to the release
       - name: Zip Files
