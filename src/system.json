@@ -26,6 +26,19 @@
       "path": "lang/es.json"
     }
   ],
+  "includes": [
+    "./assets/**",
+    "./lang/**",
+    "./modules/**",
+    "./packs/**",
+    "./scripts/**",
+    "./styles/**",
+    "./templates/**",
+    "./system.json",
+    "./template.json",
+    "./README.md",
+    "./LICENSE"
+  ],
   "socket": false,
   "initiative": "1d20",
   "gridDistance": 10,

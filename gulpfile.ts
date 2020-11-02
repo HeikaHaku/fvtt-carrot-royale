@@ -22,11 +22,13 @@ gulp.task('compile', () => {
 gulp.task('copy', async () => {
   return new Promise((resolve) => {
     gulp.src('README.md').pipe(gulp.dest('dist/'));
+    gulp.src('LICENSE').pipe(gulp.dest('dist/'));
     gulp.src(['src/**.json', '!src/tsconfig.json', 'src/**/**.js']).pipe(gulp.dest('dist/'));
     gulp.src('src/lang/**').pipe(gulp.dest('dist/lang/'));
     gulp.src('src/templates/**').pipe(gulp.dest('dist/templates/'));
     gulp.src('src/styles/**.css').pipe(gulp.dest('dist/styles/'));
     gulp.src('src/assets/**').pipe(gulp.dest('dist/assets/'));
+    gulp.src('src/packs/**').pipe(gulp.dest('dist/assets/'));
     resolve();
   });
 });
