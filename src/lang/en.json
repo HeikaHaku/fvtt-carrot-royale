@@ -56,5 +56,14 @@
   "CarRoy.Heavy": "Heavy",
   "CarRoy.HeavyWeapon": "Heavy Weapon",
 
-  "CarRoy.SheetClassHero": "Default Carrot Royale Hero Sheet"
+  "CarRoy.SheetClassHero": "Default Carrot Royale Hero Sheet",
+
+  "CarRoy.SheetClassArmor": "Default Carrot Royale Armor Sheet",
+  "CarRoy.SheetClassClass": "Default Carrot Royale Class Sheet",
+  "CarRoy.SheetClassEnchantment": "Default Carrot Royale Enchantment Sheet",
+  "CarRoy.SheetClassFeature": "Default Carrot Royale Feature Sheet",
+  "CarRoy.SheetClassMagicItem": "Default Carrot Royale Magic Item Sheet",
+  "CarRoy.SheetClassRace": "Default Carrot Royale Race Sheet",
+  "CarRoy.SheetClassSpell": "Default Carrot Royale Spell Sheet",
+  "CarRoy.SheetClassWeapon": "Default Carrot Royale Weapon Sheet"
 }
