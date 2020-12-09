@@ -9,7 +9,8 @@
     "major": "changelog -M && git add CHANGELOG.md && git commit -S -m \"updated CHANGELOG.md\" && npm version major -s",
     "minor": "changelog -m && git add CHANGELOG.md && git commit -S -m \"updated CHANGELOG.md\" && npm version minor -s",
     "patch": "changelog -p && git add CHANGELOG.md && git commit -S -m \"updated CHANGELOG.md\" && npm version patch -s",
-    "postversion": "gulp bump && git add src/system.json && git commit -S --amend --no-edit && git push && git push --tags && git push origin --tags"
+    "postversion": "gulp bump && git add src/system.json && git commit -S --amend --no-edit && git push && git push --tags && git push origin --tags",
+    "depupdate": "pnpm i && npm i --package-lock-only"
   },
   "repository": {
     "type": "git",
@@ -26,7 +27,7 @@
     "generate-changelog": "^1.8.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
+    "@babel/core": "^7.12.9",
     "@babel/register": "^7.12.1",
     "@types/node": "^14.14.11",
     "@typescript-eslint/eslint-plugin": "^4.9.1",
@@ -36,12 +37,12 @@
     "babelify": "^10.0.0",
     "del": "^6.0.0",
     "eslint": "^7.15.0",
-    "eslint-config-standard": "^16.0.1",
-    "eslint-config-stylelint": "^13.0.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-config-stylelint": "^13.1.0",
     "eslint-plugin-foundry-vtt": "0.0.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-prettier": "^3.2.0",
     "eslint-plugin-promise": "^4.2.1",
     "gulp": "^4.0.2",
     "gulp-bump": "^3.2.0",
@@ -49,9 +50,9 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
     "node-sass": "^5.0.0",
-    "prettier": "2.1.2",
-    "stylelint": "^13.7.2",
-    "typescript": "^4.0.5",
+    "prettier": "2.2.1",
+    "stylelint": "^13.8.0",
+    "typescript": "^4.1.2",
     "vinyl-buffer": "^1.0.1"
   }
 }
