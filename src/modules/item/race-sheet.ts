@@ -1,0 +1,21 @@
+/**
+ * @extends {ItemSheet}
+ */
+
+export class RaceSheet extends ItemSheet {
+  static get defaultOptions() {
+    return mergeObject(super.defaultOptions, {
+      classes: ['carrot-royale', 'race-sheet'],
+      template: 'systems/carrot-royale/templates/item/race-sheet.html',
+      width: 500,
+      height: 600,
+      tabs: [
+        {
+          navSelector: '.sheet-tabs',
+          contentSelector: '.sheet-body',
+          initial: 'details',
+        },
+      ],
+    });
+  }
+}

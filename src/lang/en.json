@@ -13,6 +13,9 @@
   "CarRoy.CarrotRoyale": "Carrot Royale",
   "CarRoy.Title": "Carrot Royale Game System",
   "CarRoy.Ability": "Ability",
+  "CarRoy.Abilities": "Abilities",
+  "CarRoy.Statistics": "Statistics",
+  "CarRoy.Stats": "Stats",
   "CarRoy.AbilityStr": "Strength",
   "CarRoy.AbilityStrAbbr": "str",
   "CarRoy.AbilityCon": "Constitution",
@@ -27,6 +30,12 @@
   "CarRoy.AbilityChaAbbr": "cha",
   "CarRoy.AbilityModifier": "Ability Modifier",
 
+  "CarRoy.Level": "Level",
+  "CarRoy.AbbreviationLevel": "Lvl",
+  "CarRoy.AbbreviationLevel2": "Lv",
+  "CarRoy.ClassLevels": "Class Levels",
+  "CarRoy.ClassFeatures": "Class Features",
+
   "CarRoy.Attributes": "Attributes",
   "CarRoy.Traits": "Traits",
   "CarRoy.Inventory": "Inventory",
@@ -36,11 +45,58 @@
 
   "CarRoy.HitPoints": "Hit Points",
   "CarRoy.HP": "HP",
+  "CarRoy.MaxHP": "Max HP",
+  "CarRoy.MaxHitPoints": "Max Hit Points",
+  "CarRoy.TotalHP": "Total HP",
+  "CarRoy.TotalHitPoints": "Total Hit Points",
+
+  "CarRoy.Damage": "Damage",
+  "CarRoy.Slow": "Slow",
+  "CarRoy.SizeGiant": "Giant Size",
+
+  "CarRoy.CurrencyCoins": "Coins",
+  "CarRoy.CurrencyCoin": "Coin",
 
   "CarRoy.Action": "Action",
   "CarRoy.BonusAction": "Bonus Action",
+  "CarRoy.Bonus": "Bonus",
   "CarRoy.FreeAction": "Free Action",
   "CarRoy.Reaction": "Reaction",
+  "CarRoy.AttackBonus": "Attack Bonus",
+  "CarRoy.SavingThrow": "Saving Throw",
+  "CarRoy.SavingThrows": "Saving Throws",
+  "CarRoy.DeathSave": "Death Save",
+  "CarRoy.DeathSavingThrow": "Death Saving Throw",
+  "CarRoy.AoO": "Attack of Opportunity",
+  "CarRoy.OpportunityAttack": "Opportunity Attack",
+  "CarRoy.SwapWeapon": "Swap Weapon",
+  "CarRoy.DefenseStance": "Defensive Stance",
+  "CarRoy.Disengage": "Disengage",
+  "CarRoy.Offhand": "Off Hand",
+
+  "CarRoy.Advantage": "Advantage",
+  "CarRoy.AdvantageAbbr": "Adv",
+  "CarRoy.Disadvantage": "Disadvantage",
+  "CarRoy.DisadvantageAbbr": "Dis",
+
+  "CarRoy.Success": "Success",
+  "CarRoy.Successes": "Successes",
+  "CarRoy.Failure": "Failure",
+  "CarRoy.Failures": "Failures",
+
+  "CarRoy.StatusProne": "Prone",
+
+  "CarRoy.Cover": "Cover",
+  "CarRoy.CoverMinor": "Minor Cover",
+  "CarRoy.CoverMajor": "Major Cover",
+  "CarRoy.CoverTotal": "Total Cover",
+
+  "CarRoy.Proficiency": "Proficiency",
+  "CarRoy.ProficiencyMartial": "Martial Proficiency",
+
+  "CarRoy.Turn": "Turn",
+
+  "CarRoy.Totem": "Totem",
 
   "CarRoy.Move": "Move",
   "CarRoy.Movement": "Movement",
@@ -55,6 +111,28 @@
   "CarRoy.MediumWeapon": "Medium Weapon",
   "CarRoy.Heavy": "Heavy",
   "CarRoy.HeavyWeapon": "Heavy Weapon",
+  "CarRoy.Melee": "Melee",
+  "CarRoy.Ranged": "Ranged",
+  "CarRoy.DualWield": "Dual Wield",
+  "CarRoy.DualWielding": "Dual Wielding",
+  "CarRoy.Flanking": "Flanking",
+  "Carroy.Flank": "Flank",
+  "CarRoy.Flanked": "Flanked",
 
-  "CarRoy.SheetClassHero": "Default Carrot Royale Hero Sheet"
+  "CarRoy.SpellFailure": "Spell Failure",
+  "CarRoy.Concentration": "Concentration",
+  "CarRoy.ShieldSlam": "Shield Slam",
+
+  "CarRoy.AbrreviationEnch": "Ench",
+
+  "CarRoy.SheetClassHero": "Default Carrot Royale Hero Sheet",
+
+  "CarRoy.SheetClassArmor": "Default Carrot Royale Armor Sheet",
+  "CarRoy.SheetClassClass": "Default Carrot Royale Class Sheet",
+  "CarRoy.SheetClassEnchantment": "Default Carrot Royale Enchantment Sheet",
+  "CarRoy.SheetClassFeature": "Default Carrot Royale Feature Sheet",
+  "CarRoy.SheetClassMagicItem": "Default Carrot Royale Magic Item Sheet",
+  "CarRoy.SheetClassRace": "Default Carrot Royale Race Sheet",
+  "CarRoy.SheetClassSpell": "Default Carrot Royale Spell Sheet",
+  "CarRoy.SheetClassWeapon": "Default Carrot Royale Weapon Sheet"
 }
