@@ -1,9 +1,18 @@
-carrot-royale.hero.sheet form {
+.carrot-royale.hero.sheet form {
   display: grid;
-  grid-template-rows: 100px 1em auto;
+  grid-template-rows: 100px auto auto;
 
   header .header-fields {
     display: grid;
     grid-template-columns: 100px 300px;
+    grid-template-rows: auto auto auto;
+    height: 100px;
+
+    section.profile {
+      grid-row: 1/4;
+      img {
+        height: 100%;
+      }
+    }
   }
 }

@@ -1,3 +1,17 @@
 @import 'sheets/sheets';
-@import 'sheets/actors/actor-sheet';
-@import 'sheets/items/item-sheet';
+
+.carrot-royale {
+  input[type='text'],
+  select {
+    height: calc(100% - 2px);
+    border: 1px solid #7a7971;
+    background: rgba(0, 0, 0, 0.05);
+    color: #191813;
+  }
+
+  input[type='text']:hover,
+  input[type='text']:focus {
+    border: 1px solid #111;
+    box-shadow: 0 0 8px red;
+  }
+}

@@ -1,7 +1,21 @@
+@import 'actors/actor-sheet';
+@import 'items/item-sheet';
+
 .carrot-royale.sheet {
   input[type='text'],
   input[type='number'] {
     background: none;
     border: 1px solid transparent;
+  }
+
+  input[type='text']:hover,
+  input[type='text']:focus {
+    border: 1px solid #111;
+  }
+
+  .editable .rollable:hover {
+    color: #000;
+    text-shadow: 0 0 10px red;
+    cursor: pointer;
   }
 }

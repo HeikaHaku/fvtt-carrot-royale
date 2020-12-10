@@ -8,7 +8,7 @@ export class HeroSheet extends ActorSheet {
       classes: ['carrot-royale', 'actor', 'sheet', 'hero'],
       template: 'systems/carrot-royale/templates/actor/hero-sheet.html',
       width: 700,
-      height: 600,
+      height: 625,
       tabs: [
         {
           navSelector: '.sheet-tabs',
