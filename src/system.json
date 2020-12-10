@@ -46,7 +46,7 @@
   "primaryTokenAttribute": "resources.health",
   "secondaryTokenAttribute": "resources.power",
   "minimumCoreVersion": "0.6.0",
-  "compatibleCoreVersion": "0.7.5",
+  "compatibleCoreVersion": "0.7.8",
   "url": "https://github.com/HeikaHaku/fvtt-carrot-royale",
   "manifest": "https://github.com/HeikaHaku/fvtt-carrot-royale/releases/latest/download/system.json",
   "download": ""

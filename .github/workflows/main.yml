@@ -46,8 +46,8 @@ jobs:
           files: './dist/system.json'
         env:
           url: https://github.com/${{github.repository}}
-          manifest: https://github.com/${{github.repository}}/releases/latest/download/system.json
-          download: https://github.com/${{github.repository}}/releases/latest/download/system.zip
+          manifest: https://github.com/${{github.repository}}/releases/download/latest/system.json
+          download: https://github.com/${{github.repository}}/releases/download/latest/system.zip
 
       # Update the 'latest' release
       - name: Update Latest Release
@@ -71,7 +71,7 @@ jobs:
           files: './dist/system.json'
         env:
           url: https://github.com/${{github.repository}}
-          manifest: https://github.com/${{github.repository}}/releases/latest/download/system.json
+          manifest: https://github.com/${{github.repository}}/releases/download/latest/system.json
           download: https://github.com/${{github.repository}}/releases/download/${{steps.get-version.outputs.version}}/system.zip
 
       # Create a release for this specific version
