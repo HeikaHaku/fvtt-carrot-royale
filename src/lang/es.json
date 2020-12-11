@@ -119,6 +119,11 @@
   "CarRoy.Flanking": "Flanking",
   "Carroy.Flank": "Flank",
   "CarRoy.Flanked": "Flanked",
+  "CarRoy.Equipped": "Equipped",
+  "CarRoy.NotEquipped": "Not Equipped",
+  "CarRoy.Equip": "Equip",
+  "CarRoy.Unequip": "Unequip",
+  "CarRoy.Remove": "Remove",
 
   "CarRoy.SpellFailure": "Spell Failure",
   "CarRoy.Concentration": "Concentration",
