@@ -2,7 +2,7 @@
   "name": "carrot-royale",
   "title": "Carrot Royale",
   "description": "A Foundry VTT Implementation of Carrot Royale",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "templateVersion": 2,
   "author": "HeikaHaku",
   "scripts": [],
@@ -48,6 +48,6 @@
   "minimumCoreVersion": "0.6.0",
   "compatibleCoreVersion": "0.7.8",
   "url": "https://github.com/HeikaHaku/fvtt-carrot-royale",
-  "manifest": "https://github.com/HeikaHaku/fvtt-carrot-royale/releases/latest/download/system.json",
+  "manifest": "https://github.com/HeikaHaku/fvtt-carrot-royale/releases/download/latest/system.json",
   "download": ""
 }

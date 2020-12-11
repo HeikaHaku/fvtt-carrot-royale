@@ -5,17 +5,40 @@
 export class WeaponSheet extends ItemSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: ['carrot-royale', 'weapon-sheet'],
+      classes: ['carrot-royale', 'item', 'sheet', 'weapon'],
       template: 'systems/carrot-royale/templates/item/weapon-sheet.html',
-      width: 500,
-      height: 600,
+      width: 560,
+      height: 400,
+      scrollY: ['.tab.active'],
       tabs: [
         {
-          navSelector: '.sheet-tabs',
+          navSelector: '.sheet-navigation',
           contentSelector: '.sheet-body',
-          initial: 'details',
+          initial: 'description',
         },
       ],
     });
+  }
+
+  /** @override */
+  getData(): ItemSheet<any, any> {
+    const data: any = super.getData();
+    data.labels = this.item.labels;
+    data.config = CONFIG.CarrotRoyale;
+    data.itemType = game.i18n.localize(`ITEM.Type${data.item.type.titleCase()}`);
+
+    console.log(data);
+
+    return data;
+  }
+
+  /* -------------------------------------------- */
+
+  /** @override */
+  setPosition(position: any = {}) {
+    if (!(this._minimized || position.height)) {
+      position.height = this._tabs[0].active === 'details' ? 'auto' : this.options.height;
+    }
+    return super.setPosition(position);
   }
 }

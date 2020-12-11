@@ -1,7 +1,93 @@
+@import 'actors/actor-sheet';
+@import 'items/item-sheet';
+
 .carrot-royale.sheet {
+  .editable {
+    display: grid;
+    grid-template-rows: repeat(2, fit-content(1000px)) auto;
+  }
+
   input[type='text'],
   input[type='number'] {
     background: none;
     border: 1px solid transparent;
+  }
+
+  input[type='text']:hover,
+  input[type='text']:focus {
+    border: 1px solid #111;
+  }
+
+  .editable .rollable:hover {
+    color: #000;
+    text-shadow: 0 0 10px red;
+    cursor: pointer;
+  }
+
+  .sheet-header {
+    border-bottom: 2px groove #eeede0;
+
+    h1 {
+      border-bottom: none;
+      height: 60px;
+      margin: 0;
+      padding: 5px;
+
+      input {
+        display: block;
+        height: 50px;
+        font-size: 32px;
+        margin: 0;
+      }
+    }
+
+    .header-details {
+      font-family: 'Modesto Condensed', 'Palatino Linotype', serif;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .summary {
+      display: grid;
+      height: 40px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border-top: 2px groove #eeede0;
+      border-bottom: none;
+    }
+  }
+
+  .sheet-body,
+  .sheet-body .tab {
+    height: 100%;
+  }
+
+  .tabs {
+    margin-bottom: 5px;
+    font-family: 'Modesto Condensed', 'Palatino Linotype', serif;
+    font-size: 20px;
+    font-weight: 700;
+    border-bottom: none;
+
+    .item {
+      height: 30px;
+      line-height: 32px;
+      margin: 0 24px;
+      border-bottom: 3px solid #b5b3a4;
+    }
+
+    .item.active {
+      border-bottom: 3px solid #44191a;
+    }
+  }
+
+  .editor {
+    height: 100%;
+
+    .tox-toolbar-overlord,
+    .tox-toolbar__primary {
+      background: none;
+    }
   }
 }

@@ -11,7 +11,7 @@ export class RaceSheet extends ItemSheet {
       height: 600,
       tabs: [
         {
-          navSelector: '.sheet-tabs',
+          navSelector: '.sheet-navigation',
           contentSelector: '.sheet-body',
           initial: 'details',
         },

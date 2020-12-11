@@ -1,3 +1,108 @@
-<form class="{{cssClass}} race-sheet">
-  <div class="sheet-body">{{data.description}}</div>
+<form class="{{cssClass}}">
+  {{!-- Sheet Header --}}
+  <header class="sheet-header">
+    <div class="header-fields">
+      <img class="profile" src="{{item.img}}" data-edit="img" title="{{item.name}}" width="100" height="100" />
+      <section class="header-details">
+        <h1 class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'CarRoy.WeaponName'}}" /></h1>
+        <div class="item-subtitle">
+          <h4 class="item-type">{{itemType}}</h4>
+          <span class="item-status">{{localize (equipped data.equipped)}}</span>
+        </div>
+        <ul class="summary">
+          <li>{{onehand data.twohand}}{{data.weaponType}}</li>
+          <li>{{data.weight}}</li>
+        </ul>
+      </section>
+    </div>
+  </header>
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-navigation tabs" data-group="primary">
+    <a class="item" data-tab="description">{{localize 'CarRoy.Description'}}</a>
+    <a class="item" data-tab="details">{{localize 'CarRoy.Details'}}</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <div class="sheet-body">
+    <div class="tab description" data-group="primary" data-tab="description">
+      <div class="item-properties">
+        <div class="form-group">
+          <label>{{localize 'CarRoy.Price'}}</label>
+          <input type="text" name="data.cost" value="{{item.data.cost}}" data-dtype="Number" />
+        </div>
+
+        <ol class="properties-list">
+          {{#if data.twohand}}
+          <li>{{localize 'CarRoy.TwoHanded'}}</li>
+          {{else}}
+          <li>{{localize 'CarRoy.OneHanded'}}</li>
+          {{/if}}
+        </ol>
+      </div>
+
+      {{editor content=data.description.value target="data.description.value" button=true owner=owner editable=editable}}
+    </div>
+
+    <div class="tab details" data-group="primary" data-tab="details">
+      <h3 class="form-header">{{localize 'CarRoy.WeaponDetails'}}</h3>
+
+      {{!-- Weapon Type --}}
+      <div class="form-group">
+        <label>{{localize 'CarRoy.WeaponType'}}</label>
+        <select name="data.weaponType">
+          {{#select data.weaponType}} {{#each config.weaponTypes as |name type|}}
+          <option value="{{type}}">{{localize name}}</option>
+          {{/each}} {{/select}}
+        </select>
+      </div>
+
+      {{!-- Weapon Weight --}}
+      <div class="form-group">
+        <label>{{localize 'CarRoy.WeaponWeight'}}</label>
+        <select name="data.weight">
+          {{#select data.weight}} {{#each config.weaponWeights as |name weight|}}
+          <option value="{{weight}}">{{localize name}}</option>
+          {{/each}} {{/select}}
+        </select>
+      </div>
+
+      {{!-- Weapon Properties--}}
+      <div class="form-group stacked">
+        <label>{{localize 'CarRoy.WeaponProperties'}}</label>
+        <label class="checkbox"> <input type="checkbox" name="data.twohand" {{checked data.twohand}} />{{localize 'CarRoy.TwoHanded'}} </label>
+      </div>
+
+      <h3 class="form-header">{{localize 'CarRoy.WeaponAttack'}}</h3>
+      <div class="form-group">
+        <label>{{localize 'CarRoy.ActionType'}}</label>
+        <select name="data.action">
+          {{#select data.action}} {{#each config.actionTypes as |name type|}}
+          <option value="{{type}}">{{localize name}}</option>
+          {{/each}} {{/select}}
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>{{localize 'CarRoy.AbilityModifier'}}</label>
+        <select name="data.mod">
+          {{#select data.mod}}
+          <option value=""></option>
+          {{#each config.abilityMods as |name mod|}}
+          <option value="{{mod}}">{{localize name}}</option>
+          {{/each}} {{/select}}
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>{{localize 'CarRoy.DamageFormula'}}</label>
+        <div class="form-fields">
+          <input type="text" name="data.formula" value="{{data.formula}}" placeholder="{{localize 'CarRoy.Formula'}}" />
+        </div>
+      </div>
+
+      <!-- Save DC -->
+      <!--div class="form-group"></div-->
+    </div>
+  </div>
 </form>

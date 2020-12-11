@@ -29,6 +29,7 @@
   "CarRoy.AbilityCha": "Charisma",
   "CarRoy.AbilityChaAbbr": "cha",
   "CarRoy.AbilityModifier": "Ability Modifier",
+  "CarRoy.Modifier": "Modifier",
 
   "CarRoy.Level": "Level",
   "CarRoy.AbbreviationLevel": "Lvl",
@@ -39,6 +40,14 @@
   "CarRoy.Attributes": "Attributes",
   "CarRoy.Traits": "Traits",
   "CarRoy.Inventory": "Inventory",
+  "CarRoy.Description": "Description",
+  "CarRoy.Details": "Details",
+
+  "CarRoy.ArmorDetails": "Armor Details",
+  "CarRoy.EnchantmentDetails": "Enchantment Details",
+  "CarRoy.MagicItemDetails": "Magic Item Details",
+  "CarRoy.SpellDetails": "Spell Details",
+  "CarRoy.WeaponDetails": "Weapon Details",
 
   "CarRoy.ArmorClass": "Armor Class",
   "CarRoy.AC": "AC",
@@ -56,6 +65,8 @@
 
   "CarRoy.CurrencyCoins": "Coins",
   "CarRoy.CurrencyCoin": "Coin",
+  "CarRoy.Price": "Price",
+  "CarRoy.Cost": "Cost",
 
   "CarRoy.Action": "Action",
   "CarRoy.BonusAction": "Bonus Action",
@@ -73,6 +84,7 @@
   "CarRoy.DefenseStance": "Defensive Stance",
   "CarRoy.Disengage": "Disengage",
   "CarRoy.Offhand": "Off Hand",
+  "CarRoy.ActionType": "Action Type",
 
   "CarRoy.Advantage": "Advantage",
   "CarRoy.AdvantageAbbr": "Adv",
@@ -113,17 +125,39 @@
   "CarRoy.HeavyWeapon": "Heavy Weapon",
   "CarRoy.Melee": "Melee",
   "CarRoy.Ranged": "Ranged",
+  "CarRoy.WeaponType": "Weapon Type",
   "CarRoy.DualWield": "Dual Wield",
   "CarRoy.DualWielding": "Dual Wielding",
   "CarRoy.Flanking": "Flanking",
   "Carroy.Flank": "Flank",
   "CarRoy.Flanked": "Flanked",
+  "CarRoy.Equipped": "Equipped",
+  "CarRoy.NotEquipped": "Not Equipped",
+  "CarRoy.Equip": "Equip",
+  "CarRoy.Unequip": "Unequip",
+  "CarRoy.Remove": "Remove",
+  "CarRoy.OneHanded": "One Handed",
+  "CarRoy.TwoHanded": "Two Handed",
+  "CarRoy.WeaponWeight": "Weapon Weight",
+  "CarRoy.WeaponProperties": "Weapon Properties",
+  "CarRoy.WeaponAttack": "Weapon Attack",
 
   "CarRoy.SpellFailure": "Spell Failure",
   "CarRoy.Concentration": "Concentration",
   "CarRoy.ShieldSlam": "Shield Slam",
 
   "CarRoy.AbrreviationEnch": "Ench",
+
+  "CarRoy.HeroName": "Hero Name",
+  "CarRoy.SummonName": "Summon Name",
+  "CarRoy.ArmorName": "Armor Name",
+  "CarRoy.ClassName": "Class Name",
+  "CarRoy.EnchantmentName": "Enchantment Name",
+  "CarRoy.FeatureName": "Feature Name",
+  "CarRoy.MagicItemName": "Magic Item Name",
+  "CarRoy.RaceName": "Race Name",
+  "CarRoy.SpellName": "Spell Name",
+  "CarRoy.WeaponName": "Weapon Name",
 
   "CarRoy.SheetClassHero": "Default Carrot Royale Hero Sheet",
 

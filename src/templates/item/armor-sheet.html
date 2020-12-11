@@ -1,3 +1,75 @@
-<form class="{{cssClass}} race-sheet">
-  <div class="sheet-body">{{data.description}}</div>
+<form class="{{cssClass}}">
+  {{!-- Sheet Header --}}
+  <header class="sheet-header">
+    <div class="header-fields">
+      <img class="profile" src="{{item.img}}" data-edit="img" title="{{item.name}}" width="100" height="100" />
+      <section class="header-details">
+        <h1 class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'CarRoy.ArmorName'}}" /></h1>
+        <div class="item-subtitle">
+          <h4 class="item-type">{{itemType}}</h4>
+          <span class="item-status">{{localize (equipped data.equipped)}}</span>
+        </div>
+        <ul class="summary">
+          <li>{{data.armorType}}{{#if data.armorType}}{{#unless (eq data.armorType 'shield')}} {{itemType}}{{/unless}}{{/if}}</li>
+        </ul>
+      </section>
+    </div>
+  </header>
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-navigation tabs" data-group="primary">
+    <a class="item" data-tab="description">{{localize 'CarRoy.Description'}}</a>
+    <a class="item" data-tab="details">{{localize 'CarRoy.Details'}}</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <div class="sheet-body">
+    <div class="tab description" data-group="primary" data-tab="description">
+      <div class="item-properties">
+        <div class="form-group">
+          <label>{{localize 'CarRoy.Price'}}</label>
+          <input type="text" name="data.cost" value="{{item.data.cost}}" data-dtype="Number" />
+        </div>
+
+        <ol class="properties-list">
+          <li>{{data.armorType}}{{#if data.armorType}}{{#unless (eq data.armorType 'shield')}} {{itemType}}{{/unless}}{{/if}}</li>
+          <li>{{data.ac}} {{localize 'CarRoy.AC'}}</li>
+        </ol>
+      </div>
+
+      {{editor content=data.description.value target="data.description.value" button=true owner=owner editable=editable}}
+    </div>
+
+    <div class="tab details" data-group="primary" data-tab="details">
+      <h3 class="form-header">{{localize 'CarRoy.WeaponDetails'}}</h3>
+
+      {{!-- Armor Type --}}
+      <div class="form-group">
+        <label>{{localize 'CarRoy.ArmorType'}}</label>
+        <select name="data.armorType">
+          {{#select data.armorType}}
+          <option value=""></option>
+          {{#each config.armorTypes as |name type|}}
+          <option value="{{type}}">{{localize name}}</option>
+          {{/each}} {{/select}}
+        </select>
+      </div>
+
+      {{!-- Weapon Properties--}}
+      <div class="form-group stacked">
+        <label>{{localize 'CarRoy.EquipmentStatus'}}</label>
+        <label class="checkbox"> <input type="checkbox" name="data.equipped" {{checked data.equipped}} />{{localize 'CarRoy.Equipped'}} </label>
+      </div>
+
+      {{!-- Armor Class --}}
+      <div class="form-group">
+        <label>{{localize 'CarRoy.ArmorClass'}}</label>
+        <div class="form-fields">
+          <input type="text" name="data.ac" value="{{data.ac}}" data-dtype="Number" />
+        </div>
+      </div>
+
+      <!-- Shield Bash -->
+    </div>
+  </div>
 </form>

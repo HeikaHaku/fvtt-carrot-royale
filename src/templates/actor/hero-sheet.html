@@ -2,15 +2,13 @@
   {{!-- Sheet Header --}}
   <header class="sheet-header">
     <div class="header-fields">
-      <section class="profile">
-        <img class="profile" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" width="100" height="100" />
-      </section>
-      <div class="hero-name"><input name="name" type="text" value="{{actor.name}}" placeholder="Hero Name" /></div>
+      <img class="profile" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" width="100" height="100" />
+      <div class="hero-name"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'CarRoy.HeroName'}}" /></div>
     </div>
   </header>
 
   {{!-- Sheet Tab Navigation --}}
-  <nav class="sheet-tabs tabs" data-group="primary">
+  <nav class="sheet-navigation tabs" data-group="primary">
     <a class="item" data-tab="attributes">{{localize 'CarRoy.Attributes'}}</a>
     <a class="item" data-tab="traits">{{localize 'CarRoy.Traits'}}</a>
     <a class="item" data-tab="inventory">{{localize 'CarRoy.Inventory'}}</a>
@@ -19,19 +17,28 @@
   {{!-- Sheet Body --}}
   <section class="sheet-body">
     {{!-- Attributes Tab --}}
-    <div class="tab attributes-container" data-group="primary" data-tab="attributes">
+    <div class="tab attributes" data-group="primary" data-tab="attributes">
       {{!-- Ability Scores --}}
       <section class="abilities">
-        {{#each data.abilities as |ability name|}}
-        <div class="ability"><label class="ability-label">{{firstUpper (localize (prepAbilityLocaleAbbr name))}}</label>{{ability.value}}</div>
-        {{/each}}
+        <ul class="ability-scores">
+          {{#each data.abilities as |ability name|}}
+          <li class="ability" data-ability="{{name}}">
+            <h4 class="ability-name box-title rollable">{{firstUpper (localize (prepAbilityLocale name))}}</h4>
+            <input class="ability-score" name="data.abilities.{{name}}.value" type="text" value="10" data-dtype="Number" placeholder="10" />
+            <div class="ability-modifier">
+              <span class="ability-mod" title="{{localize 'CarRoy.Modifier'}}">{{modCalc ability.value}}</span>
+            </div>
+          </li>
+          <!--div class="ability"><label class="ability-label">{{firstUpper (localize (prepAbilityLocaleAbbr name))}}</label>{{ability.value}}</div-->
+          {{/each}}
+        </ul>
       </section>
     </div>
 
     {{!-- Traits Tab --}}
-    <div class="tab traits-container" data-group="primary" data-tab="traits"></div>
+    <div class="tab traits" data-group="primary" data-tab="traits"></div>
 
     {{!-- Inventory Tab --}}
-    <div class="tab inventory-container" data-group="primary" data-tab="inventory"></div>
+    <div class="tab inventory" data-group="primary" data-tab="inventory"></div>
   </section>
 </form>
