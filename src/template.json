@@ -75,7 +75,8 @@
       },
       "equippable": {
         "cost": 0,
-        "tags": []
+        "tags": [],
+        "equipped": false
       }
     },
     "armor": {
@@ -118,6 +119,7 @@
       "extra": "",
       "melee": false,
       "ranged": false,
+      "onehand": true,
       "weight": ""
     }
   }
