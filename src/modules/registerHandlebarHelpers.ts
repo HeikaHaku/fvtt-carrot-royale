@@ -7,5 +7,11 @@ Hooks.once('ready', async () => {
 
   Handlebars.registerHelper('firstUpper', (arg: string) => arg.charAt(0).toUpperCase() + arg.slice(1));
 
-  Handlebars.registerHelper('modCalc', (arg1: number) => (arg1 < 10 ? '-' : '+') + Math.floor((arg1 - 10) / 2));
+  Handlebars.registerHelper('modCalc', (arg: number) => (arg < 10 ? '-' : '+') + Math.floor((arg - 10) / 2));
+
+  Handlebars.registerHelper('equipped', (arg: boolean) => (arg ? 'Equipped' : 'Not Equipped'));
+
+  Handlebars.registerHelper('onehand', (arg: boolean) => (arg ? '1h ' : '2h '));
+
+  Handlebars.registerHelper('meleeRanged', (melee: boolean, ranged: boolean) => (melee ? 'Melee' : ranged ? 'Ranged' : 'Unknown'));
 });
