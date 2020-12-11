@@ -7,15 +7,37 @@ export class ArmorSheet extends ItemSheet {
     return mergeObject(super.defaultOptions, {
       classes: ['carrot-royale', 'item', 'sheet', 'armor'],
       template: 'systems/carrot-royale/templates/item/armor-sheet.html',
-      width: 500,
-      height: 600,
+      width: 560,
+      height: 400,
       tabs: [
         {
           navSelector: '.sheet-navigation',
           contentSelector: '.sheet-body',
-          initial: 'details',
+          initial: 'description',
         },
       ],
     });
+  }
+
+  /** @override */
+  getData(): ItemSheet<any, any> {
+    const data: any = super.getData();
+    data.labels = this.item.labels;
+    data.config = CONFIG.CarrotRoyale;
+    data.itemType = game.i18n.localize(`ITEM.Type${data.item.type.titleCase()}`);
+
+    console.log(data);
+
+    return data;
+  }
+
+  /* -------------------------------------------- */
+
+  /** @override */
+  setPosition(position: any = {}) {
+    if (!(this._minimized || position.height)) {
+      position.height = this._tabs[0].active === 'details' ? 'auto' : this.options.height;
+    }
+    return super.setPosition(position);
   }
 }
