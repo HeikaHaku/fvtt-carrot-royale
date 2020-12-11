@@ -102,6 +102,11 @@
         "cha": 0
       }
     },
+    "enchantment": {
+      "templates": ["common"],
+      "cost": 0,
+      "bonus": 0
+    },
     "feature": {
       "templates": ["common"],
       "action": "",
