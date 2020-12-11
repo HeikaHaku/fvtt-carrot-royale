@@ -126,6 +126,17 @@
 
   "CarRoy.AbrreviationEnch": "Ench",
 
+  "CarRoy.HeroName": "Hero Name",
+  "CarRoy.SummonName": "Summon Name",
+  "CarRoy.ArmorName": "Armor Name",
+  "CarRoy.ClassName": "Class Name",
+  "CarRoy.EnchantmentName": "Enchantment Name",
+  "CarRoy.FeatureName": "Feature Name",
+  "CarRoy.MagicItemName": "Magic Item Name",
+  "CarRoy.RaceName": "Race Name",
+  "CarRoy.SpellName": "Spell Name",
+  "CarRoy.WeaponName": "Weapon Name",
+
   "CarRoy.SheetClassHero": "Default Carrot Royale Hero Sheet",
 
   "CarRoy.SheetClassArmor": "Default Carrot Royale Armor Sheet",
