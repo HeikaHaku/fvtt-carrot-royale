@@ -1,7 +1,7 @@
 @import 'hero-sheet';
 
 .carrot-royale.actor.sheet {
-  .tab.attributes {
+  .tab.attributes.active {
     display: grid;
     grid-template-columns: 100px auto;
 

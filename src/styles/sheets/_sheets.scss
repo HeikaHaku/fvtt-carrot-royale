@@ -2,6 +2,11 @@
 @import 'items/item-sheet';
 
 .carrot-royale.sheet {
+  .editable {
+    display: grid;
+    grid-template-rows: repeat(2, fit-content(1000px)) auto;
+  }
+
   input[type='text'],
   input[type='number'] {
     background: none;
@@ -53,6 +58,11 @@
     }
   }
 
+  .sheet-body,
+  .sheet-body .tab {
+    height: 100%;
+  }
+
   .tabs {
     margin-bottom: 5px;
     font-family: 'Modesto Condensed', 'Palatino Linotype', serif;
@@ -69,6 +79,15 @@
 
     .item.active {
       border-bottom: 3px solid #44191a;
+    }
+  }
+
+  .editor {
+    height: 100%;
+
+    .tox-toolbar-overlord,
+    .tox-toolbar__primary {
+      background: none;
     }
   }
 }

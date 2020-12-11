@@ -69,9 +69,13 @@
         "damagetype": "",
         "bonus": "",
         "bonustype": "",
-        "range": 0,
+        "range": 1,
         "area": 0,
-        "action": ""
+        "action": "",
+        "mod": "",
+        "save": "",
+        "saveDC": 0,
+        "formula": ""
       },
       "equippable": {
         "cost": 0,
@@ -83,7 +87,8 @@
       "templates": ["common", "equippable"],
       "ac": 0,
       "movement": 0,
-      "extra": ""
+      "extra": "",
+      "armorType": ""
     },
     "class": {
       "templates": ["common"],
@@ -117,10 +122,11 @@
     "weapon": {
       "templates": ["common", "equippable", "damage"],
       "extra": "",
-      "melee": false,
+      "melee": true,
       "ranged": false,
-      "onehand": true,
-      "weight": ""
+      "twohand": false,
+      "weight": "light",
+      "weaponType": "Melee"
     }
   }
 }
