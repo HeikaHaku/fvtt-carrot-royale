@@ -11,7 +11,7 @@ export class HeroSheet extends ActorSheet {
       height: 625,
       tabs: [
         {
-          navSelector: '.sheet-tabs',
+          navSelector: '.sheet-navigation',
           contentSelector: '.sheet-body',
           initial: 'attributes',
         },

@@ -2,15 +2,13 @@
   {{!-- Sheet Header --}}
   <header class="sheet-header">
     <div class="header-fields">
-      <section class="profile">
-        <img class="profile" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" width="100" height="100" />
-      </section>
-      <div class="hero-name"><input name="name" type="text" value="{{actor.name}}" placeholder="Hero Name" /></div>
+      <img class="profile" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" width="100" height="100" />
+      <div class="hero-name"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'CarRoy.HeroName'}}" /></div>
     </div>
   </header>
 
   {{!-- Sheet Tab Navigation --}}
-  <nav class="sheet-tabs tabs" data-group="primary">
+  <nav class="sheet-navigation tabs" data-group="primary">
     <a class="item" data-tab="attributes">{{localize 'CarRoy.Attributes'}}</a>
     <a class="item" data-tab="traits">{{localize 'CarRoy.Traits'}}</a>
     <a class="item" data-tab="inventory">{{localize 'CarRoy.Inventory'}}</a>
