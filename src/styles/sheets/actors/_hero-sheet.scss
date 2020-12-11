@@ -8,11 +8,9 @@
     grid-template-rows: auto auto auto;
     height: 100px;
 
-    section.profile {
+    .profile {
       grid-row: 1/4;
-      img {
-        height: 100%;
-      }
+      height: 100%;
     }
   }
 }
