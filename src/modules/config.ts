@@ -83,6 +83,23 @@ CarrotRoyale.abilitiesAbbr = {
   cha: 'CarRoy.AbilityChaAbbr',
 };
 
+CarrotRoyale.bonusStats = {
+  hp: 'CarRoy.HitPoints',
+  str: 'CarRoy.AbilityStr',
+  dex: 'CarRoy.AbilityDex',
+  con: 'CarRoy.AbilityCon',
+  int: 'CarRoy.AbilityInt',
+  wis: 'CarRoy.AbilityWis',
+  cha: 'CarRoy.AbilityCha',
+  damage: 'CarRoy.Damage',
+  ac: 'CarRoy.ArmorClass',
+  regen: 'CarRoy.HPRegen',
+  init: 'CarRoy.Initiative',
+  saves: 'CarRoy.SavingThrows',
+  move: 'CarRoy.Movement',
+  attack: 'CarRoy.AttackBonus',
+};
+
 /* -------------------------------------------- */
 
 /**

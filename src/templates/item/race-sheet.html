@@ -1,3 +1,64 @@
-<form class="{{cssClass}} race-sheet">
-  <div class="sheet-body">{{data.description}}</div>
+<form class="{{cssClass}}">
+  {{!-- Sheet Header --}}
+  <header class="sheet-header">
+    <div class="header-fields">
+      <img class="profile" src="{{item.img}}" data-edit="img" title="{{item.name}}" width="100" height="100" />
+      <section class="header-details">
+        <h1 class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'CarRoy.SpellName'}}" /></h1>
+        <div class="item-subtitle">
+          <h4 class="item-type">{{itemType}}</h4>
+        </div>
+        <ul class="summary">
+          <li>{{itemType}}</li>
+        </ul>
+      </section>
+    </div>
+  </header>
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-navigation tabs" data-group="primary">
+    <a class="item" data-tab="description">{{localize 'CarRoy.Description'}}</a>
+    <a class="item" data-tab="details">{{localize 'CarRoy.Details'}}</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <div class="sheet-body">
+    <div class="tab description" data-group="primary" data-tab="description">
+      <div class="item-properties">
+        <ol class="properties-list"></ol>
+      </div>
+
+      {{editor content=data.description.value target="data.description.value" button=true owner=owner editable=editable}}
+    </div>
+
+    <div class="tab details" data-group="primary" data-tab="details">
+      {{!-- Racial Traits --}}
+      <div class="form-group stacked">
+        <label>{{localize 'CarRoy.RacialTraits'}}</label>
+        <label class="checkbox"> <input type="checkbox" name="data.traits.giant" {{checked data.traits.giant}} />{{localize 'CarRoy.SizeGiant'}}</label>
+        <label class="checkbox"> <input type="checkbox" name="data.traits.slow" {{checked data.traits.slow}} />{{localize 'CarRoy.Slow'}}</label>
+      </div>
+
+      {{!-- Racial Bonuses --}}
+      <h4 class="bonus-header">
+        {{localize 'CarRoy.RacialBonuses'}}
+        <a class="bonus-control add-bonus"><i class="fas fa-plus"></i></a>
+      </h4>
+      <ol class="bonus-parts form-group">
+        {{#each data.bonus.stats as |part i|}}
+        <li class="bonus-part flexrow" data-bonus-part="{{i}}">
+          <input type="text" name="data.bonus.stats.{{i}}.0" value="{{lookup this "0"}}">
+          <select name="data.bonus.stats.{{i}}.1">
+            {{#select (lookup this "1")}}
+            <option value="">{{localize 'CarRoy.None'}}</option>
+            {{#each ../config.bonusStats as |name type|}}
+            <option value="{{type}}">{{localize name}}</option>
+            {{/each}} {{/select}}
+          </select>
+          <a class="bonus-control delete-bonus"><i class="fas fa-minus"></i></a>
+        </li>
+        {{/each}}
+      </ol>
+    </div>
+  </div>
 </form>
