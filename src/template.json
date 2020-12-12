@@ -126,7 +126,9 @@
         "int": 0,
         "wis": 0,
         "cha": 0
-      }
+      },
+      "levels": 0,
+      "spellcaster": false
     },
     "enchantment": {
       "templates": ["common"],
@@ -134,16 +136,20 @@
       "bonus": 0
     },
     "feature": {
-      "templates": ["common", "duration"],
-      "action": "",
+      "templates": ["common", "damage", "duration"],
       "uses": ""
     },
     "race": {
       "templates": ["common"],
       "ac": 0,
       "movement": 0,
-      "bonuses": {},
-      "traits": []
+      "bonus": {
+        "stats": []
+      },
+      "traits": {
+        "giant": false,
+        "slow": false
+      }
     },
     "spell": {
       "templates": ["common", "damage", "duration"],
