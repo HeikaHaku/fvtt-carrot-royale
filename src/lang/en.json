@@ -63,6 +63,7 @@
   "CarRoy.MaxHitPoints": "Max Hit Points",
   "CarRoy.TotalHP": "Total HP",
   "CarRoy.TotalHitPoints": "Total Hit Points",
+  "CarRoy.HPRegen": "HP Regen",
 
   "CarRoy.Damage": "Damage",
   "CarRoy.Slow": "Slow",
@@ -189,8 +190,18 @@
   "CarRoy.SpellProperties": "Spell Properties",
   "CarRoy.SpellEffects": "Spell Effects",
   "CarRoy.SpellCasting": "Spell Casting",
+  "CarRoy.Spellcaster": "Spellcaster",
   "CarRoy.Concentration": "Concentration",
   "CarRoy.ShieldSlam": "Shield Slam",
+
+  "CarRoy.ClassProperties": "Class Properties",
+
+  "CarRoy.FeatureUsage": "FeatureUsage",
+  "CarRoy.FeatureEffects": "Feature Effects",
+
+  "CarRoy.RacialTraits": "Racial Traits",
+  "CarRoy.RacialBonus": "Racial Bonus",
+  "CarRoy.RacialBonuses": "Racial Bonuses",
 
   "CarRoy.AbrreviationEnch": "Ench",
 
