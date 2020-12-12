@@ -15,6 +15,7 @@ devDependencies:
   eslint-config-standard: 16.0.2_0529347e2fd2c84141655e29ba29f485
   eslint-config-stylelint: 13.1.0_eslint@7.15.0+typescript@4.1.2
   eslint-plugin-foundry-vtt: 0.0.1
+  eslint-plugin-hbs: 1.0.0
   eslint-plugin-import: 2.22.1_eslint@7.15.0
   eslint-plugin-node: 11.1.0_eslint@7.15.0
   eslint-plugin-prettier: 3.2.0_eslint@7.15.0+prettier@2.2.1
@@ -2269,6 +2270,16 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-W4YwYU16n7kzVlaKB675TZYAZQmOztq112wS+S/T/I6IOjp7BvZaFYD/d/rjuRBaCF0KwW2w/BojBY5Lllw1qA==
+  /eslint-plugin-hbs/1.0.0:
+    dependencies:
+      requireindex: 1.2.0
+    dev: true
+    engines:
+      node: '>=10.13.0'
+    peerDependencies:
+      ember-template-lint: ^1.5.3
+    resolution:
+      integrity: sha512-UaJYgG1xP6Mr/VuPO9G/tbReiavs8lmTUInwbomQ+FtA7C22AlDZK08FH4aRloKo70GyeJLm+SYSF6QtM/QZhQ==
   /eslint-plugin-import/2.22.1_eslint@7.15.0:
     dependencies:
       array-includes: 3.1.2
@@ -5457,6 +5468,12 @@ packages:
       node: '>=0.10.5'
     resolution:
       integrity: sha1-5UBLgVV+91225JxacgBIk/4D4WI=
+  /requireindex/1.2.0:
+    dev: true
+    engines:
+      node: '>=0.10.5'
+    resolution:
+      integrity: sha512-L9jEkOi3ASd9PYit2cwRfyppc9NoABujTP8/5gFcbERmo5jUoAKovIC3fsF17pkTnGsrByysqX+Kxd2OTNI1ww==
   /resolve-dir/1.0.1:
     dependencies:
       expand-tilde: 2.0.2
@@ -6760,6 +6777,7 @@ specifiers:
   eslint-config-standard: ^16.0.2
   eslint-config-stylelint: ^13.1.0
   eslint-plugin-foundry-vtt: 0.0.1
+  eslint-plugin-hbs: ^1.0.0
   eslint-plugin-import: ^2.22.1
   eslint-plugin-node: ^11.1.0
   eslint-plugin-prettier: ^3.2.0

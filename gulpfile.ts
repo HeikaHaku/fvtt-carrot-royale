@@ -29,7 +29,7 @@ gulp.task('copy', async () => {
     gulp.src('src/styles/**.css').pipe(gulp.dest('dist/styles/'));
     gulp.src('src/assets/**').pipe(gulp.dest('dist/assets/'));
     gulp.src('src/packs/**').pipe(gulp.dest('dist/assets/'));
-    resolve();
+    resolve(null);
   });
 });
 
