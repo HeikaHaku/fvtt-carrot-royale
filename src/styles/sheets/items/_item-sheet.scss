@@ -105,10 +105,17 @@
     }
   }
 
-  .details input[type='text'],
-  .details select {
-    height: 24px;
-    border: 1px solid #7a7971;
-    background: rgba(0, 0, 0, 0.05);
+  .details {
+    input[type='text'],
+    select {
+      height: 24px;
+      border: 1px solid #7a7971;
+      background: rgba(0, 0, 0, 0.05);
+      width: 100%;
+    }
+
+    .form-group.input-select select {
+      flex: 1.8;
+    }
   }
 }
