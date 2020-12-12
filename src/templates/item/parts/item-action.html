@@ -1,7 +1,9 @@
 <div class="form-group">
   <label>{{localize 'CarRoy.ActionType'}}</label>
   <select name="data.action">
-    {{#select data.action}} {{#each config.actionTypes as |name type|}}
+    {{#select data.action}}
+    <option value=""></option>
+    {{#each config.actionTypes as |name type|}}
     <option value="{{type}}">{{localize name}}</option>
     {{/each}} {{/select}}
   </select>
