@@ -65,22 +65,48 @@
         "description": ""
       },
       "damage": {
-        "damage": 0,
-        "damagetype": "",
-        "bonus": "",
-        "bonustype": "",
-        "range": 1,
+        "damage": {
+          "value": 0,
+          "type": ""
+        },
+        "bonus": {
+          "value": 0,
+          "type": ""
+        },
+        "target": {
+          "value": 0,
+          "units": "",
+          "type": "",
+          "width": 0
+        },
+        "range": {
+          "value": 0,
+          "units": ""
+        },
         "area": 0,
         "action": "",
         "mod": "",
-        "save": "",
-        "saveDC": 0,
-        "formula": ""
+        "save": {
+          "ability": "",
+          "DC": 0
+        },
+        "formula": "",
+        "activation": {
+          "cost": 0,
+          "type": "",
+          "condition": ""
+        }
       },
       "equippable": {
         "cost": 0,
         "tags": [],
         "equipped": false
+      },
+      "duration": {
+        "duration": {
+          "units": "",
+          "value": 0
+        }
       }
     },
     "armor": {
@@ -108,10 +134,9 @@
       "bonus": 0
     },
     "feature": {
-      "templates": ["common"],
+      "templates": ["common", "duration"],
       "action": "",
-      "uses": "",
-      "duration": 0
+      "uses": ""
     },
     "race": {
       "templates": ["common"],
@@ -121,11 +146,11 @@
       "traits": []
     },
     "spell": {
-      "templates": ["common", "damage"],
-      "duration": ""
+      "templates": ["common", "damage", "duration"],
+      "atWill": false
     },
     "weapon": {
-      "templates": ["common", "equippable", "damage"],
+      "templates": ["common", "equippable", "damage", "duration"],
       "extra": "",
       "melee": true,
       "ranged": false,
