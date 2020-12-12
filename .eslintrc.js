@@ -10,8 +10,9 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint', 'prettier'],
+  plugins: ['@typescript-eslint', 'prettier', 'hbs'],
   rules: {
     'prettier/prettier': 'error',
+    'hbs/check-hbs-template-literals': 2
   },
 };

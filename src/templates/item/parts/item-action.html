@@ -1,0 +1,44 @@
+<div class="form-group">
+  <label>{{localize 'CarRoy.ActionType'}}</label>
+  <select name="data.action">
+    {{#select data.action}} {{#each config.actionTypes as |name type|}}
+    <option value="{{type}}">{{localize name}}</option>
+    {{/each}} {{/select}}
+  </select>
+</div>
+
+{{!-- Ability Modifier --}}
+<div class="form-group">
+  <label>{{localize 'CarRoy.AbilityModifier'}}</label>
+  <select name="data.mod">
+    {{#select data.mod}}
+    <option value=""></option>
+    {{#each config.abilities as |name mod|}}
+    <option value="{{mod}}">{{localize name}}</option>
+    {{/each}} {{/select}}
+  </select>
+</div>
+
+{{!-- Damage Formula --}}
+<div class="form-group">
+  <label>{{localize 'CarRoy.DamageFormula'}}</label>
+  <div class="form-fields">
+    <input type="text" name="data.formula" value="{{data.formula}}" placeholder="{{localize 'CarRoy.Formula'}}" />
+  </div>
+</div>
+
+{{!-- Saving Throw --}}
+<div class="form-group input-select">
+  <label>{{localize 'CarRoy.SavingThrow'}}</label>
+  <div class="form-fields">
+    <select name="data.save.ability">
+      {{#select data.save.ability}}
+      <option value=""></option>
+      {{#each config.abilities as |ability a|}}
+      <option value="{{a}}">{{localize ability}}</option>
+      {{/each}} {{/select}}
+    </select>
+    <span>{{localize 'CarRoy.VsDC'}}</span>
+    <input type="text" name="data.save.dc" value="{{#if data.save.dc}}{{data.save.dc}}{{/if}}" data-dtype="Number" placeholder="{{localize 'CarRoy.DC'}}" />
+  </div>
+</div>

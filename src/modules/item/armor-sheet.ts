@@ -26,8 +26,6 @@ export class ArmorSheet extends ItemSheet {
     data.config = CONFIG.CarrotRoyale;
     data.itemType = game.i18n.localize(`ITEM.Type${data.item.type.titleCase()}`);
 
-    console.log(data);
-
     return data;
   }
 

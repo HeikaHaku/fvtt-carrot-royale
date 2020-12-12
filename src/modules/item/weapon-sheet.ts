@@ -27,7 +27,8 @@ export class WeaponSheet extends ItemSheet {
     data.config = CONFIG.CarrotRoyale;
     data.itemType = game.i18n.localize(`ITEM.Type${data.item.type.titleCase()}`);
 
-    console.log(data);
+    data.noDuration = ['none'].includes(data.data.duration.units);
+    data.perLevel = data.data.duration.units == 'per';
 
     return data;
   }

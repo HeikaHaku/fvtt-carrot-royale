@@ -48,9 +48,14 @@
   "CarRoy.MagicItemDetails": "Magic Item Details",
   "CarRoy.SpellDetails": "Spell Details",
   "CarRoy.WeaponDetails": "Weapon Details",
+  "CarRoy.WeaponUsage": "Weapon Usage",
 
   "CarRoy.ArmorClass": "Armor Class",
   "CarRoy.AC": "AC",
+
+  "CarRoy.DifficultyCheck": "Difficulty Check",
+  "CarRoy.DC": "DC",
+  "CarRoy.VsDC": "vs DC",
 
   "CarRoy.HitPoints": "Hit Points",
   "CarRoy.HP": "HP",
@@ -85,6 +90,27 @@
   "CarRoy.Disengage": "Disengage",
   "CarRoy.Offhand": "Off Hand",
   "CarRoy.ActionType": "Action Type",
+  "CarRoy.ActivationCost": "Activation Cost",
+  "CarRoy.ActivationCondition": "Activation Condition",
+
+  "CarRoy.Target": "Target",
+  "CarRoy.TargetAlly": "Ally",
+  "CarRoy.TargetCone": "Cone",
+  "CarRoy.TargetCreature": "Creature",
+  "CarRoy.TargetCube": "Cube",
+  "CarRoy.TargetCylinder": "Cylinder",
+  "CarRoy.TargetEnemy": "Enemy",
+  "CarRoy.TargetLine": "Line",
+  "CarRoy.TargetObject": "Object",
+  "CarRoy.TargetRadius": "Radius",
+  "CarRoy.TargetSelf": "Self",
+  "CarRoy.TargetSpace": "Space",
+  "CarRoy.TargetSphere": "Sphere",
+  "CarRoy.TargetSquare": "Square",
+  "CarRoy.TargetWall": "Wall",
+  "CarRoy.TargetWidth": "Line Width",
+
+  "CarRoy.DistSquare": "Squares",
 
   "CarRoy.Advantage": "Advantage",
   "CarRoy.AdvantageAbbr": "Adv",
@@ -159,10 +185,22 @@
   "CarRoy.Formula": "Formula",
 
   "CarRoy.SpellFailure": "Spell Failure",
+  "CarRoy.AtWill": "At Will",
+  "CarRoy.SpellProperties": "Spell Properties",
+  "CarRoy.SpellEffects": "Spell Effects",
+  "CarRoy.SpellCasting": "Spell Casting",
   "CarRoy.Concentration": "Concentration",
   "CarRoy.ShieldSlam": "Shield Slam",
 
   "CarRoy.AbrreviationEnch": "Ench",
+
+  "CarRoy.Duration": "Duration",
+  "CarRoy.Range": "Range",
+  "CarRoy.Turns": "Turns",
+  "CarRoy.Special": "Special",
+  "CarRoy.None": "None",
+  "CarRoy.PerLevel": "Per Level",
+  "CarRoy.PerClassLevel": "Per Class Level",
 
   "CarRoy.HeroName": "Hero Name",
   "CarRoy.SummonName": "Summon Name",

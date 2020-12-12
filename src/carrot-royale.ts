@@ -1,5 +1,6 @@
 import { CarrotRoyale } from './modules/config.js';
 import { registerSystemSettings } from './modules/settings.js';
+import { preloadHandlebarsTemplates } from './modules/templates.js';
 
 import { HeroSheet } from './modules/actor/hero-sheet.js';
 
@@ -11,6 +12,8 @@ import { MagicItemSheet } from './modules/item/magic-item-sheet.js';
 import { RaceSheet } from './modules/item/race-sheet.js';
 import { SpellSheet } from './modules/item/spell-sheet.js';
 import { WeaponSheet } from './modules/item/weapon-sheet.js';
+
+import * as migrations from './modules/migrations.js';
 
 export const log = (...args: unknown[]) => console.log('Carrot Royale | ' + args);
 
@@ -25,7 +28,7 @@ Hooks.once('init', function () {
     dice: {},
     entities: {},
     macros: {},
-    migrations: {},
+    migrations: migrations,
     rollItemMacro: {},
   };
 
@@ -90,6 +93,8 @@ Hooks.once('init', function () {
     makeDefault: true,
     label: 'CarRoy.SheetClassWeapon',
   });
+
+  preloadHandlebarsTemplates();
 });
 
 Hooks.once('setup', function () {
@@ -110,4 +115,29 @@ Hooks.once('setup', function () {
       return obj;
     }, {});
   }
+});
+
+/* -------------------------------------------- */
+
+/**
+ * Once the entire VTT framework is initialized, check to see if we should perform a data migration
+ */
+Hooks.once('ready', function () {
+  // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
+  //Hooks.on('hotbarDrop', (bar: any, data: any, slot: any) => macros.create5eMacro(data, slot));
+
+  // Determine whether a system migration is required and feasible
+  if (!game.user.isGM) return;
+  const currentVersion = game.settings.get('carroy', 'systemMigrationVersion');
+  const NEEDS_MIGRATION_VERSION = '0.0.5';
+  const COMPATIBLE_MIGRATION_VERSION = '0.0.2';
+  const needsMigration = currentVersion && isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion);
+  if (!needsMigration) return;
+
+  // Perform the migration
+  if (currentVersion && isNewerVersion(COMPATIBLE_MIGRATION_VERSION, currentVersion)) {
+    const warning = `Your DnD5e system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`;
+    ui.notifications.error(warning, { permanent: true });
+  }
+  migrations.migrateWorld();
 });
