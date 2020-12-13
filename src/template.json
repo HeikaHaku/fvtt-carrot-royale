@@ -107,6 +107,11 @@
           "units": "",
           "value": 0
         }
+      },
+      "bonus": {
+        "bonus": {
+          "stats": []
+        }
       }
     },
     "armor": {
@@ -117,15 +122,13 @@
       "armorType": ""
     },
     "class": {
-      "templates": ["common"],
-      "stats": {
-        "hp": 0,
-        "str": 0,
-        "dex": 0,
-        "con": 0,
-        "int": 0,
-        "wis": 0,
-        "cha": 0
+      "templates": ["bonus", "common"],
+      "bonus": {
+        "choices": []
+      },
+      "levels": 0,
+      "traits": {
+        "spellcaster": false
       }
     },
     "enchantment": {
@@ -134,16 +137,21 @@
       "bonus": 0
     },
     "feature": {
-      "templates": ["common", "duration"],
-      "action": "",
+      "templates": ["common", "damage", "duration"],
       "uses": ""
     },
+    "magic": {
+      "templates": ["bonus", "common", "damage", "duration", "equippable"],
+      "cost": 0
+    },
     "race": {
-      "templates": ["common"],
+      "templates": ["bonus", "common"],
       "ac": 0,
       "movement": 0,
-      "bonuses": {},
-      "traits": []
+      "traits": {
+        "giant": false,
+        "slow": false
+      }
     },
     "spell": {
       "templates": ["common", "damage", "duration"],

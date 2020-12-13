@@ -34,6 +34,11 @@
   "CarRoy.Level": "Level",
   "CarRoy.AbbreviationLevel": "Lvl",
   "CarRoy.AbbreviationLevel2": "Lv",
+  "CarRoy.Level1": "1st Level",
+  "CarRoy.Level2": "2nd Level",
+  "CarRoy.Level3": "3rd Level",
+  "CarRoy.Level4": "4th Level",
+  "CarRoy.Level5": "5th Level",
   "CarRoy.ClassLevels": "Class Levels",
   "CarRoy.ClassFeatures": "Class Features",
 
@@ -63,6 +68,7 @@
   "CarRoy.MaxHitPoints": "Max Hit Points",
   "CarRoy.TotalHP": "Total HP",
   "CarRoy.TotalHitPoints": "Total Hit Points",
+  "CarRoy.HPRegen": "HP Regen",
 
   "CarRoy.Damage": "Damage",
   "CarRoy.Slow": "Slow",
@@ -189,8 +195,24 @@
   "CarRoy.SpellProperties": "Spell Properties",
   "CarRoy.SpellEffects": "Spell Effects",
   "CarRoy.SpellCasting": "Spell Casting",
+  "CarRoy.Spellcaster": "Spellcaster",
   "CarRoy.Concentration": "Concentration",
   "CarRoy.ShieldSlam": "Shield Slam",
+
+  "CarRoy.ClassProperties": "Class Properties",
+  "CarRoy.ClassBonuses": "Class Bonuses",
+
+  "CarRoy.FeatureUsage": "Feature Usage",
+  "CarRoy.FeatureEffects": "Feature Effects",
+
+  "CarRoy.MagicItemBonuses": "Magic Item Bonuses",
+  "CarRoy.MagicItemUsage": "Magic Item Usage",
+  "CarRoy.MagicItemAction": "Magic Item Action",
+  "CarRoy.MagicItemStatus": "Magic Item Status",
+
+  "CarRoy.RacialTraits": "Racial Traits",
+  "CarRoy.RacialBonus": "Racial Bonus",
+  "CarRoy.RacialBonuses": "Racial Bonuses",
 
   "CarRoy.AbrreviationEnch": "Ench",
 

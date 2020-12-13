@@ -1,3 +1,45 @@
-<form class="{{cssClass}} race-sheet">
-  <div class="sheet-body">{{data.description}}</div>
+<form class="{{cssClass}}">
+  {{!-- Sheet Header --}}
+  <header class="sheet-header">
+    <div class="header-fields">
+      <img class="profile" src="{{item.img}}" data-edit="img" title="{{item.name}}" width="100" height="100" />
+      <section class="header-details">
+        <h1 class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'CarRoy.ArmorName'}}" /></h1>
+        <div class="item-subtitle">
+          <h4 class="item-type">{{itemType}}</h4>
+        </div>
+        <ul class="summary">
+          <li>{{itemType}}</li>
+        </ul>
+      </section>
+    </div>
+  </header>
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-navigation tabs" data-group="primary">
+    <a class="item" data-tab="description">{{localize 'CarRoy.Description'}}</a>
+    <a class="item" data-tab="details">{{localize 'CarRoy.Details'}}</a>
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <div class="sheet-body">
+    <div class="tab description" data-group="primary" data-tab="description">
+      <div class="item-properties">
+        <ol class="properties-list"></ol>
+      </div>
+
+      {{editor content=data.description.value target="data.description.value" button=true owner=owner editable=editable}}
+    </div>
+
+    <div class="tab details" data-group="primary" data-tab="details">
+      {{!-- Feature Usage --}}
+      <h3 class="form-header">{{localize 'CarRoy.FeatureUsage'}}</h3>
+      {{> 'systems/carrot-royale/templates/item/parts/item-activation.html'}}
+
+      <!-- -->
+      {{!-- Feature Effects --}}
+      <h3 class="form-header">{{localize 'CarRoy.FeatureEffects'}}</h3>
+      {{> 'systems/carrot-royale/templates/item/parts/item-action.html'}}
+    </div>
+  </div>
 </form>
