@@ -1,6 +1,6 @@
 {
   "name": "fvtt-carrot-royale",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Carrot Royale System for FoundryVTT",
   "main": "index.js",
   "scripts": {
