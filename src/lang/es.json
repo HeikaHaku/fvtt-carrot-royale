@@ -244,5 +244,6 @@
   "CarRoy.SheetClassMagicItem": "Default Carrot Royale Magic Item Sheet",
   "CarRoy.SheetClassRace": "Default Carrot Royale Race Sheet",
   "CarRoy.SheetClassSpell": "Default Carrot Royale Spell Sheet",
-  "CarRoy.SheetClassWeapon": "Default Carrot Royale Weapon Sheet"
+  "CarRoy.SheetClassWeapon": "Default Carrot Royale Weapon Sheet",
+  "CarRoy.SheetClassItem": "Default Carrot Royale Item Sheet"
 }
