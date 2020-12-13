@@ -34,6 +34,11 @@
   "CarRoy.Level": "Level",
   "CarRoy.AbbreviationLevel": "Lvl",
   "CarRoy.AbbreviationLevel2": "Lv",
+  "CarRoy.Level1": "1st Level",
+  "CarRoy.Level2": "2nd Level",
+  "CarRoy.Level3": "3rd Level",
+  "CarRoy.Level4": "4th Level",
+  "CarRoy.Level5": "5th Level",
   "CarRoy.ClassLevels": "Class Levels",
   "CarRoy.ClassFeatures": "Class Features",
 
@@ -195,9 +200,15 @@
   "CarRoy.ShieldSlam": "Shield Slam",
 
   "CarRoy.ClassProperties": "Class Properties",
+  "CarRoy.ClassBonuses": "Class Bonuses",
 
-  "CarRoy.FeatureUsage": "FeatureUsage",
+  "CarRoy.FeatureUsage": "Feature Usage",
   "CarRoy.FeatureEffects": "Feature Effects",
+
+  "CarRoy.MagicItemBonuses": "Magic Item Bonuses",
+  "CarRoy.MagicItemUsage": "Magic Item Usage",
+  "CarRoy.MagicItemAction": "Magic Item Action",
+  "CarRoy.MagicItemStatus": "Magic Item Status",
 
   "CarRoy.RacialTraits": "Racial Traits",
   "CarRoy.RacialBonus": "Racial Bonus",
