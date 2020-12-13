@@ -13,6 +13,9 @@ import { RaceSheet } from './modules/item/race-sheet.js';
 import { SpellSheet } from './modules/item/spell-sheet.js';
 import { WeaponSheet } from './modules/item/weapon-sheet.js';
 
+import ItemCarRoy from './modules/item/entity.js';
+import ItemSheetCarRoy from './modules/item/sheet.js';
+
 import * as migrations from './modules/migrations.js';
 
 export const log = (...args: unknown[]) => console.log('Carrot Royale | ' + args);
@@ -26,7 +29,9 @@ Hooks.once('init', function () {
     canvas: {},
     config: CarrotRoyale,
     dice: {},
-    entities: {},
+    entities: {
+      ItemCarRoy,
+    },
     macros: {},
     migrations: migrations,
     rollItemMacro: {},
@@ -34,6 +39,7 @@ Hooks.once('init', function () {
 
   //Record Configuration
   CONFIG.CarrotRoyale = CarrotRoyale;
+  CONFIG.Item.entityClass = ItemCarRoy;
 
   //Register System Settings
   registerSystemSettings();
@@ -46,7 +52,7 @@ Hooks.once('init', function () {
     label: 'CarRoy.SheetClassHero',
   });
 
-  Items.registerSheet('carroy', ArmorSheet, {
+  /*Items.registerSheet('carroy', ArmorSheet, {
     types: ['armor'],
     makeDefault: true,
     label: 'CarRoy.SheetClassArmor',
@@ -92,6 +98,12 @@ Hooks.once('init', function () {
     types: ['weapon'],
     makeDefault: true,
     label: 'CarRoy.SheetClassWeapon',
+  });*/
+
+  //Items.unregisterSheet('core', 'Item');
+  Items.registerSheet('carroy', ItemSheetCarRoy, {
+    makeDefault: true,
+    label: 'CarRoy.SheetClassItem',
   });
 
   preloadHandlebarsTemplates();

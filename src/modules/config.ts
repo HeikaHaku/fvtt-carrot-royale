@@ -29,6 +29,16 @@ CarrotRoyale.weaponWeights = {
   heavy: 'CarRoy.Heavy',
 };
 
+/**
+ * Define the set of property flags which can exist on a weapon
+ * @type (Object)
+ */
+
+CarrotRoyale.weaponProperties = {
+  twoHand: 'CarRoy.TwoHanded',
+  oneHand: 'CarRoy.OneHanded',
+};
+
 /* -------------------------------------------- */
 
 /**

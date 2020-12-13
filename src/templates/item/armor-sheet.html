@@ -10,7 +10,7 @@
           <span class="item-status">{{localize (equipped data.equipped)}}</span>
         </div>
         <ul class="summary">
-          <li>{{data.armorType}}{{#if data.armorType}}{{#unless (eq data.armorType 'shield')}} {{itemType}}{{/unless}}{{/if}}</li>
+          <li>{{labels.armorType}}</li>
         </ul>
       </section>
     </div>
@@ -24,21 +24,7 @@
 
   {{!-- Sheet Body --}}
   <div class="sheet-body">
-    <div class="tab description" data-group="primary" data-tab="description">
-      <div class="item-properties">
-        <div class="form-group">
-          <label>{{localize 'CarRoy.Price'}}</label>
-          <input type="text" name="data.cost" value="{{item.data.cost}}" data-dtype="Number" />
-        </div>
-
-        <ol class="properties-list">
-          <li>{{data.armorType}}{{#if data.armorType}}{{#unless (eq data.armorType 'shield')}} {{itemType}}{{/unless}}{{/if}}</li>
-          <li>{{data.ac}} {{localize 'CarRoy.AC'}}</li>
-        </ol>
-      </div>
-
-      {{editor content=data.description.value target="data.description.value" button=true owner=owner editable=editable}}
-    </div>
+    {{> "systems/carrot-royale/templates/item/parts/item-description.html"}}
 
     <div class="tab details" data-group="primary" data-tab="details">
       <h3 class="form-header">{{localize 'CarRoy.ArmorDetails'}}</h3>

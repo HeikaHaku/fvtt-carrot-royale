@@ -62,7 +62,8 @@
     "types": ["armor", "class", "enchantment", "feature", "race", "magic", "spell", "weapon"],
     "templates": {
       "common": {
-        "description": ""
+        "description": "",
+        "properties": []
       },
       "damage": {
         "damage": {
@@ -119,7 +120,8 @@
       "ac": 0,
       "movement": 0,
       "extra": "",
-      "armorType": ""
+      "armorType": "",
+      "cost": 0
     },
     "class": {
       "templates": ["bonus", "common"],
