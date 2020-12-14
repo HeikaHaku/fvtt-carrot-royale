@@ -1,12 +1,12 @@
-.carrot-royale.hero.sheet form {
+&.hero form {
   display: grid;
-  grid-template-rows: 100px auto auto;
+  grid-template-rows: 160px auto auto;
 
-  header .header-fields {
+  header .header-details {
     display: grid;
-    grid-template-columns: 100px 300px;
+    grid-template-columns: 160px 300px;
     grid-template-rows: auto auto auto;
-    height: 100px;
+    height: 160px;
 
     .profile {
       grid-row: 1/4;

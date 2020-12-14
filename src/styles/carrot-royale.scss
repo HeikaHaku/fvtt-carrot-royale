@@ -1,6 +1,6 @@
-@import 'sheets/sheets';
-
 .carrot-royale {
+  @import 'sheets/sheets';
+
   input[type='text'],
   select {
     height: calc(100% - 2px);

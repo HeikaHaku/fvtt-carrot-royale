@@ -1,6 +1,6 @@
 @import 'hero-sheet';
 
-.carrot-royale.actor.sheet {
+&.actor {
   .tab.attributes.active {
     display: grid;
     grid-template-columns: 100px auto;
@@ -43,11 +43,11 @@
           font-size: 16px;
           border-top: 2px groove #eeede0;
         }
-      }
 
-      .ability:last-child {
-        border-bottom: none;
-        margin-bottom: -3px;
+        &:last-child {
+          border-bottom: none;
+          margin-bottom: -3px;
+        }
       }
     }
   }
@@ -62,5 +62,90 @@
     font-size: 18px;
     color: #4b4a44;
     border-bottom: 1px solid #c9c7b8;
+  }
+
+  ul.attributes {
+    li.attribute {
+      height: 60px;
+      margin: 0 5px 0 0;
+      border: 2px groove #eeede0;
+      border-radius: 4px;
+      text-align: center;
+
+      .attribute-value {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 28px;
+        line-height: 28px;
+        font-family: 'Modesto Condensed', 'Palatino Linotype', serif;
+        font-size: 20px;
+        font-weight: 700;
+
+        & > * {
+          font-weight: 400;
+          font-size: 24px;
+        }
+
+        &.multiple {
+          flex: 0 0 33%;
+        }
+      }
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+
+  .sheet-header {
+    h1.charname {
+      flex: 1;
+      height: 60px;
+      padding: 0;
+
+      input {
+        height: 40px;
+        margin: 10px 0;
+      }
+    }
+
+    .summary {
+      height: 30px;
+      border-bottom: 2px groove #eeede0;
+      font-size: 18px;
+
+      li {
+        height: calc(100% - 6px);
+        float: left;
+        margin: 2px 0;
+        padding: 0;
+        border-right: 2px groove #eeede0;
+        line-height: 34px;
+        color: #4b4a44;
+      }
+    }
+
+    .attributes {
+      flex: 0 0 100%;
+      margin: 0;
+
+      .attribute {
+        height: 70px;
+        margin: 0;
+        border: none;
+        border-right: 2px groove #eeede0;
+        border-radius: 0;
+
+        .attribute-value {
+          height: 30px;
+          line-height: 30px;
+        }
+
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
   }
 }

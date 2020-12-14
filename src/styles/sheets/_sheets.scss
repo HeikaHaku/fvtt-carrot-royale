@@ -1,7 +1,7 @@
-@import 'actors/actor-sheet';
-@import 'items/item-sheet';
+&.sheet {
+  @import 'actors/actor-sheet';
+  @import 'items/item-sheet';
 
-.carrot-royale.sheet {
   .editable {
     display: grid;
     grid-template-rows: repeat(2, fit-content(1000px)) auto;
