@@ -45,13 +45,15 @@
             "bonus": 0
           }
         },
-        "name": "",
-        "img": "",
         "team": 1
       }
     },
     "hero": {
-      "templates": ["common"]
+      "templates": ["common"],
+      "race": {},
+      "classes": [],
+      "features": [],
+      "inventory": []
     },
     "summon": {
       "templates": ["common"],
