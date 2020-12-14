@@ -1,9 +1,9 @@
-<form class="{{cssClass}} hero-sheet" autocomplete="off">
+<form class="{{cssClass}}" autocomplete="off">
   {{!-- Sheet Header --}}
   <header class="sheet-header">
-    <div class="header-fields">
-      <img class="profile" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" width="100" height="100" />
-      <div class="hero-name"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'CarRoy.HeroName'}}" /></div>
+    <div class="header-details">
+      <img class="profile" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" width="160" height="160" />
+      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'CarRoy.HeroName'}}" /></h1>
     </div>
   </header>
 
@@ -24,7 +24,7 @@
           {{#each data.abilities as |ability name|}}
           <li class="ability" data-ability="{{name}}">
             <h4 class="ability-name box-title rollable">{{firstUpper (localize (prepAbilityLocale name))}}</h4>
-            <input class="ability-score" name="data.abilities.{{name}}.value" type="text" value="10" data-dtype="Number" placeholder="10" />
+            <input class="ability-score" name="data.abilities.{{name}}.value" type="text" value="{{ability.value}}" data-dtype="Number" placeholder="10" />
             <div class="ability-modifier">
               <span class="ability-mod" title="{{localize 'CarRoy.Modifier'}}">{{modCalc ability.value}}</span>
             </div>
