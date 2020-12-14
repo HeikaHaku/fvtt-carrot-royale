@@ -2,16 +2,7 @@ import { CarrotRoyale } from './modules/config.js';
 import { registerSystemSettings } from './modules/settings.js';
 import { preloadHandlebarsTemplates } from './modules/templates.js';
 
-import { HeroSheet } from './modules/actor/hero-sheet.js';
-
-import { ArmorSheet } from './modules/item/armor-sheet.js';
-import { ClassSheet } from './modules/item/class-sheet.js';
-import { EnchantmentSheet } from './modules/item/enchantment-sheet.js';
-import { FeatureSheet } from './modules/item/feature-sheet.js';
-import { MagicItemSheet } from './modules/item/magic-item-sheet.js';
-import { RaceSheet } from './modules/item/race-sheet.js';
-import { SpellSheet } from './modules/item/spell-sheet.js';
-import { WeaponSheet } from './modules/item/weapon-sheet.js';
+import { HeroSheet } from './modules/actor/sheets/hero.js';
 
 import ItemCarRoy from './modules/item/entity.js';
 import ItemSheetCarRoy from './modules/item/sheet.js';
