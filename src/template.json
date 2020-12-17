@@ -43,16 +43,25 @@
           "init": {
             "value": 0,
             "bonus": 0
+          },
+          "movement": {
+            "value": 6,
+            "bonus": 0
           }
         },
-        "team": 1
+        "team": 1,
+        "currency": {
+          "coins": 0
+        }
       }
     },
     "hero": {
       "templates": ["common"],
-      "race": {},
-      "classes": [],
-      "features": [],
+      "details": {
+        "race": {},
+        "classes": [],
+        "features": []
+      },
       "inventory": []
     },
     "summon": {
