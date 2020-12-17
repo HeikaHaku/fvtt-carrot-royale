@@ -165,3 +165,14 @@ CarrotRoyale.timePeriods = {
   special: 'CarRoy.Special',
   per: 'CarRoy.PerLevel',
 };
+
+/* -------------------------------------------- */
+
+/**
+ * Define the types of Currencies
+ * @type (Object)
+ */
+
+CarrotRoyale.currencies = {
+  coins: 'CarRoy.CurrencyCoins',
+};
