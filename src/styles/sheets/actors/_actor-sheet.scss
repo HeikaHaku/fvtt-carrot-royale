@@ -65,6 +65,8 @@
   }
 
   ul.attributes {
+    list-style: none;
+
     li.attribute {
       height: 60px;
       margin: 0 5px 0 0;
@@ -90,6 +92,15 @@
         &.multiple {
           flex: 0 0 33%;
         }
+      }
+
+      .attribute-footer {
+        flex: 0 0 18px;
+        margin-top: -1px;
+        line-height: 18px;
+        font-family: 'Signika', sans-serif;
+        font-size: 12px;
+        font-weight: 400;
       }
 
       &:last-child {
@@ -123,12 +134,24 @@
         border-right: 2px groove #eeede0;
         line-height: 34px;
         color: #4b4a44;
+
+        &:last-child {
+          border-right: none;
+        }
+      }
+
+      input,
+      span {
+        display: block;
+        height: 24px;
+        line-height: 24px;
       }
     }
 
     .attributes {
-      flex: 0 0 100%;
       margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(1px, 1fr));
 
       .attribute {
         height: 70px;

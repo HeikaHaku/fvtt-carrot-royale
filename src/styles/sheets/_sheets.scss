@@ -90,4 +90,13 @@
       background: none;
     }
   }
+
+  span.sep {
+    flex: none;
+    margin: 0 1px;
+    display: inline;
+    position: relative;
+    color: #7a7971;
+    font-weight: normal;
+  }
 }
