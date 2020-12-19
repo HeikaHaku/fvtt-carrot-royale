@@ -1,29 +1,44 @@
 &.hero {
-  form {
+  header .header-details {
     display: grid;
-    grid-template-rows: 160px auto auto;
+    grid-template-columns: 160px auto;
+    grid-template-rows: auto auto auto;
+    height: 160px;
 
-    header .header-details {
-      display: grid;
-      grid-template-columns: 160px auto;
-      grid-template-rows: auto auto auto;
-      height: 160px;
-
-      .profile {
-        grid-row: 1/4;
-        height: 100%;
-      }
+    .profile {
+      grid-row: 1/4;
+      height: 100%;
     }
+  }
 
-    .sheet-header {
-      .attributes {
-        .initiative {
-          .attribute-footer {
-            input {
-              width: 32px;
-            }
+  .sheet-header {
+    .attributes {
+      .initiative {
+        .attribute-footer {
+          input {
+            width: 32px;
           }
         }
+      }
+    }
+  }
+}
+
+.inventory,
+.spellbook {
+  .item-controls {
+    flex: 0 0 68px;
+
+    a {
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .item-toggle {
+      color: #b5b3a4;
+
+      &.active {
+        color: #4b4a44;
       }
     }
   }
