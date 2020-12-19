@@ -10,6 +10,10 @@
   "ITEM.TypeSpell": "Spell",
   "ITEM.TypeWeapon": "Weapon",
 
+  "CarRoy.Race": "Race",
+  "CarRoy.Class": "Class",
+  "CarRoy.Classes": "Classes",
+
   "CarRoy.CarrotRoyale": "Carrot Royale",
   "CarRoy.Title": "Carrot Royale Game System",
   "CarRoy.Ability": "Ability",
@@ -74,6 +78,7 @@
   "CarRoy.Slow": "Slow",
   "CarRoy.SizeGiant": "Giant Size",
 
+  "CarRoy.Currency": "Currency",
   "CarRoy.CurrencyCoins": "Coins",
   "CarRoy.CurrencyCoin": "Coin",
   "CarRoy.Price": "Price",
