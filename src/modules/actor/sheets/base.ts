@@ -33,8 +33,9 @@ export default class ActorSheetCarRoy extends ActorSheet {
 
   /** @override */
   get template() {
-    if (!game.user.isGM && this.actor.limited) return 'systems/carrot-royale/templates/actors/limited-sheet.html';
-    return `systems/carrot-royale/templates/actors/${this.actor.data.type}-sheet.html`;
+    console.log(this.actor);
+    if (!game.user.isGM && this.actor.limited) return 'systems/carrot-royale/templates/actor/limited-sheet.html';
+    return `systems/carrot-royale/templates/actor/${this.actor.data.type}-sheet.html`;
   }
 
   /* -------------------------------------------- */

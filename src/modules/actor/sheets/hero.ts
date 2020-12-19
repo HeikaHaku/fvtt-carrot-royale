@@ -1,4 +1,4 @@
-import ActorSheetCarRoy from './base';
+import ActorSheetCarRoy from './base.js';
 
 /**
  * @extends {ActorSheetCarRoy}
@@ -7,7 +7,7 @@ export class HeroSheet extends ActorSheetCarRoy {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ['carrot-royale', 'actor', 'sheet', 'hero'],
-      template: 'systems/carrot-royale/templates/actor/hero-sheet.html',
+      //template: 'systems/carrot-royale/templates/actor/hero-sheet.html',
       width: 600,
       height: 680,
       tabs: [
@@ -33,6 +33,9 @@ export class HeroSheet extends ActorSheetCarRoy {
     if (hp.temp === 0) delete hp.temp;
     if (hp.tempmax === 0) delete hp.tempmax;
 
+    sheetData.isSpellcaster;
+    sheetData.isMelee;
+
     // Resources
     /*sheetData["resources"] = ["primary", "secondary", "tertiary"].reduce((arr, r) => {
       const res = sheetData.data.resources[r] || {};
@@ -52,6 +55,19 @@ export class HeroSheet extends ActorSheetCarRoy {
   }
 
   /* -------------------------------------------- */
+
+  /**
+   * Organize and classify Owned Items for Character sheets
+   * @private
+   */
+  _prepareItems(data: any) {
+    // Categorize items as inventory, spellbook, features, and classes
+    const inventory = {
+      weapon: { label: 'CarRoy.ItemTypeWeaponPl', items: [], dataset: { type: 'weapon' } },
+      armor: { label: 'CarRoy.ItemTypeArmorPl', items: [], dataset: { type: 'armor' } },
+      magicItem: { label: 'CarRoy.ItemTypeMagicItemPl', items: [], dataset: { type: 'magic' } },
+    };
+  }
 
   /* -------------------------------------------- */
   /*  Event Listeners and Handlers
