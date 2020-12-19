@@ -11,6 +11,10 @@ export const preloadHandlebarsTemplates = async function () {
     // Item Sheet Partials
     //'systems/dnd5e/templates/items/parts/item-action.html',
 
+    // Actor Sheet Partials
+    'systems/carrot-royale/templates/actor/parts/actor-inventory.html',
+    'systems/carrot-royale/templates/actor/parts/dataset.html',
+
     //Item Sheet Partials
     'systems/carrot-royale/templates/item/parts/item-action.html',
     'systems/carrot-royale/templates/item/parts/item-activation.html',

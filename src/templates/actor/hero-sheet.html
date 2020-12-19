@@ -1,10 +1,78 @@
 <form class="{{cssClass}}" autocomplete="off">
   {{!-- Sheet Header --}}
   <header class="sheet-header">
-    <div class="header-details">
+    <section class="header-details">
       <img class="profile" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" width="160" height="160" />
       <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'CarRoy.HeroName'}}" /></h1>
-    </div>
+
+      {{!-- Character Summmary --}}
+      <ul class="summary">
+        {{#if data.details.race}}
+        <li>
+          <input
+            class="read-only"
+            type="text"
+            name="data.details.race.name"
+            value="{{data.details.race.name}}"
+            placeholder="{{localize 'CarRoy.Race'}}"
+            readonly
+          />
+        </li>
+        {{/if}}
+      </ul>
+
+      {{!-- Header Attributes --}}
+      <ul class="attributes">
+        <li class="attribute health">
+          <h4 class="attribute-name box-title">{{localize 'CarRoy.HitPoints'}}</h4>
+          <div class="attribute-value multiple">
+            <input name="data.attributes.hp.value" type="text" value="{{data.attributes.hp.value}}" placeholder="10" data-dtype="Number" />
+            <span class="sep"> / </span>
+            <input name="data.attributes.hp.max" type="text" value="{{data.attributes.hp.max}}" placeholder="10" data-dtype="Number" />
+          </div>
+          <footer class="attribute-footer">
+            <!--Temp HP-->
+          </footer>
+        </li>
+
+        <li class="attribute">
+          <h4 class="attribute-name box-title">{{localize 'CarRoy.ArmorClass'}}</h4>
+          <div class="attribute-value">
+            <input name="data.attributes.ac.value" type="number" value="{{data.attributes.ac.value}}" placeholder="10" />
+          </div>
+          <footer class="attribute-footer">
+            <!--Spell Save DC-->
+          </footer>
+        </li>
+
+        <li class="attribute">
+          <h4 class="attribute-name box-title">{{localize 'CarRoy.Movement'}}</h4>
+          <div class="attribute-value">
+            <span>{{data.attributes.movement.value}}</span>
+          </div>
+          <footer class="attribute-footer">
+            <!--Movement Bonus -->
+          </footer>
+        </li>
+
+        <li class="attribute initiative">
+          <h4 class="attribute-name box-title rollable" data-action="rollInitiative">{{localize 'CarRoy.Initiative'}}</h4>
+          <div class="attribute-value">
+            <span>{{numberFormat data.attributes.init.total decimals=0 sign=true}}</span>
+          </div>
+          <footer class="attribute-footer">
+            <span>{{localize 'CarRoy.Modifier'}}</span>
+            <input
+              name="data.attributes.init.value"
+              type="text"
+              data-dtype="Number"
+              placeholder="0"
+              value="{{numberFormat data.attributes.init.value decimals=0 sign=true}}"
+            />
+          </footer>
+        </li>
+      </ul>
+    </section>
   </header>
 
   {{!-- Sheet Tab Navigation --}}
@@ -39,6 +107,8 @@
     <div class="tab traits" data-group="primary" data-tab="traits"></div>
 
     {{!-- Inventory Tab --}}
-    <div class="tab inventory" data-group="primary" data-tab="inventory"></div>
+    <div class="tab inventory" data-group="primary" data-tab="inventory">
+      {{> "systems/carrot-royale/templates/actor/parts/actor-inventory.html" sections=inventory}}
+    </div>
   </section>
 </form>

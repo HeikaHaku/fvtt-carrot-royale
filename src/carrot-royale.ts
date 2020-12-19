@@ -2,6 +2,7 @@ import { CarrotRoyale } from './modules/config.js';
 import { registerSystemSettings } from './modules/settings.js';
 import { preloadHandlebarsTemplates } from './modules/templates.js';
 
+import ActorCarRoy from './modules/actor/entity.js';
 import { HeroSheet } from './modules/actor/sheets/hero.js';
 
 import ItemCarRoy from './modules/item/entity.js';
@@ -21,6 +22,7 @@ Hooks.once('init', function () {
     config: CarrotRoyale,
     dice: {},
     entities: {
+      ActorCarRoy,
       ItemCarRoy,
     },
     macros: {},
@@ -30,6 +32,7 @@ Hooks.once('init', function () {
 
   //Record Configuration
   CONFIG.CarrotRoyale = CarrotRoyale;
+  CONFIG.Actor.entityClass = ActorCarRoy;
   CONFIG.Item.entityClass = ItemCarRoy;
 
   //Register System Settings
