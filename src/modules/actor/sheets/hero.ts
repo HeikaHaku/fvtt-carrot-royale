@@ -67,6 +67,64 @@ export class HeroSheet extends ActorSheetCarRoy {
       armor: { label: 'CarRoy.ItemTypeArmorPl', items: [], dataset: { type: 'armor' } },
       magicItem: { label: 'CarRoy.ItemTypeMagicItemPl', items: [], dataset: { type: 'magic' } },
     };
+
+    let [items, spells, feats, classes, races] = data.items.reduce(
+      (arr: Item[][], item: any) => {
+        // Item Details
+        item.img = item.img || DEFAULT_TOKEN;
+
+        // Item Usage
+        item.hasTarget = !!item.data.target && !['none', ''].includes(item.data.target.type);
+
+        // Item Toggle State
+
+        // Classify Items into types
+        if (item.type === 'spell') arr[1].push(item);
+        else if (item.type === 'feature') arr[2].push(item);
+        else if (item.type === 'class') arr[3].push(item);
+        else if (item.type === 'race') arr[4].push(item);
+        else if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
+
+        return arr;
+      },
+      [[], [], [], [], []]
+    );
+
+    // Apply Active Item Filters
+    items = this._filterItems(items, this._filters.inventory);
+    spells = this._filterItems(spells, this._filters.spellbook);
+    feats = this._filterItems(feats, this._filters.features);
+
+    //Organize Spellbook
+
+    //Organize Features
+    const features: {
+      [type: string]: {
+        label: string;
+        items: any[];
+        hasActions: boolean;
+        dataset: Object;
+        isClass?: boolean;
+        isRace?: boolean;
+      };
+    } = {
+      classes: { label: 'CarRoy.ItemTypeClassPl', items: [], hasActions: false, dataset: { type: 'class' }, isClass: true },
+      race: { label: 'CarRoy.ItemTypeRacePl', items: [], hasActions: false, dataset: { type: 'race' }, isRace: true },
+      active: { label: 'CarRoy.FeatureActive', items: [], hasActions: true, dataset: { type: 'feature', 'activation.type': 'action' } },
+      passive: { label: 'CarRoy.FeaturePassive', items: [], hasActions: false, dataset: { type: 'feat' } },
+    };
+    for (let f of feats) {
+      if (f.data.activation.type) features.active.items.push(f);
+      else features.passive.items.push(f);
+    }
+    classes.sort((a: { levels: number }, b: { levels: number }) => b.levels - a.levels);
+    features.classes.items = classes;
+    features.race.items = races;
+
+    //Assign and return
+    data.inventory = Object.values(inventory);
+    //data.spellbook = spellbook;
+    data.features = Object.values(features);
   }
 
   /* -------------------------------------------- */

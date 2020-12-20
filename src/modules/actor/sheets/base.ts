@@ -89,6 +89,33 @@ export default class ActorSheetCarRoy extends ActorSheet {
   }
 
   /* -------------------------------------------- */
+
+  /**
+   * Determine whether an Owned Item will be shown based on the current set of filters
+   * @return {boolean}
+   * @private
+   */
+  _filterItems(items: Item[], filters: any) {
+    return items.filter((item: any) => {
+      const data = item.data;
+
+      //Action Usage
+      for (let f of ['action', 'bonus', 'reaction']) {
+        if (filters.has(f)) {
+          if (data.activation?.type !== f) return false;
+        }
+      }
+
+      //Equipment-specific filters
+      if (filters.has('equipped')) {
+        if (data.equipped !== true) return false;
+      }
+
+      return true;
+    });
+  }
+
+  /* -------------------------------------------- */
   /*  Event Listeners and Handlers
   /* -------------------------------------------- */
 
