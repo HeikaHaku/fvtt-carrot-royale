@@ -10,13 +10,6 @@ export class HeroSheet extends ActorSheetCarRoy {
       //template: 'systems/carrot-royale/templates/actor/hero-sheet.html',
       width: 600,
       height: 680,
-      tabs: [
-        {
-          navSelector: '.sheet-navigation',
-          contentSelector: '.sheet-body',
-          initial: 'attributes',
-        },
-      ],
     });
   }
 
