@@ -52,6 +52,12 @@ declare class ActorSheet<DataType = any, ActorType extends Actor<DataType> = any
   getData(): ActorSheetData<DataType>;
 
   /**
+   * Organize and classify Owned Items for Character sheets
+   * @private
+   */
+  protected _prepareItems(data: any): void;
+
+  /**
    * Extend the Header Button configuration for the ActorSheet to add Token configuration buttons
    * See Application._getHeaderButtons for documentation of the return Array structure.
    */
