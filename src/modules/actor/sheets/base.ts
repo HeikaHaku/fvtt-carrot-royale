@@ -79,7 +79,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
     //this._prepareTraits(data.actor.data.traits);
 
     // Prepare owned items
-    //this._prepareItems(data);
+    this._prepareItems(data);
 
     // Prepare active effects
     //data.effects = prepareActiveEffectCategories(this.entity.effects);
