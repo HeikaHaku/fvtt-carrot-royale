@@ -3,3 +3,5 @@ declare class FormDataExtended {
 
   toObject();
 }
+
+declare const DEFAULT_TOKEN: string;
