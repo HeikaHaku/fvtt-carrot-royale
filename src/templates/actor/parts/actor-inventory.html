@@ -5,7 +5,7 @@
       <i class="fas fa-coins"></i>
     </h3>
     {{#each data.currency as |v k|}}
-    <label class="denomination {{k}}">{{lookup ../config.currencies k}}</label>
+    <label class="denomination {{k}}">{{localize (lookup ../config.currencies k)}}</label>
     <input type="text" name="data.currency.{{k}}" value="{{v}}" data-dtype="Number" />
     {{/each}}
   </ol>
@@ -25,7 +25,7 @@
       {{#if section.columns}} {{#each section.columns}}
       <div class="item-detail {{css}}">{{label}}</div>
       {{/each}} {{!--else--}} {{/if}} {{#if ../owner}}
-      <div class="item-controls">{{> 'systems/carrot-royale/template/actor/parts/dataset.html'}}</div>
+      <div class="item-controls">{{> 'systems/carrot-royale/template/actor/parts/dataset.html' label='CarRoy.ItemAdd'}}</div>
       {{/if}}
     </li>
 
