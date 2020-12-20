@@ -1,0 +1,55 @@
+<div class="inventory-filters">
+  <ul class="filter-list" data-filter="features">
+    <li class="filter-item" data-filter="action">{{localize 'CarRoy.Action'}}</li>
+    <li class="filter-item" data-filter="bonus">{{localize 'CarRoy.BonusAction'}}</li>
+    <li class="filter-item" data-filter="reaction">{{localize 'CarRoy.Reaction'}}</li>
+  </ul>
+</div>
+
+<ol class="items-list inventory-list">
+  {{#each sections as |section sid|}}
+  <li class="items-header">
+    <h3 class="item-name">{{localize section.label}}</h3>
+
+    {{#if section.hasActions}}
+    <!--div class="item-detail item-uses"></div-->
+    <div class="item-detail item-action">{{localize 'CarRoy.Usage'}}</div>
+    {{/if}} {{#if section.columns}} {{#each section.columns}}
+    <div class="item-detail {{css}}">{{label}}</div>
+    {{/each}} {{/if}} {{#if ../owner}}
+    <div class="item-controls">{{> "systems/carrot-royale/templates/actor/parts/dataset.html" label="CarRoy.FeatureAdd"}}</div>
+    {{/if}}
+  </li>
+
+  <ol class="item-list">
+    {{#each section.items as |item iid|}}
+    <li class="item {{#if isDepleted}}depleted{{/if}}" data-item-id="{{item._id}}">
+      <div class="item-name rollable">
+        <div class="item-image" style="background-image: url('{{item.img}}')"></div>
+        <h4>{{item.name}}</h4>
+      </div>
+
+      {{#if section.hasActions}}
+      <div class="item-detail item-uses"></div>
+
+      <div class="item-detail item-action">{{#if item.data.activation.type }} {{item.labels.activation}} {{/if}}</div>
+
+      {{else if section.isClass}}
+      <div class="item-detail player-class">{{localize 'CarRoy.Level{{item.data.levels}}'}}</div>
+      {{/if}} {{#if section.columns}} {{#each section.columns}}
+      <div class="item-detail {{css}}">
+        {{#with (getProperty item property)}} {{#if ../editable}}
+        <input type="text" value="{{this}}" placeholder="&mdash;" data-dtype="{{../editable}}" />
+        {{else}} {{this}} {{/if}} {{/with}}
+      </div>
+      {{/each}} {{/if}} {{#if ../../owner}}
+      <div class="item-controls">
+        <a class="item-control item-edit" title="{{localize 'CarRoy.ItemEdit'}}"><i class="fas fa-edit"></i></a>
+        <a class="item-control item-delete" title="{{localize 'CarRoy.ItemDelete'}}"><i class="fas fa-trash"></i></a>
+      </div>
+      {{/if}}
+    </li>
+    {{/each}}
+  </ol>
+  {{/each}}
+</ol>

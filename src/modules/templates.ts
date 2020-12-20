@@ -14,6 +14,8 @@ export const preloadHandlebarsTemplates = async function () {
     // Actor Sheet Partials
     'systems/carrot-royale/templates/actor/parts/actor-inventory.html',
     'systems/carrot-royale/templates/actor/parts/dataset.html',
+    'systems/carrot-royale/templates/actor/parts/actor-features.html',
+    'systems/carrot-royale/templates/actor/parts/actor-spellbook.html',
 
     //Item Sheet Partials
     'systems/carrot-royale/templates/item/parts/item-action.html',
