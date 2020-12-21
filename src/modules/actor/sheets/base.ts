@@ -287,7 +287,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
     const header = event.currentTarget;
     const type = header.dataset.type;
     const itemData = {
-      name: game.i18n.format('CarRoy.ItemNew', { type: type.capitalize() }),
+      name: game.i18n.format('CarRoy.ItemNew', { type: type === 'magic' ? 'magic item'.capitalize() : type.capitalize() }),
       type: type,
       data: duplicate(header.dataset),
     };
