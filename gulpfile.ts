@@ -7,17 +7,11 @@ const project = ts.createProject('tsconfig.json');
 
 sass.compiler = require('node-sass');
 
-gulp.task('sass', function () {
-  return gulp.src('src/styles/*.scss').pipe(sass().on('error', sass.logError)).pipe(gulp.dest('dist/styles'));
-});
+gulp.task('sass', () => gulp.src('src/styles/*.scss').pipe(sass().on('error', sass.logError)).pipe(gulp.dest('dist/styles')));
 
-gulp.task('sass:watch', function () {
-  gulp.watch('./sass/**/*.scss', ['sass']);
-});
+gulp.task('sass:watch', () => gulp.watch('./sass/**/*.scss', ['sass']));
 
-gulp.task('compile', () => {
-  return gulp.src('src/**/*.ts').pipe(project()).pipe(gulp.dest('dist/'));
-});
+gulp.task('compile', () => gulp.src('src/**/*.ts').pipe(project()).pipe(gulp.dest('dist/')));
 
 gulp.task('copy', async () => {
   return new Promise((resolve) => {
@@ -28,7 +22,7 @@ gulp.task('copy', async () => {
     gulp.src('src/templates/**').pipe(gulp.dest('dist/templates/'));
     gulp.src('src/styles/**.css').pipe(gulp.dest('dist/styles/'));
     gulp.src('src/assets/**').pipe(gulp.dest('dist/assets/'));
-    gulp.src('src/packs/**').pipe(gulp.dest('dist/assets/'));
+    gulp.src('src/packs/**').pipe(gulp.dest('dist/packs/'));
     resolve(null);
   });
 });

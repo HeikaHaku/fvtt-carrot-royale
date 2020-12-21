@@ -1,20 +1,21 @@
-<form class="{{cssClass}}">
+<form class="{{cssClass}} flexcol" autocomplete="off">
   {{!-- Sheet Header --}}
-  <header class="sheet-header">
-    <div class="header-fields">
-      <img class="profile" src="{{item.img}}" data-edit="img" title="{{item.name}}" width="100" height="100" />
-      <section class="header-details">
-        <h1 class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'CarRoy.WeaponName'}}" /></h1>
-        <div class="item-subtitle">
-          <h4 class="item-type">{{itemType}}</h4>
-          <span class="item-status">{{localize (equipped data.equipped)}}</span>
-        </div>
-        <ul class="summary">
-          <li>{{onehand data.twohand}}{{data.weaponType}}</li>
-          <li>{{data.weight}}</li>
-        </ul>
-      </section>
-    </div>
+  <header class="sheet-header flexrow">
+    <img class="profile" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+
+    <section class="header-details flexrow">
+      <h1 class="charname">
+        <input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'CarRoy.WeaponName'}}" />
+      </h1>
+      <div class="item-subtitle">
+        <h4 class="item-type">{{itemType}}</h4>
+        <span class="item-status">{{itemStatus}}</span>
+      </div>
+      <ul class="summary flexrow">
+        <li>{{onehand data.twohand}}{{data.weaponType}}</li>
+        <li>{{data.weight}}</li>
+      </ul>
+    </section>
   </header>
 
   {{!-- Sheet Tab Navigation --}}
@@ -25,24 +26,7 @@
 
   {{!-- Sheet Body --}}
   <div class="sheet-body">
-    <div class="tab description" data-group="primary" data-tab="description">
-      <div class="item-properties">
-        <div class="form-group">
-          <label>{{localize 'CarRoy.Price'}}</label>
-          <input type="text" name="data.cost" value="{{item.data.cost}}" data-dtype="Number" />
-        </div>
-
-        <ol class="properties-list">
-          {{#if data.twohand}}
-          <li>{{localize 'CarRoy.TwoHanded'}}</li>
-          {{else}}
-          <li>{{localize 'CarRoy.OneHanded'}}</li>
-          {{/if}}
-        </ol>
-      </div>
-
-      {{editor content=data.description.value target="data.description.value" button=true owner=owner editable=editable}}
-    </div>
+    {{> "systems/carrot-royale/templates/item/parts/item-description.html"}}
 
     <div class="tab details" data-group="primary" data-tab="details">
       <h3 class="form-header">{{localize 'CarRoy.WeaponDetails'}}</h3>

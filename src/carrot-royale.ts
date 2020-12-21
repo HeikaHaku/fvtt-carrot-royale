@@ -2,16 +2,11 @@ import { CarrotRoyale } from './modules/config.js';
 import { registerSystemSettings } from './modules/settings.js';
 import { preloadHandlebarsTemplates } from './modules/templates.js';
 
-import { HeroSheet } from './modules/actor/hero-sheet.js';
+import ActorCarRoy from './modules/actor/entity.js';
+import { HeroSheet } from './modules/actor/sheets/hero.js';
 
-import { ArmorSheet } from './modules/item/armor-sheet.js';
-import { ClassSheet } from './modules/item/class-sheet.js';
-import { EnchantmentSheet } from './modules/item/enchantment-sheet.js';
-import { FeatureSheet } from './modules/item/feature-sheet.js';
-import { MagicItemSheet } from './modules/item/magic-item-sheet.js';
-import { RaceSheet } from './modules/item/race-sheet.js';
-import { SpellSheet } from './modules/item/spell-sheet.js';
-import { WeaponSheet } from './modules/item/weapon-sheet.js';
+import ItemCarRoy from './modules/item/entity.js';
+import ItemSheetCarRoy from './modules/item/sheet.js';
 
 import * as migrations from './modules/migrations.js';
 
@@ -26,7 +21,10 @@ Hooks.once('init', function () {
     canvas: {},
     config: CarrotRoyale,
     dice: {},
-    entities: {},
+    entities: {
+      ActorCarRoy,
+      ItemCarRoy,
+    },
     macros: {},
     migrations: migrations,
     rollItemMacro: {},
@@ -34,6 +32,8 @@ Hooks.once('init', function () {
 
   //Record Configuration
   CONFIG.CarrotRoyale = CarrotRoyale;
+  CONFIG.Actor.entityClass = ActorCarRoy;
+  CONFIG.Item.entityClass = ItemCarRoy;
 
   //Register System Settings
   registerSystemSettings();
@@ -46,7 +46,7 @@ Hooks.once('init', function () {
     label: 'CarRoy.SheetClassHero',
   });
 
-  Items.registerSheet('carroy', ArmorSheet, {
+  /*Items.registerSheet('carroy', ArmorSheet, {
     types: ['armor'],
     makeDefault: true,
     label: 'CarRoy.SheetClassArmor',
@@ -92,6 +92,12 @@ Hooks.once('init', function () {
     types: ['weapon'],
     makeDefault: true,
     label: 'CarRoy.SheetClassWeapon',
+  });*/
+
+  //Items.unregisterSheet('core', 'Item');
+  Items.registerSheet('carroy', ItemSheetCarRoy, {
+    makeDefault: true,
+    label: 'CarRoy.SheetClassItem',
   });
 
   preloadHandlebarsTemplates();
@@ -136,7 +142,7 @@ Hooks.once('ready', function () {
 
   // Perform the migration
   if (currentVersion && isNewerVersion(COMPATIBLE_MIGRATION_VERSION, currentVersion)) {
-    const warning = `Your DnD5e system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`;
+    const warning = `Your Carrot Royale system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`;
     ui.notifications.error(warning, { permanent: true });
   }
   migrations.migrateWorld();
