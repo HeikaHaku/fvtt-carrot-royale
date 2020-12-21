@@ -84,7 +84,7 @@ export default class ItemCarRoy extends Item {
     if (data.hasOwnProperty('activation')) {
       //Ability Activation Label
       let act = data.activation || {};
-      if (act) labels.activation = [act.cost, C.activationTypes[act.type]].filterJoin(' ');
+      if (act) labels.activation = [act.cost, game.i18n.localize(C.activationTypes[act.type])].filterJoin(' ');
 
       //Target Label
       let tgt = data.target || {};
