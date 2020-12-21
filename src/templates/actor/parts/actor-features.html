@@ -17,7 +17,9 @@
     {{/if}} {{#if section.columns}} {{#each section.columns}}
     <div class="item-detail {{css}}">{{label}}</div>
     {{/each}} {{/if}} {{#if ../owner}}
-    <div class="item-controls flexrow">{{> "systems/carrot-royale/templates/actor/parts/dataset.html" label="CarRoy.FeatureAdd"}}</div>
+    <div class="item-controls flexrow">
+      {{> "systems/carrot-royale/templates/actor/parts/dataset.html" section=section label=(concat "CarRoy." (concat (firstUpper section.dataset.type) "Add"))}}
+    </div>
     {{/if}}
   </li>
 
@@ -35,7 +37,7 @@
       <div class="item-detail item-action">{{#if item.data.activation.type }} {{item.labels.activation}} {{/if}}</div>
 
       {{else if section.isClass}}
-      <div class="item-detail player-class">{{localize 'CarRoy.Level{{item.data.levels}}'}}</div>
+      <div class="item-detail player-class">{{localize (concat 'CarRoy.Level' item.data.levels)}}</div>
       {{/if}} {{#if section.columns}} {{#each section.columns}}
       <div class="item-detail {{css}}">
         {{#with (getProperty item property)}} {{#if ../editable}}

@@ -26,7 +26,9 @@
     {{#if section.columns}} {{#each section.columns}}
     <div class="item-detail {{css}}">{{label}}</div>
     {{/each}} {{!--else--}} {{/if}} {{#if ../owner}}
-    <div class="item-controls flexrow">{{> 'systems/carrot-royale/templates/actor/parts/dataset.html' label='CarRoy.ItemAdd'}}</div>
+    <div class="item-controls flexrow">
+      {{> 'systems/carrot-royale/templates/actor/parts/dataset.html' section=section label=(concat "CarRoy." (concat (firstUpper section.dataset.type) "Add"))}}
+    </div>
     {{/if}}
   </li>
 
