@@ -84,7 +84,7 @@ export default class ItemSheetCarRoy extends ItemSheet {
     } else if (item.type === 'tool') {
       //return game.i18n.localize(item.data.proficient ? 'DND5E.Proficient' : 'DND5E.NotProficient');
     } else if (item.type === 'class') {
-      return 'CarRoy.Level' + item.data.levels;
+      return game.i18n.localize(`CarRoy.${item.data.levels}Level`);
     }
   }
 
