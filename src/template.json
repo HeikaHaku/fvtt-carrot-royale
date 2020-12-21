@@ -62,8 +62,7 @@
         "classes": [],
         "features": [],
         "level": 0
-      },
-      "inventory": []
+      }
     },
     "summon": {
       "templates": ["common"],
