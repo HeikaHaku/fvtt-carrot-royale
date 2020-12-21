@@ -246,6 +246,29 @@
   "CarRoy.SpellName": "Spell Name",
   "CarRoy.WeaponName": "Weapon Name",
 
+  "CarRoy.Add": "Add",
+  "CarRoy.Usage": "Usage",
+
+  "CarRoy.WeaponAdd": "Add Weapon",
+  "CarRoy.ArmorAdd": "Add Armor",
+  "CarRoy.MagicAdd": "Add Magic Item",
+  "CarRoy.ClassAdd": "Add Class",
+  "CarRoy.RaceAdd": "Add Race",
+  "CarRoy.FeatureAdd": "Add Feature",
+
+  "CarRoy.ItemNew": "New {type}",
+
+  "CarRoy.ItemTypeArmorPl": "Armor",
+  "CarRoy.ItemTypeClassPl": "Class Levels",
+  "CarRoy.ItemTypeEnchantmentPl": "Enchantments",
+  "CarRoy.ItemTypeFeaturePl": "Features",
+  "CarRoy.ItemTypeMagicItemPl": "Magic Items",
+  "CarRoy.ItemTypeSpellPl": "Spells",
+  "CarRoy.ItemTypeWeaponPl": "Weapons",
+
+  "CarRoy.FeatureActive": "Active Features",
+  "CarRoy.FeaturePassive": "Passive Features",
+
   "CarRoy.SheetClassHero": "Default Carrot Royale Hero Sheet",
 
   "CarRoy.SheetClassArmor": "Default Carrot Royale Armor Sheet",
