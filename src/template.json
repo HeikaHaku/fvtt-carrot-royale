@@ -168,7 +168,10 @@
     },
     "spell": {
       "templates": ["common", "damage", "duration"],
-      "atWill": false
+      "atWill": false,
+      "components": {
+        "concentration": false
+      }
     },
     "weapon": {
       "templates": ["common", "equippable", "damage", "duration"],
