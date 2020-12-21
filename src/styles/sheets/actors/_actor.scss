@@ -99,6 +99,10 @@
 
   .tab.attributes {
     overflow: hidden;
+
+    .abilities {
+      max-width: fit-content;
+    }
   }
 
   ul.attributes {
