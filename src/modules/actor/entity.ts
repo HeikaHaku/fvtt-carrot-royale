@@ -153,7 +153,7 @@ export default class ActorCarRoy extends Actor {
     const label = CONFIG.CarrotRoyale.abilities[abilityId];
     new Dialog({
       title: game.i18n.format('CarRoy.AbilityPromptTitle', { ability: label }),
-      content: `<p>${game.i18n.format('DND5E.AbilityPromptText', { ability: label })}</p>`,
+      content: `<p>${game.i18n.format('CarRoy.AbilityPromptText', { ability: label })}</p>`,
       buttons: {
         test: {
           label: game.i18n.localize('CarRoy.ActionAbil'),
@@ -279,10 +279,10 @@ export default class ActorCarRoy extends Actor {
     const speaker = options.speaker || ChatMessage.getSpeaker({ actor: this });
 
     // Diamond Soul adds proficiency
-    if (this.getFlag('dnd5e', 'diamondSoul')) {
+    /*if (this.getFlag('dnd5e', 'diamondSoul')) {
       parts.push('@prof');
       data.prof = this.data.data.attributes.prof;
-    }
+    }*/
 
     // Include a global actor ability save bonus
     const bonuses = getProperty(this.data.data, 'bonuses.abilities') || {};

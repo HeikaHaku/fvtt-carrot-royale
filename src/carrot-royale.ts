@@ -142,7 +142,7 @@ Hooks.once('ready', function () {
 
   // Perform the migration
   if (currentVersion && isNewerVersion(COMPATIBLE_MIGRATION_VERSION, currentVersion)) {
-    const warning = `Your DnD5e system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`;
+    const warning = `Your Carrot Royale system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`;
     ui.notifications.error(warning, { permanent: true });
   }
   migrations.migrateWorld();
