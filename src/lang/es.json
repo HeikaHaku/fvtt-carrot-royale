@@ -205,6 +205,8 @@
   "CarRoy.AtWill": "At Will",
   "CarRoy.SpellProperties": "Spell Properties",
   "CarRoy.SpellEffects": "Spell Effects",
+  "CarRoy.SpellUsage": "Spell Usage",
+  "CarRoy.SpellTarget": "Spell Target",
   "CarRoy.SpellCasting": "Spell Casting",
   "CarRoy.Spellcaster": "Spellcaster",
   "CarRoy.Concentration": "Concentration",
