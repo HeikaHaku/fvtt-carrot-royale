@@ -91,6 +91,67 @@ export default class ActorSheetCarRoy extends ActorSheet {
   /* -------------------------------------------- */
 
   /**
+   * Insert a spell into the spellbook object when rendering the character sheet
+   * @param {Object} data     The Actor data being prepared
+   * @param {Array} spells    The spell data being prepared
+   * @private
+   */
+  _prepareSpellbook(data: any, spells: any[]) {
+    const owner = this.actor.owner;
+    const spellList = data.data.spells;
+    const spellbook: any = {};
+
+    const sections = {
+      atwill: -20,
+    };
+
+    const useLabels: { [type: number]: string } = {
+      '-20': '-',
+    };
+
+    const registerSection = (sl: any, i: number, label: any, { value, max, override } = { value: 0, max: 0, override: 0 }) => {
+      spellbook[i] = {
+        order: i,
+        label: label,
+        canCreate: owner,
+        spells: [],
+        uses: useLabels[i] || value || 0,
+        slots: useLabels[i] || max || 0,
+        override: override || 0,
+        dataset: { type: 'spell' },
+        prop: sl,
+      };
+    };
+
+    let atWill = false;
+    for (let s of spells) {
+      if (s.data.atWill) {
+        atWill = true;
+        break;
+      }
+    }
+
+    if (atWill) {
+      registerSection('atwill', 0, 'CarRoy.AtWill');
+    }
+    //registerSection('spell', 1, 'CarRoy.Spells', { value: 1, max: 1, override: 0 });
+
+    // Iterate over every spell item, adding spells to the spellbook by section
+    spells.forEach((spell) => {
+      let atWill = spell.data.atWill ? 0 : 1;
+
+      if (!spell.data.atWill && !spellbook[1]) registerSection('spell', 1, 'CarRoy.Spells', { value: 1, max: 1, override: 0 });
+
+      spellbook[atWill].spells.push(spell);
+    });
+
+    // Sort the spellbook by section.
+    const sorted: { order: number }[] = Object.values(spellbook);
+    sorted.sort((a, b) => a.order - b.order);
+    return sorted;
+  }
+
+  /**
    * Determine whether an Owned Item will be shown based on the current set of filters
    * @return {boolean}
    * @private
@@ -99,14 +160,19 @@ export default class ActorSheetCarRoy extends ActorSheet {
     return items.filter((item: any) => {
       const data = item.data;
 
-      //Action Usage
+      // Action Usage
       for (let f of ['action', 'bonus', 'reaction']) {
         if (filters.has(f)) {
           if (data.activation?.type !== f) return false;
         }
       }
 
-      //Equipment-specific filters
+      // Spell-specific filters
+      if (filters.has('concentration')) {
+        if (data.components.concentration !== true) return false;
+      }
+
+      // Equipment-specific filters
       if (filters.has('equipped')) {
         if (data.equipped !== true) return false;
       }

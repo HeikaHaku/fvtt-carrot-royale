@@ -93,6 +93,7 @@ export class HeroSheet extends ActorSheetCarRoy {
     }
 
     //Organize Spellbook
+    const spellbook = this._prepareSpellbook(data, spells);
 
     //Organize Features
     const features: {
@@ -120,7 +121,7 @@ export class HeroSheet extends ActorSheetCarRoy {
 
     //Assign and return
     data.inventory = Object.values(inventory);
-    //data.spellbook = spellbook;
+    data.spellbook = spellbook;
     data.features = Object.values(features);
   }
 
