@@ -251,10 +251,10 @@ export async function damageRoll({
 
     // Modify the damage formula for critical hits
     if (crit === true) {
-      (roll as { alter: Function }).alter(criticalMultiplier, 0); // Multiply all dice
+      roll.alter(criticalMultiplier, 0); // Multiply all dice
       if (roll.terms[0] instanceof Die) {
         // Add bonus dice for only the main dice term
-        (roll.terms[0] as { alter: Function }).alter(1, criticalBonusDice);
+        (roll.terms[0] as Die).alter(1, criticalBonusDice);
         roll._formula = roll.formula;
       }
       roll.dice.forEach((d) => (d.options.critical = true));
