@@ -286,5 +286,7 @@
   "CarRoy.SheetClassRace": "Default Carrot Royale Race Sheet",
   "CarRoy.SheetClassSpell": "Default Carrot Royale Spell Sheet",
   "CarRoy.SheetClassWeapon": "Default Carrot Royale Weapon Sheet",
-  "CarRoy.SheetClassItem": "Default Carrot Royale Item Sheet"
+  "CarRoy.SheetClassItem": "Default Carrot Royale Item Sheet",
+
+  "SETTINGS.None": "There are currently no settings for Carrot Royale."
 }
