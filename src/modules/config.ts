@@ -151,6 +151,17 @@ CarrotRoyale.targetTypes = {
   wall: 'CarRoy.TargetWall',
 };
 
+CarrotRoyale.areaTargetTypes = {
+  cone: 'cone',
+  cube: 'rect',
+  cylinder: 'circle',
+  line: 'ray',
+  radius: 'circle',
+  sphere: 'circle',
+  square: 'rect',
+  wall: 'ray',
+};
+
 /* -------------------------------------------- */
 
 /**
