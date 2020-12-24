@@ -12,15 +12,15 @@ export const preloadHandlebarsTemplates = async function () {
     //'systems/dnd5e/templates/items/parts/item-action.html',
 
     // Actor Sheet Partials
-    'systems/carrot-royale/templates/actor/parts/actor-inventory.html',
-    'systems/carrot-royale/templates/actor/parts/dataset.html',
-    'systems/carrot-royale/templates/actor/parts/actor-features.html',
-    'systems/carrot-royale/templates/actor/parts/actor-spellbook.html',
+    'systems/carroy/templates/actor/parts/actor-inventory.html',
+    'systems/carroy/templates/actor/parts/dataset.html',
+    'systems/carroy/templates/actor/parts/actor-features.html',
+    'systems/carroy/templates/actor/parts/actor-spellbook.html',
 
     //Item Sheet Partials
-    'systems/carrot-royale/templates/item/parts/item-action.html',
-    'systems/carrot-royale/templates/item/parts/item-activation.html',
-    'systems/carrot-royale/templates/item/parts/item-description.html',
+    'systems/carroy/templates/item/parts/item-action.html',
+    'systems/carroy/templates/item/parts/item-activation.html',
+    'systems/carroy/templates/item/parts/item-description.html',
   ];
 
   // Load the template parts
