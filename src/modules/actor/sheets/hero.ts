@@ -6,8 +6,8 @@ import ActorSheetCarRoy from './base.js';
 export class HeroSheet extends ActorSheetCarRoy {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: ['carrot-royale', 'actor', 'sheet', 'hero'],
-      //template: 'systems/carrot-royale/templates/actor/hero-sheet.html',
+      classes: ['carroy', 'actor', 'sheet', 'hero'],
+      //template: 'systems/carroy/templates/actor/hero-sheet.html',
       width: 600,
       height: 680,
     });

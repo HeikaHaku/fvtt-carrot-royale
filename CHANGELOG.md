@@ -1,3 +1,31 @@
+### 0.2.0 (2020-12-24)
+
+##### New Features
+
+*  Dice Rolling. ([01c06244](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/01c062446507ba6c396ba52e356729d4bee20863))
+*  More Assets. ([82b6e3a0](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/82b6e3a0e5c5952ea9aac89bec6bf572ad780f90))
+
+##### Bug Fixes
+
+*  Changed DC to match used capitalization. ([c85af5e4](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/c85af5e41b5970d2369a52c3a86e62d313111c1e))
+*  Include Carrot-Royale.js in deployment. ([7b05bd0d](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/7b05bd0da3fa8e77cf057f67607511e12d9c6066))
+
+##### Other Changes
+
+*  More Typings. ([7cc1e434](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/7cc1e434b2f051b4956cca7483c8cd2976c11841))
+*  More Typings. ([186a799d](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/186a799db6b277f4957af8480e660a567ad41994))
+*  More Strings. ([538a33a6](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/538a33a626e8f3b1d26ea919532183f4b3057a36))
+*  Settings Strings. ([dc36171a](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/dc36171a8a2f2c46e218194fe2be113d1908d559))
+
+##### Refactors
+
+*  Rename System to carroy. ([e01fd9ce](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/e01fd9cef0f07d907c902f6195ad3d8cae7c0cda))
+*  Point Template Loader to new path. ([e19a018c](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/e19a018c639ba5d7699c28c7bbf988206fe900cf))
+*  Point Sheets to new path. ([77165e3c](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/77165e3c77c264ec0c25f89ab8c5c9a330a550b9))
+*  Change CSS Class Name. ([800c3605](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/800c3605bd7ec0717d8b74488a381d3a32e5ccb9))
+*  Point templates to the new path. ([b92be34b](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/b92be34b05183f3538dec413690199302a681fa8))
+*  Renamed System. ([cd771ace](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/cd771ace95b5edeb5ad99d545f83eb0f67d50325))
+
 ### 0.1.0 (2020-12-21)
 
 ##### New Features

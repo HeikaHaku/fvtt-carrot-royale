@@ -13,13 +13,12 @@ export default class ItemSheetCarRoy extends ItemSheet {
         this.options.height = this.position.height = 680;
     }
     */
-    console.log(this.options);
     this.options.classes?.concat([this.item.data.type]);
   }
 
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: ['carrot-royale', 'item', 'sheet'],
+      classes: ['carroy', 'item', 'sheet'],
       width: 560,
       height: 400,
       scrollY: ['.tab.active'],
@@ -37,7 +36,7 @@ export default class ItemSheetCarRoy extends ItemSheet {
 
   /** @override */
   get template() {
-    const path = 'systems/carrot-royale/templates/item';
+    const path = 'systems/carroy/templates/item';
     const type = this.item.data.type === 'magic' ? 'magic-item' : this.item.data.type;
     this.options.classes?.concat([this.item.data.type]);
     return `${path}/${type}-sheet.html`;

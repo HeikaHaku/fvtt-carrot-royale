@@ -33,9 +33,8 @@ export default class ActorSheetCarRoy extends ActorSheet {
 
   /** @override */
   get template() {
-    console.log(this.actor);
-    if (!game.user.isGM && this.actor.limited) return 'systems/carrot-royale/templates/actor/limited-sheet.html';
-    return `systems/carrot-royale/templates/actor/${this.actor.data.type}-sheet.html`;
+    if (!game.user.isGM && this.actor.limited) return 'systems/carroy/templates/actor/limited-sheet.html';
+    return `systems/carroy/templates/actor/${this.actor.data.type}-sheet.html`;
   }
 
   /* -------------------------------------------- */
@@ -331,7 +330,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
       let summary = li.children('.item-summary');
       summary.slideUp(200, () => summary.remove());
     } else {
-      let div = $(`<div class="item-summary">${chatData.description.value}</div>`);
+      let div = $(`<div class="item-summary">${chatData.description}</div>`);
       let props = $(`<div class="item-properties"></div>`);
       chatData.properties.forEach((p: { append: Function }) => props.append(`<span class="tag">${p}</span>`));
       div.append(props);

@@ -1,4 +1,5 @@
 import { CarrotRoyale } from '../config.js';
+import { d20Roll, damageRoll } from '../dice.js';
 
 /**
  * Extend the base Actor class to implement additional system-specific logic.
@@ -17,7 +18,7 @@ export default class ActorCarRoy extends Actor {
   prepareDerivedData() {
     const actorData = this.data;
     const data = actorData.data;
-    const flags = actorData.flags.carRoy || {};
+    const flags = actorData.flags.carroy || {};
     const bonuses = getProperty(data, 'bonuses.abilities') || {};
 
     // Ability modifiers and saves
@@ -29,6 +30,21 @@ export default class ActorCarRoy extends Actor {
     const init = data.attributes.init;
     init.mod = data.abilities.dex.mod;
     init.total = init.mod + init.bonus;
+  }
+
+  /* -------------------------------------------- */
+
+  /** @override */
+  getRollData() {
+    const data = super.getRollData() as any;
+    data.classes = this.data.items.reduce((obj: { [x: string]: any }, i: { type: string; name: string; data: any }) => {
+      if (i.type === 'class') {
+        obj[i.name.slugify({ strict: true })] = i.data;
+      }
+      return obj;
+    }, {});
+    data.prof = this.data.data.attributes.prof || 0;
+    return data;
   }
 
   /* -------------------------------------------- */
@@ -150,7 +166,7 @@ export default class ActorCarRoy extends Actor {
    * @param {Object} options      Options which configure how ability tests or saving throws are rolled
    */
   rollAbility(abilityId: string, options = {}) {
-    const label = CONFIG.CarrotRoyale.abilities[abilityId];
+    const label = game.i18n.localize(CONFIG.CarrotRoyale.abilities[abilityId]);
     new Dialog({
       title: game.i18n.format('CarRoy.AbilityPromptTitle', { ability: label }),
       content: `<p>${game.i18n.format('CarRoy.AbilityPromptText', { ability: label })}</p>`,
@@ -177,7 +193,7 @@ export default class ActorCarRoy extends Actor {
    * @return {Promise<Roll>}      A Promise which resolves to the created Roll instance
    */
   rollAbilityTest(abilityId: string, options: any = {}) {
-    const label = CONFIG.CarrotRoyale.abilities[abilityId];
+    const label = game.i18n.localize(CONFIG.CarrotRoyale.abilities[abilityId]);
     const abl = this.data.data.abilities[abilityId];
 
     // Construct parts
@@ -185,7 +201,7 @@ export default class ActorCarRoy extends Actor {
     const data: any = { mod: abl.mod };
 
     // Add feat-related proficiency bonuses
-    const feats = this.data.flags.carRoy || {};
+    const feats = this.data.flags.carroy || {};
     /*if ( feats.remarkableAthlete && CarrotRoyale.characterFlags.remarkableAthlete.abilities.includes(abilityId) ) {
       parts.push("@proficiency");
       data.proficiency = Math.ceil(0.5 * this.data.data.attributes.prof);
@@ -212,10 +228,10 @@ export default class ActorCarRoy extends Actor {
       parts: parts,
       data: data as any,
       title: game.i18n.format('CarRoy.AbilityPromptTitle', { ability: label }),
-      messageData: { 'flags.carRoy.roll': { type: 'ability', abilityId } },
+      messageData: { 'flags.carroy.roll': { type: 'ability', abilityId } },
     });
     rollData.speaker = options.speaker || ChatMessage.getSpeaker({ actor: this });
-    //return d20Roll(rollData);
+    return d20Roll(rollData);
   }
 
   /* -------------------------------------------- */
@@ -228,7 +244,7 @@ export default class ActorCarRoy extends Actor {
    * @return {Promise<Roll>}      A Promise which resolves to the created Roll instance
    */
   rollAbilitySave(abilityId: string, options: any = {}) {
-    const label = CONFIG.DND5E.abilities[abilityId];
+    const label = game.i18n.localize(CONFIG.CarrotRoyale.abilities[abilityId]);
     const abl = this.data.data.abilities[abilityId];
 
     // Construct parts
@@ -252,10 +268,10 @@ export default class ActorCarRoy extends Actor {
       parts: parts,
       data: data,
       title: game.i18n.format('CarRoy.SavePromptTitle', { ability: label }),
-      messageData: { 'flags.carRoy.roll': { type: 'save', abilityId } },
+      messageData: { 'flags.carroy.roll': { type: 'save', abilityId } },
     });
     rollData.speaker = options.speaker || ChatMessage.getSpeaker({ actor: this });
-    //return d20Roll(rollData);
+    return d20Roll(rollData);
   }
 
   /* -------------------------------------------- */
@@ -298,10 +314,10 @@ export default class ActorCarRoy extends Actor {
       title: game.i18n.localize('CarRoy.DeathSavingThrow'),
       speaker: speaker,
       targetValue: 10,
-      messageData: { 'flags.carRoy.roll': { type: 'death' } },
+      messageData: { 'flags.carroy.roll': { type: 'death' } },
     });
     rollData.speaker = speaker;
-    const roll: any = {}; //await d20Roll(rollData);
+    const roll = await d20Roll(rollData);
     if (!roll) return null;
 
     // Take action depending on the result

@@ -177,6 +177,7 @@
   "Carroy.Flank": "Flank",
   "CarRoy.Flanked": "Flanked",
   "CarRoy.Equipped": "Equipped",
+  "CarRoy.Unequipped": "Unequipped",
   "CarRoy.NotEquipped": "Not Equipped",
   "CarRoy.Equip": "Equip",
   "CarRoy.Unequip": "Unequip",
@@ -275,6 +276,21 @@
 
   "CarRoy.FilterNoSpells": "No spells found for this set of filters.",
   "CarRoy.NoSpells": "This character does not yet have any spells, but you may add some manually.",
+
+  "CarRoy.AbilityPromptText": "What type of {ability} check?",
+  "CarRoy.AbilityPromptTitle": "{ability} Ability Check",
+  "CarRoy.SavePromptTitle": "{ability} Saving Throw",
+  "CarRoy.ActionAbil": "Ability Check",
+  "CarRoy.ActionSave": "Saving Throw",
+  "CarRoy.RollExample": "e.g. +1d4",
+  "CarRoy.RollSituationalBonus": "Situational Bonus?",
+  "CarRoy.Rollmode": "Roll Mode",
+  "CarRoy.Normal": "Normal",
+  "CarRoy.Attack": "Attack",
+  "CarRoy.AttackRoll": "Attack Roll",
+  "CarRoy.DamageRoll": "Damage Roll",
+  "CarRoy.CriticalHit": "Critical Hit",
+  "CarRoy.Critical": "Critical",
 
   "CarRoy.SheetClassHero": "Default Carrot Royale Hero Sheet",
 
