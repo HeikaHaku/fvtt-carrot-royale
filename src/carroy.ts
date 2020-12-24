@@ -8,6 +8,8 @@ import { HeroSheet } from './modules/actor/sheets/hero.js';
 import ItemCarRoy from './modules/item/entity.js';
 import ItemSheetCarRoy from './modules/item/sheet.js';
 
+import * as chat from './modules/chat.js';
+import * as dice from './modules/dice.js';
 import * as migrations from './modules/migrations.js';
 
 export const log = (...args: unknown[]) => console.log('Carrot Royale | ' + args);
@@ -20,7 +22,7 @@ Hooks.once('init', function () {
     applications: {},
     canvas: {},
     config: CarrotRoyale,
-    dice: {},
+    dice: dice,
     entities: {
       ActorCarRoy,
       ItemCarRoy,
@@ -147,3 +149,22 @@ Hooks.once('ready', function () {
   }
   migrations.migrateWorld();
 });
+
+/* -------------------------------------------- */
+/*  Other Hooks                                 */
+/* -------------------------------------------- */
+
+Hooks.on('renderChatMessage', (app: ChatMessage, html: JQuery, data: Record<string, any>) => {
+  // Display action buttons
+  chat.displayChatActionButtons(app, html, data);
+
+  // Highlight critical success or failure die
+  chat.highlightCriticalSuccessFailure(app, html, data);
+
+  // Optionally collapse the content
+  //if (game.settings.get('carroy', 'autoCollapseItemCards')) html.find('.card-content').hide();
+});
+Hooks.on('getChatLogEntryContext', chat.addChatMessageContextOptions);
+Hooks.on('renderChatLog', (app: any, html: any, data: any) => ItemCarRoy.chatListeners(html));
+Hooks.on('renderChatPopout', (app: any, html: any, data: any) => ItemCarRoy.chatListeners(html));
+//Hooks.on('getActorDirectoryEntryContext', ActorCarRoy.addDirectoryContextOptions);
