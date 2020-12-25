@@ -4,6 +4,7 @@ const sass = require('gulp-sass');
 const fs = require('fs');
 const ts = require('gulp-typescript');
 const project = ts.createProject('tsconfig.json');
+const clean = require('gulp-clean');
 
 sass.compiler = require('node-sass');
 
@@ -32,10 +33,17 @@ gulp.task('build', gulp.parallel('compile', 'copy', 'sass'));
 // This is supposed to copy the dist folder into the modules directory for testing. Only works if you've set it up the right way
 // This works if development path is FoundryVTT/Data/dev/modules/swade-item-macros
 const SYSTEMPATH = '../../../../AppData/Local/FoundryVTT/Data/systems/carroy/';
+
+gulp.task('system', () => gulp.src(SYSTEMPATH, { read: false }).pipe(clean({ force: true })));
+gulp.task('dist', () => gulp.src('./dist', { read: false }).pipe(clean()));
+
+gulp.task('clean', gulp.parallel('system', 'dist'));
+
 gulp.task('foundry', () => {
   return gulp.src('dist/**').pipe(gulp.dest(SYSTEMPATH));
 });
-gulp.task('update', gulp.series('build', 'foundry'));
+
+gulp.task('update', gulp.series('clean', 'build', 'foundry'));
 
 //Bump version
 const version = JSON.parse(fs.readFileSync('./package.json')).version;

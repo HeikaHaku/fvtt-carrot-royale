@@ -24,7 +24,8 @@
   "homepage": "https://github.com/HeikaHaku/fvtt-carrot-royale#readme",
   "dependencies": {
     "foundry-pc-types": "gitlab:foundry-projects/foundry-pc/foundry-pc-types",
-    "generate-changelog": "^1.8.0"
+    "generate-changelog": "^1.8.0",
+    "gulp-clean": "^0.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
