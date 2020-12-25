@@ -139,7 +139,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
     spells.forEach((spell) => {
       let atWill = spell.data.atWill ? 0 : 1;
 
-      if (!spell.data.atWill && !spellbook[1]) registerSection('spell', 1, game.i18n.localize('CarRoy.ItemTypeSpellsPl'), { value: 1, max: 1, override: 0 });
+      if (!spell.data.atWill && !spellbook[1]) registerSection('spell', 1, game.i18n.localize('CarRoy.ItemTypeSpellPl'), { value: 1, max: 1, override: 0 });
 
       spellbook[atWill].spells.push(spell);
     });
