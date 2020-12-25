@@ -254,7 +254,7 @@ export async function damageRoll({
       roll.alter(criticalMultiplier, 0); // Multiply all dice
       if (roll.terms[0] instanceof Die) {
         // Add bonus dice for only the main dice term
-        roll.terms[0].alter(1, criticalBonusDice);
+        (roll.terms[0] as DiceTerm).alter(1, criticalBonusDice);
         roll._formula = roll.formula;
       }
       roll.dice.forEach((d) => (d.options.critical = true));
