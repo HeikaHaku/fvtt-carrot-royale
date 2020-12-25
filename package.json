@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "gulp build",
-    "update": "gulp update",
+    "update": "gulp clean && gulp build && gulp foundry",
     "major": "changelog -M && git add CHANGELOG.md && git commit -S -m \"updated CHANGELOG.md\" && npm version major -s",
     "minor": "changelog -m && git add CHANGELOG.md && git commit -S -m \"updated CHANGELOG.md\" && npm version minor -s",
     "patch": "changelog -p && git add CHANGELOG.md && git commit -S -m \"updated CHANGELOG.md\" && npm version patch -s",
@@ -24,8 +24,7 @@
   "homepage": "https://github.com/HeikaHaku/fvtt-carrot-royale#readme",
   "dependencies": {
     "foundry-pc-types": "gitlab:foundry-projects/foundry-pc/foundry-pc-types",
-    "generate-changelog": "^1.8.0",
-    "gulp-clean": "^0.4.0"
+    "generate-changelog": "^1.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
