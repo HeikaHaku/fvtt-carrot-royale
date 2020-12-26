@@ -70,6 +70,7 @@
   "CarRoy.DifficultyCheck": "Difficulty Check",
   "CarRoy.DC": "DC",
   "CarRoy.VsDC": "vs DC",
+  "CarRoy.SaveDC": "DC {dc} {ability}",
 
   "CarRoy.HitPoints": "Hit Points",
   "CarRoy.HP": "HP",
@@ -291,6 +292,18 @@
   "CarRoy.DamageRoll": "Damage Roll",
   "CarRoy.CriticalHit": "Critical Hit",
   "CarRoy.Critical": "Critical",
+  "CarRoy.AbilityUseHint": "Configure how you would like to use the {name} {type}.",
+  "CarRoy.PlaceTemplate": "Place Measured Template",
+  "CarRoy.AbilityUseCast": "Cast Spell",
+  "CarRoy.UsageConfiguration": "Usage Configuration",
+
+  "CarRoy.ChatContextDamage": "Apply Damage",
+  "CarRoy.ChatContextHealing": "Apply Healing",
+  "CarRoy.ChatContextDoubleDamage": "Apply Double Damage",
+  "CarRoy.ChatContextHalfDamage": "Apply Half Damage",
+
+  "CarRoy.ActionWarningNoItem": "The requested item {item} no longer exists on Actor {name}",
+  "CarRoy.ActionWarningNoToken": "You must have one or more controlled Tokens in order to use this option.",
 
   "CarRoy.SheetClassHero": "Default Carrot Royale Hero Sheet",
 
