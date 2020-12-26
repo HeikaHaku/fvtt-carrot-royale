@@ -107,7 +107,7 @@ export default class ItemSheetCarRoy extends ItemSheet {
     } else if (item.type === 'spell') {
       props.push(item.data.atWill ? 'CarRoy.AtWill' : null);
     } else if (item.type === 'enchantment') {
-      props.push(`${item.data.bonus != 0 ? `${(item.data.bonus > 0 ? '+' : '') + item.data.bonus} CarRoy.Bonus` : null}`);
+      props.push(`${item.data.bonus != 0 ? `${(item.data.bonus > 0 ? '+' : '') + item.data.bonus} ${game.i18n.localize('CarRoy.Bonus')}` : null}`);
     } else if (item.type === 'armor') {
       props.push(labels.armor, labels.armorType);
     }
@@ -179,8 +179,10 @@ export default class ItemSheetCarRoy extends ItemSheet {
     else data = expandObject(data);
 
     //Handle Bonuses array
-    const bonus = data.data?.bonus;
-    if (bonus) bonus.stats = Object.values(bonus?.stats || {}).map((d: any) => [d[0] || '', d[1] || '']);
+    if (this.item.data.type !== 'enchantment') {
+      const bonus = data.data?.bonus;
+      if (bonus) bonus.stats = Object.values(bonus?.stats || {}).map((d: any) => [d[0] || '', d[1] || '']);
+    }
 
     // Return the flattened submission data
     return flattenObject(data);
