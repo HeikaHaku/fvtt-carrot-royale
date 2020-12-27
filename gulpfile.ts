@@ -30,16 +30,16 @@ gulp.task('copy', async (cb: Function) => {
   cb();
 });
 
-gulp.task('build', gulp.series('copy', 'compile', 'sass'));
+gulp.task('build', gulp.parallel('copy', 'compile', 'sass'));
 
 // This is supposed to copy the dist folder into the modules directory for testing. Only works if you've set it up the right way
 // This works if development path is FoundryVTT/Data/dev/modules/swade-item-macros
 const SYSTEMPATH = '../../../../AppData/Local/FoundryVTT/Data/systems/carroy/';
 
-gulp.task('clean', async () => {
-  await del('./dist/**', { force: true });
-  await del(SYSTEMPATH + '/**', { force: true });
-});
+gulp.task('dist', () => del('./dist/**', { force: true }));
+gulp.task('system', () => del(SYSTEMPATH + '/**', { force: true }));
+
+gulp.task('clean', gulp.parallel('dist', 'system'));
 
 gulp.task('foundry', () => {
   return gulp.src('dist/**').pipe(gulp.dest(SYSTEMPATH));
