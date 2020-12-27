@@ -194,7 +194,7 @@ async function _d20RollDialog({ template, title, parts, data, rollMode, dialogOp
  * @param {Array} parts           The dice roll component parts, excluding the initial d20
  * @param {Actor} actor           The Actor making the damage roll
  * @param {Object} data           Actor or item data against which to parse the roll
- * @param {Event|object}[event    The triggering event which initiated the roll
+ * @param {Event|object} event    The triggering event which initiated the roll
  * @param {string} rollMode       A specific roll mode to apply as the default for the resulting roll
  * @param {String} template       The HTML template used to render the roll dialog
  * @param {String} title          The dice roll UI window title
