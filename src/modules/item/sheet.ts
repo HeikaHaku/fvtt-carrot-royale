@@ -105,7 +105,7 @@ export default class ItemSheetCarRoy extends ItemSheet {
           .map((e: any[]) => CONFIG.CarrotRoyale.weaponProperties[e[0]])
       );
     } else if (item.type === 'spell') {
-      props.push(item.data.atWill ? 'CarRoy.AtWill' : null);
+      props.push(item.data.atWill ? game.i18n.localize('CarRoy.AtWill') : null);
     } else if (item.type === 'enchantment') {
       props.push(`${item.data.bonus != 0 ? `${(item.data.bonus > 0 ? '+' : '') + item.data.bonus} ${game.i18n.localize('CarRoy.Bonus')}` : null}`);
     } else if (item.type === 'armor') {
