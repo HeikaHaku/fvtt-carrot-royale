@@ -124,10 +124,13 @@
         "bonus": {
           "stats": []
         }
+      },
+      "enchantable": {
+        "enchantment": {}
       }
     },
     "armor": {
-      "templates": ["common", "equippable"],
+      "templates": ["common", "equippable", "enchantable"],
       "ac": 0,
       "movement": 0,
       "extra": "",
@@ -174,7 +177,7 @@
       }
     },
     "weapon": {
-      "templates": ["common", "equippable", "damage", "duration"],
+      "templates": ["common", "equippable", "damage", "duration", "enchantable"],
       "extra": "",
       "melee": true,
       "ranged": false,
