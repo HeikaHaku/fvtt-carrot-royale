@@ -127,6 +127,13 @@
       },
       "enchantable": {
         "enchantment": {}
+      },
+      "usable": {
+        "uses": {
+          "value": 0,
+          "limit": 0,
+          "charges": 0
+        }
       }
     },
     "armor": {
@@ -153,11 +160,11 @@
       "bonus": 0
     },
     "feature": {
-      "templates": ["common", "damage", "duration"],
+      "templates": ["common", "damage", "duration", "usable"],
       "uses": ""
     },
     "magic": {
-      "templates": ["bonus", "common", "damage", "duration", "equippable"],
+      "templates": ["bonus", "common", "damage", "duration", "equippable", "usable"],
       "cost": 0
     },
     "race": {
