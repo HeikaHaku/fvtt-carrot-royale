@@ -18,6 +18,14 @@
       "entity": "Item"
     },
     {
+      "name": "classes-cr",
+      "label": "Classes (CR)",
+      "system": "carroy",
+      "module": "carroy",
+      "path": "packs/classes-cr.db",
+      "entity": "Item"
+    },
+    {
       "name": "enchantments-cr",
       "label": "Enchantments (CR)",
       "system": "carroy",
@@ -26,11 +34,43 @@
       "entity": "Item"
     },
     {
+      "name": "features-cr",
+      "label": "Features (CR)",
+      "system": "carroy",
+      "module": "carroy",
+      "path": "packs/features-cr.db",
+      "entity": "Item"
+    },
+    {
+      "name": "magic-items-cr",
+      "label": "Magic Items (CR)",
+      "system": "carroy",
+      "module": "carroy",
+      "path": "packs/magic-items-cr.db",
+      "entity": "Item"
+    },
+    {
       "name": "races-cr",
       "label": "Races (CR)",
       "system": "carroy",
       "module": "carroy",
       "path": "packs/races-cr.db",
+      "entity": "Item"
+    },
+    {
+      "name": "rules-cr",
+      "label": "Rules (CR)",
+      "system": "carroy",
+      "module": "carroy",
+      "path": "packs/rules-cr.db",
+      "entity": "JournalEntry"
+    },
+    {
+      "name": "spells-cr",
+      "label": "Spells (CR)",
+      "system": "carroy",
+      "module": "carroy",
+      "path": "packs/spells-cr.db",
       "entity": "Item"
     },
     {
