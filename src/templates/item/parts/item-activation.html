@@ -77,8 +77,7 @@
 <div class="form-group input-select">
   <label>{{localize 'CarRoy.Duration'}}</label>
   <div class="form-fields">
-    <input type="text" name="data.duration.value" value="{{data.duration.value}}" {{#unless (eq data.duration.units 'special') }}data-dtype="Number"{{/unless}}
-    placeholder="-" {{#if noDuration}}disabled readonly{{/if}} />
+    <input type="text" name="data.duration.value" value="{{data.duration.value}}" placeholder="-" {{#if noDuration}}disabled readonly{{/if}} />
     <select name="data.duration.units">
       {{#select data.duration.units}}
       <option value=""></option>
