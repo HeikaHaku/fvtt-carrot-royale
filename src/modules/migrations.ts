@@ -175,7 +175,17 @@ function cleanActorData(actorData: ActorData<any>) {
  * @param item
  */
 export const migrateItemData = function (item: any) {
-  const updateData = {};
+  const updateData =
+    item.type === 'spell' || item.type === 'feature' || item.type === 'magic'
+      ? {
+          data: {
+            uses: {
+              value: 0,
+              limit: 0,
+            },
+          },
+        }
+      : {};
   /*item.type === 'spell' || item.type === 'feature'
       ? {
           data: {

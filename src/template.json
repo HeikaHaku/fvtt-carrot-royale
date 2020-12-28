@@ -131,8 +131,7 @@
       "usable": {
         "uses": {
           "value": 0,
-          "limit": 0,
-          "charges": 0
+          "limit": 0
         }
       }
     },
@@ -176,7 +175,7 @@
       }
     },
     "spell": {
-      "templates": ["common", "damage", "duration"],
+      "templates": ["common", "damage", "duration", "usable"],
       "atWill": false,
       "components": {
         "concentration": false
