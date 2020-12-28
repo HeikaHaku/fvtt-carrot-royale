@@ -160,8 +160,7 @@
       "bonus": 0
     },
     "feature": {
-      "templates": ["common", "damage", "duration", "usable"],
-      "uses": ""
+      "templates": ["common", "damage", "duration", "usable"]
     },
     "magic": {
       "templates": ["bonus", "common", "damage", "duration", "equippable", "usable"],
