@@ -1,3 +1,56 @@
+#### 0.2.1 (2020-12-28)
+
+##### Build System / Dependencies
+
+* **deps-dev:**
+  *  bump @typescript-eslint/eslint-plugin ([a962bd4d](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/a962bd4d20fbef79c140688d9d9d156f4bfc7791))
+  *  bump @types/node from 14.14.14 to 14.14.16 ([dfba62f5](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/dfba62f56f5ec069496eb670b518868a9003e9c5))
+  *  bump @typescript-eslint/parser from 4.10.0 to 4.11.0 ([098b8910](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/098b8910ebcd67db94cd4e02bf12d40741525abc))
+
+##### New Features
+
+*  Usage Tracking. ([fe71e128](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/fe71e1288a1329a60ec3ba028ef808245104ecb6))
+*  Class Compendium and Compendium Updates. ([7898bc6f](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/7898bc6fccb229aba84571527b601bb46b4fa4a7))
+*  Class Duo Images. ([3f57f0c6](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/3f57f0c62f0f3857690c0a6b6cc6761b57035e80))
+*  Initial Version of Class Choice Config. ([a365d7d6](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/a365d7d6c4b9d9d59929d7d9a19e552322c0dbea))
+*  Data Migrations. ([ba297cbd](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/ba297cbd33d9c3f96ee6f8ce0fd52ed96feed529))
+*  Race and Weapon Compendium Updates. ([75592d29](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/75592d29b39d0a79d4fea91b94ffc3abe5ea773e))
+*  Spell and Magic Item Compendiums. ([33a9e937](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/33a9e937caa623667423860bf2a0a3ced87282d5))
+*  Added Race Images. ([fc1236d1](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/fc1236d1c6fb491f532d5aa3601a09d9734fab9e))
+*  Added Ability Use Form. ([1bb9ba8e](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/1bb9ba8ec54297db1970f31cba6b124ca8a34748))
+*  Save DC label. ([30a69dc0](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/30a69dc03407a71edbdf06156ba5e9d20e1e1f65))
+*  Added Armors, Enchantments, Races, and Weapons Compendiums. ([8d83d473](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/8d83d473bc8bba3f9aec9ddae0dbbc4e605542df))
+
+##### Bug Fixes
+
+*  Remove Number dtype from Duration. ([af4e6959](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/af4e6959f1be829569f573a649db511b753bb8d8))
+*  Render description properly. ([1693cb57](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/1693cb577286fa143a9217b3588ed416a7d40d63))
+*  Various fixes. ([f4c8651b](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/f4c8651bb48bde2cdc62510aadec9c0079879c9c))
+*  Wrong Localization String. ([a2790850](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/a27908506c91320d8eb4d3ec137aa66ad8334e7c))
+
+##### Other Changes
+
+*  More Strings. ([77761928](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/777619284a29116de70bed084ec05b7e115cfbfb))
+*  Changed Data Model. ([87d7165b](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/87d7165b0dc561a8cf3adb97d72fd334b5b36541))
+*  Applied Data Migration To Included Compendiums. ([b89573fa](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/b89573fafa52e4abcf8784f8bf8dc8f00299805f))
+*  Translate String. ([11377f46](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/11377f4616c2268dcb08b4c62a7bce023603b201))
+*  Italian Translation. ([8fbf692c](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/8fbf692cbb3aa69de6f43523c6d1d20e430d5755))
+*  Data Model Change. ([542a068f](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/542a068fa60f9034bb326ddb3cc0f26fd6b5deb7))
+*  Sorted Images. ([a70cf921](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/a70cf921edd5ddcf090cd167bb695ab3505fbf26))
+*  Translate string. ([04dc0713](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/04dc0713b00109d2c8928d1c1150d5b27ceade54))
+*  Added Console Log Helper to Handlebars. ([93ce027e](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/93ce027effcecede8f433d83fce9028f8b59d6fb))
+*  Changed default value of dc to null. ([f4e7fddb](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/f4e7fddb371ec21b8eab65ad1169fd9bea4125b4))
+*  More Strings. ([d8921186](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/d8921186c091c059ed91fb839a31ea9c2954a56b))
+*  Build Process Update. ([eb0bb11a](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/eb0bb11ad10035e538e676ebc99a2450b1303715))
+
+##### Refactors
+
+*  Renamed Class Images. ([feb5b6a4](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/feb5b6a4275f395dc5ffd30752ac8dc3d988b4bd))
+
+##### Code Style Changes
+
+*  Bonus Formatting. ([3243b2b2](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/3243b2b21858d803c3ccf11c779a02d18acc2c21))
+
 ### 0.2.0 (2020-12-24)
 
 ##### New Features
