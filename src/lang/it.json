@@ -275,6 +275,12 @@
   "CarRoy.FeatureActive": "Abilità Attive",
   "CarRoy.FeaturePassive": "Abilità Passive",
 
+  "CarRoy.ClassChoices": "Scelta Classe",
+  "CarRoy.AddChoiceGroup": "Aggiungi Gruppo Selezionato",
+  "CarRoy.AddChoice": "Aggiungi Scelta",
+  "CarRoy.DeleteChoiceGroup": "Elimina Gruppo Selezionato",
+  "CarRoy.DeleteChoice": "Elimina Scelta",
+
   "CarRoy.FilterNoSpells": "Nessun Incantesimo Incontrato con questo filtro di ricerca",
   "CarRoy.NoSpells": "Questo Eroe non ha Incantesimi, ma puoi aggiungerne manualmente",
 
@@ -293,7 +299,7 @@
   "CarRoy.CriticalHit": "Colpo Critico",
   "CarRoy.Critical": "Critico",
   "CarRoy.AbilityUseHint": "Decidi come preferisci utilizzare {name} {type}.",
-  "CarRoy.PlaceTemplate": "Place Measured Template",
+  "CarRoy.PlaceTemplate": "Posiziona Area di Effetto",
   "CarRoy.AbilityUseCast": "Utilizzo Abilità",
   "CarRoy.UsageConfiguration": "Usa Configurazione",
 

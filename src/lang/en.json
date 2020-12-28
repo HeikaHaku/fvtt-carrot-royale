@@ -275,6 +275,12 @@
   "CarRoy.FeatureActive": "Active Features",
   "CarRoy.FeaturePassive": "Passive Features",
 
+  "CarRoy.ClassChoices": "Class Choices",
+  "CarRoy.AddChoiceGroup": "Add Choice Group",
+  "CarRoy.AddChoice": "Add Choice",
+  "CarRoy.DeleteChoiceGroup": "Delete Choice Group",
+  "CarRoy.DeleteChoice": "Delete Choice",
+
   "CarRoy.FilterNoSpells": "No spells found for this set of filters.",
   "CarRoy.NoSpells": "This character does not yet have any spells, but you may add some manually.",
 
