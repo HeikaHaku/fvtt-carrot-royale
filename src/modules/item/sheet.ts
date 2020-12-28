@@ -184,6 +184,13 @@ export default class ItemSheetCarRoy extends ItemSheet {
       if (bonus) bonus.stats = Object.values(bonus?.stats || {}).map((d: any) => [d[0] || '', d[1] || '']);
     }
 
+    if (this.item.data.type === 'class') {
+      const bonus = data.data?.bonus;
+      if (bonus) {
+        bonus.choices = Object.values(bonus?.choices || {}).map((d: any) => Object.values(d || {}).map((e: any) => [e[0] || '', e[1] || '']));
+      }
+    }
+
     // Return the flattened submission data
     return flattenObject(data);
   }
@@ -195,6 +202,7 @@ export default class ItemSheetCarRoy extends ItemSheet {
     super.activateListeners(html);
     if (this.isEditable) {
       html.find('.bonus-control').click(this._onBonusControl.bind(this));
+      html.find('.choice-control').click(this._onChoiceControl.bind(this));
       /*html.find('.trait-selector.class-skills').click(this._onConfigureClassSkills.bind(this));
         html.find('.effect-control').click((ev: any) => {
           if (this.item.isOwned)
@@ -230,6 +238,58 @@ export default class ItemSheetCarRoy extends ItemSheet {
       const bonus = duplicate(this.item.data.data.bonus);
       bonus.stats.splice(Number(li.dataset.bonusPart), 1);
       return this.item.update({ 'data.bonus.stats': bonus.stats });
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Add or remove a Choice part from the Class Choices List
+   * @param {Event} event     The original click event
+   * @return {Promise}
+   * @private
+   */
+  async _onChoiceControl(event: any) {
+    event.preventDefault();
+    const a = event.currentTarget;
+
+    // Add new damage component
+    if (a.classList.contains('add-choice-group')) {
+      await this._onSubmit(event); // Submit any unsaved changes
+      const bonus = this.item.data.data.bonus;
+      const choices: any[] = bonus.choices;
+      return this.item.update({ 'data.bonus.choices': choices.concat([[[]]]) });
+    }
+
+    if (a.classList.contains('add-choice')) {
+      await this._onSubmit(event); // Submit any unsaved changes
+      const li = a.closest('.choice-group');
+      const bonus = this.item.data.data.bonus;
+      const choices: any[] = bonus.choices;
+      const group = Number(li.dataset.choiceGroup);
+      choices[group] = choices[group].concat([['', '']]);
+      return this.item.update({ 'data.bonus.choices': choices });
+    }
+
+    // Remove a damage component
+    if (a.classList.contains('delete-choice-group')) {
+      await this._onSubmit(event); // Submit any unsaved changes
+      const li = a.closest('.choice-group');
+      const bonus = duplicate(this.item.data.data.bonus);
+      bonus.choices.splice(Number(li.dataset.choiceGroup), 1);
+      return this.item.update({ 'data.bonus.choices': bonus.choices });
+    }
+
+    // Remove a damage component
+    if (a.classList.contains('delete-choice')) {
+      await this._onSubmit(event); // Submit any unsaved changes
+      const groupli = a.closest('.choice-group');
+      const li = a.closest('.choice-part');
+      const bonus = duplicate(this.item.data.data.bonus);
+      const choices = bonus.choices;
+      const group = Number(groupli.dataset.choiceGroup);
+      choices[group].splice(Number(li.dataset.ChoicePart), 1);
+      return this.item.update({ 'data.bonus.choices': choices });
     }
   }
 
