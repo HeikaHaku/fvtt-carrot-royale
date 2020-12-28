@@ -174,7 +174,46 @@ export default class ItemCarRoy extends Item {
 
     //Item Actions
     if (data.hasOwnProperty('action')) {
+      // Saving throws
+      this.getSaveDC();
+
+      // Damage
+      let dam = data.damage || {};
+      if (dam.parts) {
+        labels.damage = dam.parts
+          .map((d: any[]) => d[0])
+          .join(' + ')
+          .replace(/\+ -/g, '- ');
+        labels.damageTypes = dam.parts.map((d: (string | number)[]) => C.damageTypes[d[1]]).join(', ');
+      }
     }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Update the derived spell DC for an item that requires a saving throw
+   * @returns {number|null}
+   */
+  getSaveDC(): number | null | undefined {
+    if (!this.hasSave) return;
+    const save = this.data.data?.save;
+
+    // Actor spell-DC based scaling
+    /*if (save.scaling === 'spell') {
+      save.dc = this.isOwned ? getProperty(this.actor?.data, 'data.attributes.spelldc') : null;
+    }*/
+
+    // Ability-score based scaling
+    /*if (save.scaling !== 'flat') {
+      save.dc = this.isOwned ? getProperty(this.actor?.data as object, `data.abilities.${save.scaling}.dc`) : null;
+    }*/
+
+    // Update labels
+    const abl = game.i18n.localize(CONFIG.CarrotRoyale.abilities[save.ability]);
+
+    this.labels.save = game.i18n.format('CarRoy.SaveDC', { dc: save.dc || '', ability: abl });
+    return save.dc;
   }
 
   /* -------------------------------------------- */
@@ -252,10 +291,10 @@ export default class ItemCarRoy extends Item {
     }*/
 
     // Initiate measured template creation
-    if (createMeasuredTemplate) {
+    /*if (createMeasuredTemplate) {
       const template = game.carroy.canvas.AbilityTemplate.fromItem(item);
       if (template) template.drawPreview();
-    }
+    }*/
 
     // Create or return the Chat Message data
     return item.displayCard({ rollMode, createMessage });
@@ -329,7 +368,7 @@ export default class ItemCarRoy extends Item {
     const labels = this.labels;
 
     // Rich text description
-    data.description = TextEditor.enrichHTML(data.description, htmlOptions);
+    data.description = TextEditor.enrichHTML(data.description.value, htmlOptions);
 
     // Item type specific properties
     const props: any[] = [];

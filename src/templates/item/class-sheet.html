@@ -69,6 +69,41 @@
         </li>
         {{/each}}
       </ol>
+
+      {{!-- Class Choices --}}
+      <h4 class="choice-header">
+        {{localize 'CarRoy.ClassChoices'}}
+        <a class="choice-control add-choice-group"><i class="fas fa-plus"></i></a>
+      </h4>
+      <ol class="choice-parts form-group">
+        {{#each data.bonus.choices as |choices i|}}
+        <li class="choice-group bonus-part flexrow" data-choice-group="{{i}}">
+          <label>
+            {{localize 'CarRoy.AddChoice'}}
+            <a class="choice-control add-choice"><i class="fas fa-plus"></i></a>
+          </label>
+          <label>
+            {{localize 'CarRoy.DeleteChoiceGroup'}}
+            <a class="choice-control delete-choice-group"><i class="fas fa-minus"></i></a>
+          </label>
+          <ol class="choice-group-parts form-group">
+            {{#each choices as |choice j|}}
+            <li class="choice-part flexrow" data-choice-part="{{j}}">
+              <input type="text" name="data.bonus.choices.{{i}}.{{j}}.0" value="{{lookup this "0"}}" />
+              <select name="data.bonus.choices.{{i}}.{{j}}.1">
+                {{#select (lookup this "1")}}
+                <option value="">{{localize 'CarRoy.None'}}</option>
+                {{#each ../../config.bonusStats as |name type|}}
+                <option value="{{type}}">{{localize name}}</option>
+                {{/each}} {{/select}}
+              </select>
+              <a class="choice-control delete-choice"><i class="fas fa-minus"></i></a>
+            </li>
+            {{/each}}
+          </ol>
+          {{/each}}
+        </li>
+      </ol>
     </div>
   </div>
 </form>

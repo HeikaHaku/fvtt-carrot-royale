@@ -1,11 +1,11 @@
 {
   "name": "fvtt-carrot-royale",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Carrot Royale System for FoundryVTT",
   "main": "index.js",
   "scripts": {
     "build": "gulp build",
-    "update": "gulp update",
+    "update": "gulp clean && gulp build && gulp foundry",
     "major": "changelog -M && git add CHANGELOG.md && git commit -S -m \"updated CHANGELOG.md\" && npm version major -s",
     "minor": "changelog -m && git add CHANGELOG.md && git commit -S -m \"updated CHANGELOG.md\" && npm version minor -s",
     "patch": "changelog -p && git add CHANGELOG.md && git commit -S -m \"updated CHANGELOG.md\" && npm version patch -s",

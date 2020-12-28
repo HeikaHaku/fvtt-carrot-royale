@@ -175,7 +175,28 @@ function cleanActorData(actorData: ActorData<any>) {
  * @param item
  */
 export const migrateItemData = function (item: any) {
-  const updateData = {};
+  const updateData =
+    item.type === 'spell' || item.type === 'feature' || item.type === 'magic'
+      ? {
+          data: {
+            uses: {
+              value: 0,
+              limit: 0,
+            },
+          },
+        }
+      : {};
+  /*item.type === 'spell' || item.type === 'feature'
+      ? {
+          data: {
+            uses: {
+              value: 0,
+              limit: 0,
+              charges: 0,
+            },
+          },
+        }
+      : {};*/
   console.log(mergeObject(item, new Item(item, {}), { enforceTypes: false, inplace: false }));
   //_migrateItemAttunement(item, updateData);
   return updateData;

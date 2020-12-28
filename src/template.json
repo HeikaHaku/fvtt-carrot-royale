@@ -100,7 +100,7 @@
         "mod": "",
         "save": {
           "ability": "",
-          "dc": 0
+          "dc": null
         },
         "formula": "",
         "activation": {
@@ -124,10 +124,19 @@
         "bonus": {
           "stats": []
         }
+      },
+      "enchantable": {
+        "enchantment": {}
+      },
+      "usable": {
+        "uses": {
+          "value": 0,
+          "limit": 0
+        }
       }
     },
     "armor": {
-      "templates": ["common", "equippable"],
+      "templates": ["common", "equippable", "enchantable"],
       "ac": 0,
       "movement": 0,
       "extra": "",
@@ -150,11 +159,10 @@
       "bonus": 0
     },
     "feature": {
-      "templates": ["common", "damage", "duration"],
-      "uses": ""
+      "templates": ["common", "damage", "duration", "usable"]
     },
     "magic": {
-      "templates": ["bonus", "common", "damage", "duration", "equippable"],
+      "templates": ["bonus", "common", "damage", "duration", "equippable", "usable"],
       "cost": 0
     },
     "race": {
@@ -167,14 +175,14 @@
       }
     },
     "spell": {
-      "templates": ["common", "damage", "duration"],
+      "templates": ["common", "damage", "duration", "usable"],
       "atWill": false,
       "components": {
         "concentration": false
       }
     },
     "weapon": {
-      "templates": ["common", "equippable", "damage", "duration"],
+      "templates": ["common", "equippable", "damage", "duration", "enchantable"],
       "extra": "",
       "melee": true,
       "ranged": false,

@@ -45,10 +45,10 @@ export default class AbilityUseDialog extends Dialog {
       title: game.i18n.format('CarRoy.AbilityUseHint', item.data),
       //note: this._getAbilityUseNote(item.data, uses, recharge),
       consumeSpellSlot: false,
-      consumeRecharge: recharges,
-      consumeResource: !!itemData.consume.target,
-      consumeUses: uses.max,
-      canUse: recharges ? recharge.charged : sufficientUses,
+      //consumeRecharge: recharges,
+      //consumeResource: !!itemData.consume.target,
+      //consumeUses: uses.max,
+      //canUse: recharges ? recharge.charged : sufficientUses,
       createTemplate: game.user.can('TEMPLATE_CREATE') && item.hasAreaTarget,
       errors: [],
       isSpell: false,
@@ -56,14 +56,14 @@ export default class AbilityUseDialog extends Dialog {
     if (item.data.type === 'spell') this._getSpellData(actorData, itemData, data);
 
     // Render the ability usage template
-    const html = await renderTemplate('systems/dnd5e/templates/apps/ability-use.html', data);
+    const html = await renderTemplate('systems/carroy/templates/apps/ability-use.html', data);
 
     // Create the Dialog and return data as a Promise
     const icon = data.isSpell ? 'fa-magic' : 'fa-fist-raised';
     const label = game.i18n.localize('CarRoy.AbilityUse' + (data.isSpell ? 'Cast' : 'Use'));
     return new Promise((resolve) => {
       const dlg = new this(item, {
-        title: `${item.name}: Usage Configuration`,
+        title: `${item.name}: ${game.i18n.localize('CarRoy.UsageConfiguration')}`,
         content: html,
         buttons: {
           use: {

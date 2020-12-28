@@ -136,8 +136,9 @@ Hooks.once('ready', function () {
 
   // Determine whether a system migration is required and feasible
   if (!game.user.isGM) return;
-  const currentVersion = game.settings.get('carroy', 'systemMigrationVersion');
-  const NEEDS_MIGRATION_VERSION = '0.0.5';
+  const _cv = game.settings.get('carroy', 'systemMigrationVersion');
+  const currentVersion = isNaN(_cv) ? game.system.data.version : _cv;
+  const NEEDS_MIGRATION_VERSION = '0.2.0';
   const COMPATIBLE_MIGRATION_VERSION = '0.0.2';
   const needsMigration = currentVersion && isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion);
   if (!needsMigration) return;

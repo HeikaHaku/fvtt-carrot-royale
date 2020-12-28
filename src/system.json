@@ -2,13 +2,86 @@
   "name": "carroy",
   "title": "Carrot Royale",
   "description": "A Foundry VTT Implementation of Carrot Royale",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "templateVersion": 2,
   "author": "HeikaHaku",
   "scripts": [],
   "esmodules": ["carroy.js", "modules/registerHandlebarHelpers.js"],
   "styles": ["styles/carrot-royale.css"],
-  "packs": [],
+  "packs": [
+    {
+      "name": "armors-cr",
+      "label": "Armors (CR)",
+      "system": "carroy",
+      "module": "carroy",
+      "path": "packs/armors-cr.db",
+      "entity": "Item"
+    },
+    {
+      "name": "classes-cr",
+      "label": "Classes (CR)",
+      "system": "carroy",
+      "module": "carroy",
+      "path": "packs/classes-cr.db",
+      "entity": "Item"
+    },
+    {
+      "name": "enchantments-cr",
+      "label": "Enchantments (CR)",
+      "system": "carroy",
+      "module": "carroy",
+      "path": "packs/enchantments-cr.db",
+      "entity": "Item"
+    },
+    {
+      "name": "features-cr",
+      "label": "Features (CR)",
+      "system": "carroy",
+      "module": "carroy",
+      "path": "packs/features-cr.db",
+      "entity": "Item"
+    },
+    {
+      "name": "magic-items-cr",
+      "label": "Magic Items (CR)",
+      "system": "carroy",
+      "module": "carroy",
+      "path": "packs/magic-items-cr.db",
+      "entity": "Item"
+    },
+    {
+      "name": "races-cr",
+      "label": "Races (CR)",
+      "system": "carroy",
+      "module": "carroy",
+      "path": "packs/races-cr.db",
+      "entity": "Item"
+    },
+    {
+      "name": "rules-cr",
+      "label": "Rules (CR)",
+      "system": "carroy",
+      "module": "carroy",
+      "path": "packs/rules-cr.db",
+      "entity": "JournalEntry"
+    },
+    {
+      "name": "spells-cr",
+      "label": "Spells (CR)",
+      "system": "carroy",
+      "module": "carroy",
+      "path": "packs/spells-cr.db",
+      "entity": "Item"
+    },
+    {
+      "name": "weapons-cr",
+      "label": "Weapons (CR)",
+      "system": "carroy",
+      "module": "carroy",
+      "path": "packs/weapons-cr.db",
+      "entity": "Item"
+    }
+  ],
   "languages": [
     {
       "lang": "en",

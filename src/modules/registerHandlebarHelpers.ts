@@ -14,4 +14,6 @@ Hooks.once('ready', async () => {
   Handlebars.registerHelper('onehand', (arg: boolean) => (arg ? '2h ' : '1h '));
 
   Handlebars.registerHelper('meleeRanged', (melee: boolean, ranged: boolean) => (melee ? 'Melee' : ranged ? 'Ranged' : 'Unknown'));
+
+  Handlebars.registerHelper('conlog', (arg: any) => console.log(arg));
 });

@@ -70,6 +70,7 @@
   "CarRoy.DifficultyCheck": "Difficulty Check",
   "CarRoy.DC": "DC",
   "CarRoy.VsDC": "vs DC",
+  "CarRoy.SaveDC": "DC {dc} {ability}",
 
   "CarRoy.HitPoints": "Hit Points",
   "CarRoy.HP": "HP",
@@ -271,8 +272,17 @@
   "CarRoy.ItemTypeSpellPl": "Spells",
   "CarRoy.ItemTypeWeaponPl": "Weapons",
 
+  "CarRoy.LimitedUses": "Limited Uses",
+  "CarRoy.Of": "of",
+
   "CarRoy.FeatureActive": "Active Features",
   "CarRoy.FeaturePassive": "Passive Features",
+
+  "CarRoy.ClassChoices": "Class Choices",
+  "CarRoy.AddChoiceGroup": "Add Choice Group",
+  "CarRoy.AddChoice": "Add Choice",
+  "CarRoy.DeleteChoiceGroup": "Delete Choice Group",
+  "CarRoy.DeleteChoice": "Delete Choice",
 
   "CarRoy.FilterNoSpells": "No spells found for this set of filters.",
   "CarRoy.NoSpells": "This character does not yet have any spells, but you may add some manually.",
@@ -291,6 +301,18 @@
   "CarRoy.DamageRoll": "Damage Roll",
   "CarRoy.CriticalHit": "Critical Hit",
   "CarRoy.Critical": "Critical",
+  "CarRoy.AbilityUseHint": "Configure how you would like to use the {name} {type}.",
+  "CarRoy.PlaceTemplate": "Place Measured Template",
+  "CarRoy.AbilityUseCast": "Cast Spell",
+  "CarRoy.UsageConfiguration": "Usage Configuration",
+
+  "CarRoy.ChatContextDamage": "Apply Damage",
+  "CarRoy.ChatContextHealing": "Apply Healing",
+  "CarRoy.ChatContextDoubleDamage": "Apply Double Damage",
+  "CarRoy.ChatContextHalfDamage": "Apply Half Damage",
+
+  "CarRoy.ActionWarningNoItem": "The requested item {item} no longer exists on Actor {name}",
+  "CarRoy.ActionWarningNoToken": "You must have one or more controlled Tokens in order to use this option.",
 
   "CarRoy.SheetClassHero": "Default Carrot Royale Hero Sheet",
 
