@@ -351,6 +351,12 @@ export default class ActorSheetCarRoy extends ActorSheet {
     event.preventDefault();
     const header = event.currentTarget;
     const type = header.dataset.type;
+    if (type === 'class') {
+      if (this.actor.data.data.details.level >= 5) return;
+    }
+    if (type === 'race') {
+      if (!!this.actor.data.data.details.race) return;
+    }
     const itemData = {
       name: game.i18n.format('CarRoy.ItemNew', { type: type === 'magic' ? 'magic item'.capitalize() : type.capitalize() }),
       type: type,
@@ -384,6 +390,11 @@ export default class ActorSheetCarRoy extends ActorSheet {
   _onItemDelete(event: any) {
     event.preventDefault();
     const li = event.currentTarget.closest('.item');
+    const item = this.actor.items.get(li.dataset.itemId);
+    if (item.type === 'race') {
+      this.actor.update({ 'data.details.race': null });
+      this.actor.update({ 'data.details.race': {} });
+    }
     this.actor.deleteOwnedItem(li.dataset.itemId);
   }
 

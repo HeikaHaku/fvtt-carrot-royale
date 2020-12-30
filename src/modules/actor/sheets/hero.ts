@@ -185,7 +185,15 @@ export class HeroSheet extends ActorSheetCarRoy {
         if (next > priorLevel) {
           (itemData as any).levels = next;
           return cls.update({ 'data.levels': next });
-        }
+        } else return;
+      } else if (this.actor.data.data.details.level >= 5) return;
+    }
+
+    if (itemData.type === 'race') {
+      const race = this.actor.itemTypes.race.find((r: any) => r);
+      this.actor.update({ 'data.details.race': itemData });
+      if (!!race) {
+        return race.update(itemData);
       }
     }
 
