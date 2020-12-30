@@ -110,7 +110,6 @@ export default class ActorCarRoy extends Actor {
    * @private
    */
   private async _createClassFeatures(updated: any) {
-    console.log('updated | ', updated);
     let toCreate = [];
     for (let u of updated instanceof Array ? updated : [updated]) {
       const item = this.items.get(u._id);
@@ -121,8 +120,6 @@ export default class ActorCarRoy extends Actor {
         level: getProperty(updateData, 'data.levels'),
         priorLevel: item ? item.data.data.levels : 0,
       };
-
-      console.log('config | ', config);
 
       // Get and create features for an increased class level
       let changed = false;
