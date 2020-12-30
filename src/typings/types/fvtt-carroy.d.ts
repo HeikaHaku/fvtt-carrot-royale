@@ -66,3 +66,5 @@ declare interface ChatData {
   speaker: any;
   flags: Record<string, any>;
 }
+
+declare async function fromUuid(uuid: string);
