@@ -1,4 +1,4 @@
 {
-  "plugins": ["@babel/plugin-transform-typescript"],
-  "presets": []
+  "plugins": ["@babel/plugin-transform-typescript", "@babel/transform-runtime"],
+  "presets": ["@babel/env"]
 }

@@ -1,5 +1,6 @@
 import { CarrotRoyale } from '../config.js';
 import { d20Roll, damageRoll } from '../dice.js';
+import ItemCarRoy from '../item/entity.js';
 
 /**
  * Extend the base Actor class to implement additional system-specific logic.
@@ -49,13 +50,92 @@ export default class ActorCarRoy extends Actor {
 
   /* -------------------------------------------- */
 
+  /**
+   * Return the features which a character is awarded for each class level
+   * @param {string} className        The class name being added
+   * @param {number} level            The number of levels in the added class
+   * @param {number} priorLevel       The previous level of the added class
+   * @return {Promise<ItemCarRoy[]>}     Array of ItemCarRoy entities
+   */
+  static async getClassFeatures({ className = '', level = 1, priorLevel = 0 } = {}): Promise<ItemCarRoy[]> {
+    className = className.toLowerCase();
+
+    const clsConfig = CONFIG.CarrotRoyale.classFeatures[className];
+    if (!clsConfig) return [];
+
+    let ids: string[] = [];
+    let overrides: { [id: string]: { level?: number; uses?: number } } = {};
+    for (let [l, f] of Object.entries(clsConfig.features || {}) as any[]) {
+      l = parseInt(l);
+      if (l <= level && l > priorLevel) {
+        for (let m of Object.values(f) as [{ id: string; level?: number; uses?: number }]) {
+          if (m.level || m.uses) overrides[m.id] = m;
+          ids = ids.concat(m.id);
+        }
+      }
+    }
+
+    console.log(ids);
+
+    const features: ItemCarRoy[] = await Promise.all(
+      ids.map(async (id) => {
+        console.log(id);
+        let item = await fromUuid(id);
+        if (overrides[id]?.level) item.data.data.level = overrides[id].level;
+        if (overrides[id]?.uses) item.data.data.uses.limit += overrides[id].uses;
+        return item;
+      })
+    );
+
+    console.log(features);
+
+    return features;
+  }
+
+  /* -------------------------------------------- */
+
   /** @override */
-  /*async updateEmbeddedEntity(embeddedName: string, data: object | object[], options = {}) {
+  async updateEmbeddedEntity(embeddedName: string, data: object | object[], options = {}) {
+    console.log('Update Embedded Entity');
     const createItems = embeddedName === 'OwnedItem' ? await this._createClassFeatures(data) : [];
     let updated = await super.updateEmbeddedEntity(embeddedName, data, options);
     if (createItems.length) await this.createEmbeddedEntity('OwnedItem', createItems);
     return updated;
-  }*/
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Create additional class features in the Actor when a class item is updated.
+   * @private
+   */
+  private async _createClassFeatures(updated: any) {
+    let toCreate = [];
+    for (let u of updated instanceof Array ? updated : [updated]) {
+      const item = this.items.get(u._id);
+      if (!item || item.data.type !== 'class') continue;
+      const updateData = expandObject(u);
+      const config = {
+        className: updateData.name || item.data.name,
+        level: getProperty(updateData, 'data.levels'),
+        priorLevel: item ? item.data.data.levels : 0,
+      };
+
+      // Get and create features for an increased class level
+      let changed = false;
+      if (config.level && config.level > config.priorLevel) changed = true;
+
+      // Get features to create
+      if (changed) {
+        const existing = new Set(this.items.map((i: { name: any }) => i.name));
+        const features = await ActorCarRoy.getClassFeatures(config);
+        for (let f of features) {
+          if (!existing.has(f.name)) toCreate.push(f);
+        }
+      }
+    }
+    return toCreate;
+  }
 
   /* -------------------------------------------- */
   /*  Data Preparation Helpers                    */

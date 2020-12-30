@@ -1,3 +1,19 @@
+### 0.3.0 (2020-12-30)
+
+##### New Features
+
+*  Initial Level Features. ([75713242](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/7571324265a23154e730284c556d19af5b56b7c2))
+*  Data Model Change. ([37356b08](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/37356b083e6b693acf46015f0ef4496fb580a2a9))
+*  Add Features on Level Up. ([dbdbc444](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/dbdbc444c2c00339063010852278d2d4188b4ee8))
+*  Better Handling of Race and Class Creation on Actor. ([4930981a](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/4930981a462d87293afffc4680eb6089f1a51d50))
+*  Class Features Config. ([06598612](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/06598612670dfc669a886beea049e45892c9642a))
+*  Features Compendium and Compendium Updates. ([d763ffcd](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/d763ffcdc5178a10504644f36cfe4c9d2757e368))
+
+##### Other Changes
+
+*  Sorted Images. ([143cac70](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/143cac70ffedb76becc08621938f13661276fa82))
+*  Image Sorting. ([a705f83f](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/a705f83fd45ea7de9e0346bb1e1d4cd973d7bf16))
+
 #### 0.2.1 (2020-12-28)
 
 ##### Build System / Dependencies

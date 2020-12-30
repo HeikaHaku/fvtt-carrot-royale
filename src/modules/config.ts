@@ -1,3 +1,6 @@
+import { ClassFeatures } from './classFeatures.js';
+
+// Namespace Configuration Values
 export const CarrotRoyale: any = {};
 
 /**
@@ -187,3 +190,8 @@ CarrotRoyale.timePeriods = {
 CarrotRoyale.currencies = {
   coins: 'CarRoy.CurrencyCoins',
 };
+
+/* -------------------------------------------- */
+
+// Class Features
+CarrotRoyale.classFeatures = ClassFeatures;

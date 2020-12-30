@@ -1,6 +1,6 @@
 {
   "name": "fvtt-carrot-royale",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Carrot Royale System for FoundryVTT",
   "main": "index.js",
   "scripts": {
@@ -23,18 +23,19 @@
   },
   "homepage": "https://github.com/HeikaHaku/fvtt-carrot-royale#readme",
   "dependencies": {
+    "@babel/runtime": "^7.12.5",
     "foundry-pc-types": "gitlab:foundry-projects/foundry-pc/foundry-pc-types",
     "generate-changelog": "^1.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.12.10",
     "@babel/plugin-transform-typescript": "^7.12.1",
+    "@babel/preset-env": "^7.12.11",
     "@babel/register": "^7.12.10",
     "@types/node": "^14.14.16",
-    "@typescript-eslint/eslint-plugin": "^4.11.0",
-    "@typescript-eslint/parser": "^4.11.0",
-    "babel-core": "^6.26.3",
-    "babel-preset-es2015": "^6.24.1",
+    "@typescript-eslint/eslint-plugin": "^4.11.1",
+    "@typescript-eslint/parser": "^4.11.1",
     "babelify": "^10.0.0",
     "del": "^6.0.0",
     "eslint": "^7.16.0",

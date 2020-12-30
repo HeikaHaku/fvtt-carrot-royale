@@ -1,3 +1,4 @@
+import ActorCarRoy from '../entity.js';
 import ActorSheetCarRoy from './base.js';
 
 /**
@@ -185,7 +186,35 @@ export class HeroSheet extends ActorSheetCarRoy {
         if (next > priorLevel) {
           (itemData as any).levels = next;
           return cls.update({ 'data.levels': next });
+        } else return;
+      } else if (this.actor.data.data.details.level >= 5) return;
+      else {
+        const features = await ActorCarRoy.getClassFeatures({ className: itemData.name, level: 1, priorLevel: 0 });
+        if (features.length) await this.actor.createEmbeddedEntity('OwnedItem', features);
+        if (this.actor.data.data.details.level == 0) {
+          const clsConfig = CONFIG.CarrotRoyale.classFeatures[itemData.name.toLowerCase()];
+          console.log(clsConfig, CONFIG.CarrotRoyale, itemData.name);
+          if (clsConfig) {
+            this.actor.update({
+              'data.attributes.hp.value': clsConfig.abilities.hp,
+              'data.attributes.hp.max': clsConfig.abilities.hp,
+              'data.abilities.str.value': clsConfig.abilities.str,
+              'data.abilities.dex.value': clsConfig.abilities.dex,
+              'data.abilities.con.value': clsConfig.abilities.con,
+              'data.abilities.int.value': clsConfig.abilities.int,
+              'data.abilities.wis.value': clsConfig.abilities.wis,
+              'data.abilities.cha.value': clsConfig.abilities.cha,
+            });
+          }
         }
+      }
+    }
+
+    if (itemData.type === 'race') {
+      const race = this.actor.itemTypes.race.find((r: any) => r);
+      this.actor.update({ 'data.details.race': itemData });
+      if (!!race) {
+        return race.update(itemData);
       }
     }
 
