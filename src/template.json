@@ -133,6 +133,9 @@
           "value": 0,
           "limit": 0
         }
+      },
+      "leveled": {
+        "level": 1
       }
     },
     "armor": {
@@ -159,7 +162,7 @@
       "bonus": 0
     },
     "feature": {
-      "templates": ["common", "damage", "duration", "usable"]
+      "templates": ["common", "damage", "duration", "usable", "leveled"]
     },
     "magic": {
       "templates": ["bonus", "common", "damage", "duration", "equippable", "usable"],
@@ -175,7 +178,7 @@
       }
     },
     "spell": {
-      "templates": ["common", "damage", "duration", "usable"],
+      "templates": ["common", "damage", "duration", "usable", "leveled"],
       "atWill": false,
       "components": {
         "concentration": false
