@@ -43,17 +43,18 @@
       </h4>
       <ol class="bonus-parts form-group">
         {{#each data.bonus.stats as |part i|}}
-        <li class="bonus-part flexrow" data-bonus-part="{{i}}">
-          <input type="text" name="data.bonus.stats.{{i}}.0" value="{{lookup this "0"}}">
-          <select name="data.bonus.stats.{{i}}.1">
-            {{#select (lookup this "1")}}
-            <option value="">{{localize 'CarRoy.None'}}</option>
-            {{#each ../config.bonusStats as |name type|}}
-            <option value="{{type}}">{{localize name}}</option>
-            {{/each}} {{/select}}
-          </select>
-          <a class="bonus-control delete-bonus"><i class="fas fa-minus"></i></a>
-        </li>
+          <li class="bonus-part flexrow" data-bonus-part="{{i}}">
+            <input type="text" name="data.bonus.stats.{{i}}.0" value="{{lookup this "0"}}">
+            <select name="data.bonus.stats.{{i}}.1">
+              {{#select (lookup this "1")}}
+                <option value="">{{localize 'CarRoy.None'}}</option>
+                {{#each ../config.bonusStats as |name type|}}
+                  <option value="{{type}}">{{localize name}}</option>
+                {{/each}}
+              {{/select}}
+            </select>
+            <a class="bonus-control delete-bonus"><i class="fas fa-minus"></i></a>
+          </li>
         {{/each}}
       </ol>
 
@@ -61,7 +62,6 @@
       <h3 class="form-header">{{localize 'CarRoy.MagicItemUsage'}}</h3>
       {{> 'systems/carroy/templates/item/parts/item-activation.html'}}
 
-      <!-- -->
       {{!-- Spell Effects --}}
       <h3 class="form-header">{{localize 'CarRoy.MagicItemAction'}}</h3>
 

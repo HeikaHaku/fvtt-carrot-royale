@@ -5,16 +5,16 @@
 
     <section class="header-details flexrow">
       <h1 class="charname">
-          <input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'CarRoy.SpellName'}}" />
-        </h1>
-        <div class="item-subtitle">
-          <h4 class="item-type">{{itemType}}</h4>
-          <span class="item-status">{{itemStatus}}</span>
-        </div>
-        <ul class="summary flexrow">
-          <li>{{itemType}}</li>
-        </ul>
-      </section>
+        <input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'CarRoy.SpellName'}}" />
+      </h1>
+      <div class="item-subtitle">
+        <h4 class="item-type">{{itemType}}</h4>
+        <span class="item-status">{{itemStatus}}</span>
+      </div>
+      <ul class="summary flexrow">
+        <li>{{itemType}}</li>
+      </ul>
+    </section>
   </header>
 
   {{!-- Sheet Tab Navigation --}}
@@ -37,11 +37,9 @@
       </div>
 
       {{!-- Spell Casting --}}
-      <!-- -->
       <h3 class="form-header">{{localize 'CarRoy.SpellCasting'}}</h3>
       {{> 'systems/carroy/templates/item/parts/item-activation.html'}}
 
-      <!-- -->
       {{!-- Spell Effects --}}
       <h3 class="form-header">{{localize 'CarRoy.SpellEffects'}}</h3>
 

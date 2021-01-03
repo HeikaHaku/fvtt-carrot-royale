@@ -36,8 +36,8 @@
         <label>{{localize 'CarRoy.WeaponType'}}</label>
         <select name="data.weaponType">
           {{#select data.weaponType}} {{#each config.weaponTypes as |name type|}}
-          <option value="{{type}}">{{localize name}}</option>
-          {{/each}} {{/select}}
+              <option value="{{type}}">{{localize name}}</option>
+            {{/each}} {{/select}}
         </select>
       </div>
 
@@ -45,9 +45,11 @@
       <div class="form-group">
         <label>{{localize 'CarRoy.WeaponWeight'}}</label>
         <select name="data.weight">
-          {{#select data.weight}} {{#each config.weaponWeights as |name weight|}}
-          <option value="{{weight}}">{{localize name}}</option>
-          {{/each}} {{/select}}
+          {{#select data.weight}}
+            {{#each config.weaponWeights as |name weight|}}
+              <option value="{{weight}}">{{localize name}}</option>
+            {{/each}}
+          {{/select}}
         </select>
       </div>
 
@@ -61,7 +63,6 @@
       <h3 class="form-header">{{localize 'CarRoy.WeaponUsage'}}</h3>
       {{> "systems/carroy/templates/item/parts/item-activation.html"}}
 
-      <!-- -->
       {{!-- Action Type --}}
       <h3 class="form-header">{{localize 'CarRoy.WeaponAttack'}}</h3>
       {{> "systems/carroy/templates/item/parts/item-action.html"}}

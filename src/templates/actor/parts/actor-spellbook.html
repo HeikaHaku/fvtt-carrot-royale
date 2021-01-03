@@ -9,51 +9,66 @@
 
 <ol class="items-list inventory-list">
   {{#each spellbook as |section|}}
-  <li class="items-header spellbook-header flexrow">
-    <div class="item-name flexrow">
-      <h3>{{section.label}}</h3>
-    </div>
-    <div class="spell-action">{{localize 'CarRoy.SpellUsage'}}</div>
-    <div class="spell-target">{{localize 'CarRoy.SpellTarget'}}</div>
-
-    <div class="item-controls flexrow">
-      {{#if section.canCreate}} {{> 'systems/carroy/templates/actor/parts/dataset.html' section=section label='CarRoy.SpellAdd'}} {{/if}}
-    </div>
-  </li>
-
-  <ol class="item-list">
-    {{#each section.spells as |item i|}}
-    <li class="item flexrow" data-item-id="{{item._id}}">
-      <div class="item-name flexrow rollable">
-        <div class="item-image" style="background-image: url('{{item.img}}')"></div>
-        <h4>{{item.name}}</h4>
-        <div class="spell-action">{{labels.activation}}</div>
-        <div class="spell-target" title="{{localize 'CarRoy.Range'}}: {{labels.range}}">
-          {{#if labels.target}} {{labels.target}} {{else}} {{localize 'CarRoy.None'}} {{/if}}
-        </div>
+    <li class="items-header spellbook-header flexrow">
+      <div class="item-name flexrow">
+        <h3>{{section.label}}</h3>
       </div>
+      <div class="spell-action">{{localize 'CarRoy.SpellUsage'}}</div>
+      <div class="spell-target">{{localize 'CarRoy.SpellTarget'}}</div>
 
-      {{#if ../../owner}}
       <div class="item-controls flexrow">
-        <a class="item-control item-edit" title="{{localize 'CarRoy.ItemEdit'}}"><i class="fas fa-edit"></i></a>
-        <a class="item-control item-delete" title="{{localize 'CarRoy.ItemDelete'}}"><i class="fas fa-trash"></i></a>
+        {{#if section.canCreate}}
+          <a class="item-control item-create" title="{{localize 'CarRoy.SpellAdd'}}" {{#each section.dataset as |v k|}}data-{{k}}="{{v}}" {{/each}}>
+            <i class="fas fa-plus">{{localize 'CarRoy.Add'}}</i>
+          </a>
+        {{/if}}
       </div>
-      {{/if}}
     </li>
-    {{/each}}
-  </ol>
-  {{else}} {{#if owner}} {{#if filters.spellbook.size}}
-  <li class="item flexrow">
-    <p class="notes">{{localize 'CarRoy.FilterNoSpells'}}</p>
-  </li>
+
+    <ol class="item-list">
+      {{#each section.spells as |item i|}}
+        <li class="item flexrow" data-item-id="{{item._id}}">
+          <div class="item-name flexrow rollable">
+            <div class="item-image" style="background-image: url('{{item.img}}')"></div>
+            <h4>{{item.name}}</h4>
+            <div class="spell-action">{{labels.activation}}</div>
+            <div class="spell-target" title="{{localize 'CarRoy.Range'}}: {{labels.range}}">
+              {{#if labels.target}}
+                {{labels.target}}
+              {{else}}
+                {{localize 'CarRoy.None'}}
+              {{/if}}
+            </div>
+          </div>
+
+          {{#if ../../owner}}
+            <div class="item-controls flexrow">
+              <a class="item-control item-edit" title="{{localize 'CarRoy.ItemEdit'}}"><i class="fas fa-edit"></i></a>
+              <a class="item-control item-delete" title="{{localize 'CarRoy.ItemDelete'}}"><i class="fas fa-trash"></i></a>
+            </div>
+          {{/if}}
+        </li>
+      {{/each}}
+    </ol>
   {{else}}
-  <li class="item flexrow inventory-header spellbook-header spellbook-empty">
-    <div class="item-controls flexrow">
-      <a class="item-control item-create" title="{{localize 'CarRoy.SpellAdd'}}" data-type="spell">
-        <i class="fas fa-plus"></i> {{localize 'CarRoy.SpellAdd'}}
-      </a>
-    </div>
-  </li>
-  <li class="item flexrow"><p class="notes">{{localize 'CarRoy.NoSpells'}}</p></li>
-  {{/if}} {{/if}} {{/each}}
+    {{#if owner}}
+      {{#if filters.spellbook.size}}
+        <li class="item flexrow">
+          <p class="notes">{{localize 'CarRoy.FilterNoSpells'}}</p>
+        </li>
+      {{else}}
+        <li class="item flexrow inventory-header spellbook-header spellbook-empty">
+          <div class="item-controls flexrow">
+            <a class="item-control item-create" title="{{localize 'CarRoy.SpellAdd'}}" data-type="spell">
+              <i class="fas fa-plus"></i>
+              {{localize 'CarRoy.SpellAdd'}}
+            </a>
+          </div>
+        </li>
+        <li class="item flexrow">
+          <p class="notes">{{localize 'CarRoy.NoSpells'}}</p>
+        </li>
+      {{/if}}
+    {{/if}}
+  {{/each}}
 </ol>
