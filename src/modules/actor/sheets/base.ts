@@ -427,7 +427,6 @@ export default class ActorSheetCarRoy extends ActorSheet {
     event.preventDefault();
     const li = event.currentTarget.closest('.item');
     const item = this.actor.items.get(li.dataset.itemId);
-    if (item.type === 'race') await this.actor.configureRacialBonuses(null);
     this.actor.deleteOwnedItem(li.dataset.itemId);
   }
 

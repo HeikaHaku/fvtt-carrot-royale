@@ -34,19 +34,22 @@ export default class ActorCarRoy extends Actor {
     });
     const armors = actorData.items.filter((item: { type: string }) => item.type === 'armor');
 
+    const race = actorData.items.find((item: { type: string }) => item.type === 'race');
+    const raceConfig = race ? CONFIG.CarrotRoyale.raceFeatures[race.name?.toLowerCase()] : {};
+
     // Ability modifiers and saves
     for (let [id, abl] of Object.entries(data.abilities) as [string, any]) {
       /*abl.mod = Math.floor((abl.value + (abl?.bonus || 0) - 10) / 2);
       abl.total = abl.value + (abl?.bonus || 0);*/
-      abl.total = abl.value + (data.bonus?.race?.[id] || 0) + (itemBonuses[id] || 0);
+      abl.total = abl.value + (raceConfig?.bonus?.stats?.[id] || 0) + (itemBonuses[id] || 0);
       abl.mod = Math.floor((abl.total - 10) / 2);
-      abl.save = abl.mod + (data?.bonus?.race?.saves || 0) + (itemBonuses['saves'] || 0);
+      abl.save = abl.mod + (raceConfig?.bonus?.stats?.saves || 0) + (itemBonuses['saves'] || 0);
     }
 
     // Determine Initiative Modifier
     const init = data.attributes.init;
     init.mod = data.abilities.dex.mod;
-    init.total = init.mod + init.bonus + (itemBonuses.init || 0);
+    init.total = init.mod + init.bonus + (itemBonuses.init || 0) + (raceConfig?.bonus?.stats?.init || 0);
 
     const ac = data.attributes.ac;
     const armorAC = armors.reduce(
@@ -63,7 +66,7 @@ export default class ActorCarRoy extends Actor {
       },
       { shield: 0, type: -1, ac: 0 }
     );
-    ac.value = 6 + data.abilities.dex.mod + (data.bonus?.race?.ac || 0) + (itemBonuses?.ac || 0) + (armorAC.ac || 0) + (armorAC.shield || 0);
+    ac.value = 6 + data.abilities.dex.mod + (raceConfig?.bonus?.stats?.ac || 0) + (itemBonuses?.ac || 0) + (armorAC.ac || 0) + (armorAC.shield || 0);
   }
 
   /* -------------------------------------------- */
@@ -168,17 +171,6 @@ export default class ActorCarRoy extends Actor {
       }
     }
     return toCreate;
-  }
-
-  async configureRacialBonuses(itemData: { name: string }) {
-    await this.update({ 'data.bonus.race': null });
-    if (!itemData || !itemData.name) return {};
-
-    const raceConfig = CONFIG.CarrotRoyale.raceFeatures[itemData.name?.toLowerCase()];
-
-    if (raceConfig?.bonus?.stats) await this.update({ 'data.bonus.race': raceConfig.bonus.stats });
-
-    return raceConfig;
   }
 
   /* -------------------------------------------- */

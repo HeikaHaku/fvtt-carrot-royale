@@ -31,7 +31,6 @@ export class HeroSheet extends ActorSheetCarRoy {
     sheetData.isMelee;
 
     sheetData.race = this.actor.itemTypes.race.find((r: any) => r);
-    await this.actor.configureRacialBonuses(sheetData.race);
 
     // Resources
     /*sheetData["resources"] = ["primary", "secondary", "tertiary"].reduce((arr, r) => {
@@ -188,7 +187,7 @@ export class HeroSheet extends ActorSheetCarRoy {
         const next = Math.min(priorLevel + 1, 5 + priorLevel - this.actor.data.data.details.level);
         if (next > priorLevel) {
           (itemData as any).levels = next;
-          return cls.update({ 'data.levels': next });
+          return await cls.update({ 'data.levels': next });
         } else return;
       } else if (this.actor.data.data.details.level >= 5) return;
       else {
@@ -198,7 +197,7 @@ export class HeroSheet extends ActorSheetCarRoy {
           const clsConfig = CONFIG.CarrotRoyale.classFeatures[itemData.name.toLowerCase()];
           //console.log(clsConfig, CONFIG.CarrotRoyale, itemData.name);
           if (clsConfig) {
-            this.actor.update({
+            await this.actor.update({
               'data.attributes.hp.value': clsConfig.abilities.hp,
               'data.attributes.hp.max': clsConfig.abilities.hp,
               'data.abilities.str.value': clsConfig.abilities.str,
@@ -212,29 +211,17 @@ export class HeroSheet extends ActorSheetCarRoy {
         }
       }
       const race = this.actor.itemTypes.race.find((r: any) => r);
-      await this.actor.configureRacialBonuses(race);
     }
 
     if (itemData.type === 'race') {
       const race = this.actor.itemTypes.race.find((r: any) => r);
 
-      /*if (raceConfig) {
-
-        console.log(abilities, attributes, this.actor.data, raceConfig, stats);
-        this.actor.update({ 'data.abilities': abilities, 'data.attributes': attributes });
-      }*/
-
-      //this.configureRacialBonuses(raceConfig);
-      /*this.actor.update({ 'data.bonus.race': null });
-      if (raceConfig?.bonus?.stats) this.actor.update({ 'data.bonus.race': raceConfig.bonus.stats });*/
-
-      await this.actor.configureRacialBonuses(itemData);
       if (!!race) {
-        return race.update(itemData);
+        return await race.update(itemData);
       }
     }
 
     // Default drop handling if levels were not added
-    super._onDropItemCreate(itemData);
+    await super._onDropItemCreate(itemData);
   }
 }
