@@ -19,7 +19,7 @@ export class HeroSheet extends ActorSheetCarRoy {
   /**
    * Add some extra data when rendering the sheet to reduce the amount of logic required within the template.
    */
-  getData() {
+  async getData() {
     const sheetData: any = super.getData();
 
     // Temporary HP
@@ -29,6 +29,9 @@ export class HeroSheet extends ActorSheetCarRoy {
 
     sheetData.isSpellcaster;
     sheetData.isMelee;
+
+    sheetData.race = this.actor.itemTypes.race.find((r: any) => r);
+    await this.actor.configureRacialBonuses(sheetData.race);
 
     // Resources
     /*sheetData["resources"] = ["primary", "secondary", "tertiary"].reduce((arr, r) => {
@@ -193,7 +196,7 @@ export class HeroSheet extends ActorSheetCarRoy {
         if (features.length) await this.actor.createEmbeddedEntity('OwnedItem', features);
         if (this.actor.data.data.details.level == 0) {
           const clsConfig = CONFIG.CarrotRoyale.classFeatures[itemData.name.toLowerCase()];
-          console.log(clsConfig, CONFIG.CarrotRoyale, itemData.name);
+          //console.log(clsConfig, CONFIG.CarrotRoyale, itemData.name);
           if (clsConfig) {
             this.actor.update({
               'data.attributes.hp.value': clsConfig.abilities.hp,
@@ -208,11 +211,24 @@ export class HeroSheet extends ActorSheetCarRoy {
           }
         }
       }
+      const race = this.actor.itemTypes.race.find((r: any) => r);
+      await this.actor.configureRacialBonuses(race);
     }
 
     if (itemData.type === 'race') {
       const race = this.actor.itemTypes.race.find((r: any) => r);
-      this.actor.update({ 'data.details.race': itemData });
+
+      /*if (raceConfig) {
+
+        console.log(abilities, attributes, this.actor.data, raceConfig, stats);
+        this.actor.update({ 'data.abilities': abilities, 'data.attributes': attributes });
+      }*/
+
+      //this.configureRacialBonuses(raceConfig);
+      /*this.actor.update({ 'data.bonus.race': null });
+      if (raceConfig?.bonus?.stats) this.actor.update({ 'data.bonus.race': raceConfig.bonus.stats });*/
+
+      await this.actor.configureRacialBonuses(itemData);
       if (!!race) {
         return race.update(itemData);
       }
