@@ -67,6 +67,8 @@ export default class ActorCarRoy extends Actor {
       { shield: 0, type: -1, ac: 0 }
     );
     ac.value = 6 + data.abilities.dex.mod + (raceConfig?.bonus?.stats?.ac || 0) + (itemBonuses?.ac || 0) + (armorAC.ac || 0) + (armorAC.shield || 0);
+
+    const hp = data.attributes.hp;
   }
 
   /* -------------------------------------------- */

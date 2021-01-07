@@ -4,7 +4,6 @@ export const RaceFeatures = {
       stats: {
         movement: 1,
         ac: -2,
-        str: 10,
       },
     },
   },
