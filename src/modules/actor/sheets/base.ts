@@ -98,9 +98,9 @@ export default class ActorSheetCarRoy extends ActorSheet {
    */
   _getMovementSpeed(actorData: any): number {
     let movement: number = actorData.data?.attributes?.movement?.value || 6;
-    const race = actorData.data?.details?.race;
+    const race = actorData.items.find((item: { type: string }) => item.type === 'race');
     if (race) {
-      const raceConfig = CONFIG.CarrotRoyale.raceFeatures[race.name?.toLowerCase()];
+      const raceConfig = CONFIG.CarrotRoyale.raceFeatures[race?.name?.toLowerCase()];
       movement += raceConfig?.bonus.stats.movement || 0;
     }
     const armor = actorData.items
