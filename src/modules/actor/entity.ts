@@ -16,21 +16,54 @@ export default class ActorCarRoy extends Actor {
 
   /* -------------------------------------------- */
   /** @override */
-  prepareDerivedData() {
+  async prepareDerivedData() {
     const actorData = this.data;
     const data = actorData.data;
     const flags = actorData.flags.carroy || {};
     const bonuses = getProperty(data, 'bonuses.abilities') || {};
 
+    const items = actorData.items.filter(
+      (item: { type: string; data: { bonus: { stats: any } } }) => !['race', 'class'].includes(item.type) && item.data.bonus?.stats
+    );
+    const itemBonuses: Record<string, any> = {};
+    items.forEach((item) => {
+      for (let [stat, id] of item.data.bonus.stats) {
+        if (!itemBonuses[id]) itemBonuses[id] = 0;
+        itemBonuses[id] += parseInt(stat);
+      }
+    });
+    const armors = actorData.items.filter((item: { type: string }) => item.type === 'armor');
+
     // Ability modifiers and saves
     for (let [id, abl] of Object.entries(data.abilities) as [string, any]) {
-      abl.mod = Math.floor((abl.value - 10) / 2);
+      /*abl.mod = Math.floor((abl.value + (abl?.bonus || 0) - 10) / 2);
+      abl.total = abl.value + (abl?.bonus || 0);*/
+      abl.total = abl.value + (data.bonus?.race?.[id] || 0) + (itemBonuses[id] || 0);
+      abl.mod = Math.floor((abl.total - 10) / 2);
+      abl.save = abl.mod + (data?.bonus?.race?.saves || 0) + (itemBonuses['saves'] || 0);
     }
 
     // Determine Initiative Modifier
     const init = data.attributes.init;
     init.mod = data.abilities.dex.mod;
-    init.total = init.mod + init.bonus;
+    init.total = init.mod + init.bonus + (itemBonuses.init || 0);
+
+    const ac = data.attributes.ac;
+    const armorAC = armors.reduce(
+      (a, b) => {
+        const type = b.data.armorType;
+        if (type === 'shield') {
+          a.shield = a.shield < b.data.ac ? b.data.ac : a.shield;
+          return a;
+        }
+        const cur = ['light', 'medium', 'heavy'].indexOf(type);
+        a.type = a.type < cur ? cur : a.type;
+        a.ac = a.type === cur ? b.data.ac : a.ac;
+        return a;
+      },
+      { shield: 0, type: -1, ac: 0 }
+    );
+    ac.value = 6 + data.abilities.dex.mod + (data.bonus?.race?.ac || 0) + (itemBonuses?.ac || 0) + (armorAC.ac || 0) + (armorAC.shield || 0);
   }
 
   /* -------------------------------------------- */
@@ -135,6 +168,17 @@ export default class ActorCarRoy extends Actor {
       }
     }
     return toCreate;
+  }
+
+  async configureRacialBonuses(itemData: { name: string }) {
+    await this.update({ 'data.bonus.race': null });
+    if (!itemData || !itemData.name) return {};
+
+    const raceConfig = CONFIG.CarrotRoyale.raceFeatures[itemData.name?.toLowerCase()];
+
+    if (raceConfig?.bonus?.stats) await this.update({ 'data.bonus.race': raceConfig.bonus.stats });
+
+    return raceConfig;
   }
 
   /* -------------------------------------------- */
@@ -278,7 +322,7 @@ export default class ActorCarRoy extends Actor {
 
     // Construct parts
     const parts = ['@mod'];
-    const data: any = { mod: abl.mod };
+    const data: any = { mod: abl.save };
 
     // Add feat-related proficiency bonuses
     const feats = this.data.flags.carroy || {};
