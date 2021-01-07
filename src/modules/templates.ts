@@ -13,7 +13,6 @@ export const preloadHandlebarsTemplates = async function () {
 
     // Actor Sheet Partials
     'systems/carroy/templates/actor/parts/actor-inventory.html',
-    'systems/carroy/templates/actor/parts/dataset.html',
     'systems/carroy/templates/actor/parts/actor-features.html',
     'systems/carroy/templates/actor/parts/actor-spellbook.html',
 
