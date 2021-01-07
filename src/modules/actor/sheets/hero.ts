@@ -19,7 +19,7 @@ export class HeroSheet extends ActorSheetCarRoy {
   /**
    * Add some extra data when rendering the sheet to reduce the amount of logic required within the template.
    */
-  getData() {
+  async getData() {
     const sheetData: any = super.getData();
 
     // Temporary HP
@@ -29,6 +29,8 @@ export class HeroSheet extends ActorSheetCarRoy {
 
     sheetData.isSpellcaster;
     sheetData.isMelee;
+
+    sheetData.race = this.actor.itemTypes.race.find((r: any) => r);
 
     // Resources
     /*sheetData["resources"] = ["primary", "secondary", "tertiary"].reduce((arr, r) => {
@@ -185,7 +187,7 @@ export class HeroSheet extends ActorSheetCarRoy {
         const next = Math.min(priorLevel + 1, 5 + priorLevel - this.actor.data.data.details.level);
         if (next > priorLevel) {
           (itemData as any).levels = next;
-          return cls.update({ 'data.levels': next });
+          return await cls.update({ 'data.levels': next });
         } else return;
       } else if (this.actor.data.data.details.level >= 5) return;
       else {
@@ -193,9 +195,9 @@ export class HeroSheet extends ActorSheetCarRoy {
         if (features.length) await this.actor.createEmbeddedEntity('OwnedItem', features);
         if (this.actor.data.data.details.level == 0) {
           const clsConfig = CONFIG.CarrotRoyale.classFeatures[itemData.name.toLowerCase()];
-          console.log(clsConfig, CONFIG.CarrotRoyale, itemData.name);
+          //console.log(clsConfig, CONFIG.CarrotRoyale, itemData.name);
           if (clsConfig) {
-            this.actor.update({
+            await this.actor.update({
               'data.attributes.hp.value': clsConfig.abilities.hp,
               'data.attributes.hp.max': clsConfig.abilities.hp,
               'data.abilities.str.value': clsConfig.abilities.str,
@@ -208,17 +210,18 @@ export class HeroSheet extends ActorSheetCarRoy {
           }
         }
       }
+      const race = this.actor.itemTypes.race.find((r: any) => r);
     }
 
     if (itemData.type === 'race') {
       const race = this.actor.itemTypes.race.find((r: any) => r);
-      this.actor.update({ 'data.details.race': itemData });
+
       if (!!race) {
-        return race.update(itemData);
+        return await race.update(itemData);
       }
     }
 
     // Default drop handling if levels were not added
-    super._onDropItemCreate(itemData);
+    await super._onDropItemCreate(itemData);
   }
 }

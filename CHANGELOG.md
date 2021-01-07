@@ -1,3 +1,29 @@
+#### 0.3.1 (2021-01-07)
+
+##### New Features
+
+*  Apply Bonuses to Stats and Initiative. ([a536640e](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/a536640e6cd5215201fbf74e4e248cde0633aabb))
+*  AC and Movement Bonuses Applied. ([152c1b3b](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/152c1b3b0ba24b79617822e8e41241aecd60da6c))
+*  Race Features Config. ([844b6dc8](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/844b6dc8c147d7cc1e82c9db37938888d9d7ed00))
+
+##### Bug Fixes
+
+*  Removed Test Data. ([92b5a7fa](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/92b5a7faaced918351e0651d72cffa08df75dba9))
+*  Fixed Racial Bonuses. ([369c1420](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/369c14202484daa62d073a51f62cb6b937ae293e))
+*  Template Fixes. ([0df7ff22](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/0df7ff2273b3918ffd0740e1b97ff26f084c48d5))
+*  Class Features Config Level Fixes. ([1e2f8cc6](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/1e2f8cc6dc3265445590c2bed74aee4f2c1d7d5b))
+
+##### Other Changes
+
+*  Change how Race is used on the sheet. ([b9267170](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/b9267170d01c792ad02e97466fcbd29838ed4841))
+*  Data Model Change. ([5967206f](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/5967206fa31d8681bfc778568c75fe5c45eb7480))
+*  Remove Link to Dataset Template. ([e888f7da](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/e888f7da0915f62e6dc4d7ce0b7ed949f972f36a))
+
+##### Code Style Changes
+
+*  Style fixes. ([faab1b85](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/faab1b85a44fbe3073a7746c62d9bc7730fdb69a))
+*  Changed VS Code Formatter for HTML. ([334d8fd8](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/334d8fd80bb02bcdbec731d5d40cc05d776a37c4))
+
 ### 0.3.0 (2020-12-30)
 
 ##### New Features

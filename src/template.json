@@ -31,7 +31,7 @@
         },
         "attributes": {
           "ac": {
-            "value": 10
+            "value": 6
           },
           "hp": {
             "value": 10,
@@ -169,9 +169,7 @@
       "cost": 0
     },
     "race": {
-      "templates": ["bonus", "common"],
-      "ac": 0,
-      "movement": 0,
+      "templates": ["common"],
       "traits": {
         "giant": false,
         "slow": false

@@ -123,7 +123,6 @@ export const ClassFeatures = {
     features: {
       1: [
         { name: 'Inspire', id: 'Compendium.carroy.features-cr.qzzU12Eh2NitsFkx' },
-        { name: 'Bliss', id: 'Compendium.carroy.features-cr.QWwz8PGFLfwQBOSA' },
         { name: 'Scorn', id: 'Compendium.carroy.spells-cr.o4P6biJ6fqSROluD' },
       ],
       2: [
@@ -132,14 +131,10 @@ export const ClassFeatures = {
       ],
       3: [{ name: 'Bolstering Melody', id: 'Compendium.carroy.spells-cr.B1pqyBEGB5d9aN2L' }],
       4: [{ name: 'Cure Wounds', id: 'Compendium.carroy.spells-cr.VhM5jOlgXL1x9AKy', level: 3 }],
-      5: [{ name: 'Purge', id: 'Compendium.carroy.spells-cr.IYzNNcJjHO3pGFJ9' }],
-    },
-    spells: {
-      1: [{ name: 'Scorn' }],
-      2: [{ name: 'Whisper' }],
-      3: [{ name: 'Bolstering Melody' }],
-      4: [{ name: 'Cure Wounds', level: 3 }],
-      5: [{ name: 'Purge' }],
+      5: [
+        { name: 'Purge', id: 'Compendium.carroy.spells-cr.IYzNNcJjHO3pGFJ9' },
+        { name: 'Bliss', id: 'Compendium.carroy.features-cr.QWwz8PGFLfwQBOSA' },
+      ],
     },
     buffs: {
       3: {
@@ -182,13 +177,6 @@ export const ClassFeatures = {
       4: [{ name: 'Blizzard', id: 'Compendium.carroy.spells-cr.h3gqqbwYQZk9KXom' }],
       5: [{ name: 'Cure Wounds', id: 'Compendium.carroy.spells-cr.VhM5jOlgXL1x9AKy', level: 5 }],
     },
-    spells: {
-      1: [{ name: 'Cure Wounds', level: 1 }],
-      2: [{ name: 'Moonbeam' }],
-      3: [{ name: 'Cure Wounds', level: 2 }],
-      4: [{ name: 'Blizzard' }],
-      5: [{ name: 'Cure Wounds', level: 5 }],
-    },
     buffs: {
       3: {
         team: {
@@ -230,13 +218,6 @@ export const ClassFeatures = {
       3: [{ name: 'Cure Wounds', id: 'Compendium.carroy.spells-cr.VhM5jOlgXL1x9AKy', level: 2 }],
       4: [{ name: 'Cure Wounds', id: 'Compendium.carroy.spells-cr.VhM5jOlgXL1x9AKy', level: 4 }],
       5: [{ name: 'Searing Strike', id: 'Compendium.carroy.spells-cr.PwgJm8OLlOGog4nE' }],
-    },
-    spells: {
-      1: [{ name: 'Cure Wounds', level: 1 }],
-      2: [{ name: 'Spiritual Weapon' }],
-      3: [{ name: 'Cure Wounds', level: 2 }],
-      4: [{ name: 'Cure Wounds', level: 4 }],
-      5: [{ name: 'Searing Strike' }],
     },
     buffs: {
       3: {
@@ -283,13 +264,6 @@ export const ClassFeatures = {
         { name: 'Counterspell', id: 'Compendium.carroy.spells-cr.5FqNOH42NOtsjOKj' },
         { name: 'Ray of Frost', id: 'Compendium.carroy.spells-cr.wZFUWoRRvbD7uux6' },
       ],
-    },
-    spells: {
-      1: [{ name: 'Magic Missile' }],
-      2: [{ name: 'Burning Hands' }],
-      3: [{ name: 'Fireball' }],
-      4: [{ name: 'Chain Lightning' }],
-      5: [{ name: 'Counterspell' }, { name: 'Ray of Frost' }],
     },
     buffs: {
       3: {
@@ -382,13 +356,6 @@ export const ClassFeatures = {
         { name: 'Greasy Coat', id: 'Compendium.carroy.spells-cr.XadTbOoJL0K4kLj9' },
       ],
     },
-    spells: {
-      1: [{ name: 'Thunderwave' }],
-      2: [{ name: 'Magic Mark' }],
-      3: [{ name: 'Magic Missile' }],
-      4: [{ name: 'Dimension Door' }],
-      5: [{ name: 'Hold Person' }, { name: 'Greasy Coat' }],
-    },
     buffs: {
       3: {
         team: {
@@ -421,11 +388,9 @@ export const ClassFeatures = {
       cha: 10,
     },
     features: {
-      1: [
-        { name: 'Sneak Attack', id: 'Compendium.carroy.features-cr.MS5ZJozJsldnneSN' },
-        { name: 'Lucky Dice', id: 'Compendium.carroy.features-cr.UM0OesghlP1398rg' },
-      ],
+      1: [{ name: 'Sneak Attack', id: 'Compendium.carroy.features-cr.MS5ZJozJsldnneSN' }],
       2: [{ name: 'Acute Senses', id: 'Compendium.carroy.features-cr.1apiKdoZj7ZWS1Fl' }],
+      5: [{ name: 'Lucky Dice', id: 'Compendium.carroy.features-cr.UM0OesghlP1398rg' }],
     },
     buffs: {
       3: {
@@ -476,13 +441,6 @@ export const ClassFeatures = {
         { name: 'Summon Golem', id: 'Compendium.carroy.features-cr.4890ajA9YZTxDbhe', level: 4 },
         { name: 'Lifesteal', id: 'Compendium.carroy.spells-cr.CCH7Ao3yPS1ZQIEZ' },
       ],
-    },
-    spells: {
-      1: [{ name: 'Withering Ray', id: 'Compendium.carroy.features-cr.' }],
-      2: [{ name: 'Feeble Mind', id: 'Compendium.carroy.features-cr.' }],
-      3: [{ name: 'Summon Undead Dragon', id: 'Compendium.carroy.features-cr.' }],
-      4: [{ name: 'Slow', id: 'Compendium.carroy.features-cr.' }],
-      5: [{ name: 'Lifesteal', id: 'Compendium.carroy.features-cr.' }],
     },
     debuffs: {
       4: {

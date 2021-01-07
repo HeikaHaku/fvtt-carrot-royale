@@ -8,18 +8,17 @@
 
       {{!-- Character Summmary --}}
       <ul class="summary flexrow">
-        {{#if data.details.race}}
+
         <li>
-          <input
-            class="read-only"
-            type="text"
-            name="data.details.race.name"
-            value="{{data.details.race.name}}"
-            placeholder="{{localize 'CarRoy.Race'}}"
-            readonly
-          />
+          <span>
+            {{#if race}}
+              {{race.name}}
+            {{else}}
+              {{localize 'CarRoy.Race'}}
+            {{/if}}
+          </span>
         </li>
-        {{/if}}
+
       </ul>
 
       {{!-- Header Attributes --}}
@@ -39,7 +38,7 @@
         <li class="attribute">
           <h4 class="attribute-name box-title">{{localize 'CarRoy.ArmorClass'}}</h4>
           <div class="attribute-value">
-            <input name="data.attributes.ac.value" type="number" value="{{data.attributes.ac.value}}" placeholder="10" />
+            <span>{{data.attributes.ac.value}}</span>
           </div>
           <footer class="attribute-footer">
             <!--Spell Save DC-->
@@ -49,7 +48,7 @@
         <li class="attribute">
           <h4 class="attribute-name box-title">{{localize 'CarRoy.Movement'}}</h4>
           <div class="attribute-value">
-            <span>{{data.attributes.movement.value}}</span>
+            <span>{{movement}}</span>
           </div>
           <footer class="attribute-footer">
             <!--Movement Bonus -->
@@ -63,13 +62,7 @@
           </div>
           <footer class="attribute-footer">
             <span>{{localize 'CarRoy.Modifier'}}</span>
-            <input
-              name="data.attributes.init.value"
-              type="text"
-              data-dtype="Number"
-              placeholder="0"
-              value="{{numberFormat data.attributes.init.value decimals=0 sign=true}}"
-            />
+            <input name="data.attributes.init.value" type="text" data-dtype="Number" placeholder="0" value="{{numberFormat data.attributes.init.value decimals=0 sign=true}}" />
           </footer>
         </li>
       </ul>
@@ -92,14 +85,16 @@
       <section class="abilities">
         <ul class="ability-scores flexcol">
           {{#each data.abilities as |ability name|}}
-          <li class="ability" data-ability="{{name}}">
-            <h4 class="ability-name box-title rollable">{{firstUpper (localize (prepAbilityLocale name))}}</h4>
-            <input class="ability-score" name="data.abilities.{{name}}.value" type="text" value="{{ability.value}}" data-dtype="Number" placeholder="10" />
-            <div class="ability-modifiers flexrow">
-              <span class="ability-mod" title="{{localize 'CarRoy.Modifier'}}">{{modCalc ability.value}}</span>
-            </div>
-          </li>
-          <!--div class="ability"><label class="ability-label">{{firstUpper (localize (prepAbilityLocaleAbbr name))}}</label>{{ability.value}}</div-->
+            <li class="ability" data-ability="{{name}}">
+              <h4 class="ability-name box-title rollable">{{firstUpper (localize (prepAbilityLocale name))}}</h4>
+              <span class="ability-score">{{ability.total}}</span>
+              <div class="ability-modifiers flexrow">
+                <span class="ability-mod" title="{{localize 'CarRoy.Modifier'}}">{{numberFormat ability.mod decimals=0 sign=true}}</span>
+                <span class="ability-proficiency"></span>
+                <span class="ability-save" title="{{localize 'CarRoy.ActionSave'}}">{{numberFormat ability.save decimals=0 sign=true}}</span>
+              </div>
+            </li>
+            <!--div class="ability"><label class="ability-label">{{firstUpper (localize (prepAbilityLocaleAbbr name))}}</label>{{ability.value}}</div-->
           {{/each}}
         </ul>
       </section>

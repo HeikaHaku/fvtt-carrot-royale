@@ -72,7 +72,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
     }
 
     // Movement speeds
-    //data.movement = this._getMovementSpeed(data.actor);
+    data.movement = this._getMovementSpeed(data.actor);
 
     // Update traits
     //this._prepareTraits(data.actor.data.traits);
@@ -85,6 +85,42 @@ export default class ActorSheetCarRoy extends ActorSheet {
 
     // Return data to the sheet
     return data;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Prepare the display of movement speed data for the Actor*
+   * @param {object} actorData                The Actor data being prepared.
+   * @param {boolean} [largestPrimary=false]  Show the largest movement speed as "primary", otherwise show "walk"
+   * @returns {{primary: string, special: string}}
+   * @private
+   */
+  _getMovementSpeed(actorData: any): number {
+    let movement: number = actorData.data?.attributes?.movement?.value || 6;
+    const race = actorData.data?.details?.race;
+    if (race) {
+      const raceConfig = CONFIG.CarrotRoyale.raceFeatures[race.name?.toLowerCase()];
+      movement += raceConfig?.bonus.stats.movement || 0;
+    }
+    const armor = actorData.items
+      .filter((item: { type: string }) => item.type === 'armor')
+      .reduce((a: number, b: { data: { armorType: any } }) => {
+        const type = b.data.armorType;
+        if (type === 'shield') return a;
+        const cur = ['light', 'medium', 'heavy'].indexOf(type);
+        return a < cur ? cur : a;
+      }, 0);
+    const item = actorData.items
+      .filter((item: { type: string; data: { bonus: { stats: any } } }) => !['race', 'class'].includes(item.type) && item.data.bonus?.stats)
+      .reduce((a: number, b: { data: { bonus: { stats: any } } }) => {
+        const stats = b.data.bonus.stats;
+        for (let stat of stats) {
+          if (stat[1] === 'move') a += parseInt(stat[0]);
+        }
+        return a;
+      }, 0);
+    return movement - armor + item;
   }
 
   /* -------------------------------------------- */
@@ -355,7 +391,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
       if (this.actor.data.data.details.level >= 5) return;
     }
     if (type === 'race') {
-      if (!!this.actor.data.data.details.race) return;
+      if (!!this.actor.itemTypes.race) return;
     }
     const itemData = {
       name: game.i18n.format('CarRoy.ItemNew', { type: type === 'magic' ? 'magic item'.capitalize() : type.capitalize() }),
@@ -387,14 +423,10 @@ export default class ActorSheetCarRoy extends ActorSheet {
    * @param {Event} event   The originating click event
    * @private
    */
-  _onItemDelete(event: any) {
+  async _onItemDelete(event: any) {
     event.preventDefault();
     const li = event.currentTarget.closest('.item');
     const item = this.actor.items.get(li.dataset.itemId);
-    if (item.type === 'race') {
-      this.actor.update({ 'data.details.race': null });
-      this.actor.update({ 'data.details.race': {} });
-    }
     this.actor.deleteOwnedItem(li.dataset.itemId);
   }
 
