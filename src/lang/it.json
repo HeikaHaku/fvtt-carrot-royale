@@ -311,6 +311,14 @@
   "CarRoy.ChatContextDoubleDamage": "Applica Danno Doppio",
   "CarRoy.ChatContextHalfDamage": "Applica Danno Dimezzato",
 
+  "CarRoy.ClassConfig": "Configura tipologia Classi",
+  "CarRoy.ClassConfigHint": "Configura tipologia Classi per questo personaggio.",
+  "CarRoy.MainClass": "Classe Principale",
+  "CarRoy.MainClassHint": "Classe principale per questo personaggio, da cui ricavare le statistiche",
+  "CarRoy.ClassSpecial": "Abilità Speciale",
+  "CarRoy.ClassSpecialHint": "Scegli il Bonus di 5 livello fra quelli disponibili",
+  "CarRoy.ClassConfigSave": "Salva le modifiche",
+
   "CarRoy.ActionWarningNoItem": "L'oggetto richiesto {item} non è piu disponibile su {name}",
   "CarRoy.ActionWarningNoToken": "Devi poter muovere almeno un toke per effettuare questa azione",
 
