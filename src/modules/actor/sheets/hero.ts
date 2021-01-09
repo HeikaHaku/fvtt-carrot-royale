@@ -191,8 +191,13 @@ export class HeroSheet extends ActorSheetCarRoy {
         } else return;
       } else if (this.actor.data.data.details.level >= 5) return;
       else {
+        let toCreate = [];
         const features = await ActorCarRoy.getClassFeatures({ className: itemData.name, level: 1, priorLevel: 0 });
-        if (features.length) await this.actor.createEmbeddedEntity('OwnedItem', features);
+        const existing = new Set(this.actor.items.map((i: { name: any }) => i.name));
+        for (let f of features) {
+          if (!existing.has(f.name)) toCreate.push(f);
+        }
+        if (toCreate.length) await this.actor.createEmbeddedEntity('OwnedItem', toCreate);
         if (this.actor.data.data.details.level == 0) {
           const clsConfig = CONFIG.CarrotRoyale.classFeatures[itemData.name.toLowerCase()];
           //console.log(clsConfig, CONFIG.CarrotRoyale, itemData.name);
