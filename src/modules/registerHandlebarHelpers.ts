@@ -20,9 +20,12 @@ Hooks.once('ready', async () => {
       if (options['hash']['value']) return [arg[0], arg[1].name, arg[1].id].join(',');
       else return arg[1].name;
     } else {
-      let sign = Math.sign(arg[1]);
+      if (options['hash']['value']) return arg.join(',');
+      else {
+        let sign = Math.sign(arg[1]);
 
-      return (sign > -1 ? '+' : '') + arg.reverse().join(' ').titleCase();
+        return (sign > -1 ? '+' : '') + arg.reverse().join(' ').titleCase();
+      }
     }
   });
 
