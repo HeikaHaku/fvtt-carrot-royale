@@ -27,12 +27,10 @@ export const ClassFeatures = {
       },
     },
     choices: [
-      [
-        {
-          attack: 2,
-          feature: [{ name: 'Extra Shot', id: 'Compendium.carroy.features-cr.CKRujtw4bn772mr7' }],
-        },
-      ],
+      {
+        attack: 2,
+        feature: [{ name: 'Extra Shot', id: 'Compendium.carroy.features-cr.CKRujtw4bn772mr7' }],
+      },
     ],
     martial: true,
   },
@@ -64,12 +62,10 @@ export const ClassFeatures = {
       },
     },
     choices: [
-      [
-        {
-          ac: 2,
-          damage: 2,
-        },
-      ],
+      {
+        ac: 2,
+        damage: 2,
+      },
     ],
     martial: true,
   },
@@ -101,12 +97,10 @@ export const ClassFeatures = {
       },
     },
     choices: [
-      [
-        {
-          damage: 2,
-          movement: 1,
-        },
-      ],
+      {
+        damage: 2,
+        movement: 1,
+      },
     ],
     martial: true,
   },
@@ -318,12 +312,10 @@ export const ClassFeatures = {
       },
     },
     choices: [
-      [
-        {
-          movement: 1,
-          feature: [{ name: 'Zen Blow', id: 'Compendium.carroy.features-cr.woVSKodkE35mkFTt', uses: 2 }],
-        },
-      ],
+      {
+        movement: 1,
+        feature: [{ name: 'Zen Blow', id: 'Compendium.carroy.features-cr.woVSKodkE35mkFTt', uses: 2 }],
+      },
     ],
     martial: true,
   },
@@ -369,12 +361,10 @@ export const ClassFeatures = {
       },
     },
     choices: [
-      [
-        {
-          mDamage: 2,
-          init: 2,
-        },
-      ],
+      {
+        mDamage: 2,
+        init: 2,
+      },
     ],
   },
   rogue: {
@@ -450,14 +440,12 @@ export const ClassFeatures = {
       },
     },
     choices: [
-      [
-        {
-          feature: [
-            { name: 'Phantom Skulls', id: 'Compendium.carroy.features-cr.gKu3GcPuu98T849X' },
-            { name: 'Bone Scythe', id: 'Compendium.carroy.features-cr.zpjeClrIppnCB02Z' },
-          ],
-        },
-      ],
+      {
+        feature: [
+          { name: 'Phantom Skulls', id: 'Compendium.carroy.features-cr.gKu3GcPuu98T849X' },
+          { name: 'Bone Scythe', id: 'Compendium.carroy.features-cr.zpjeClrIppnCB02Z' },
+        ],
+      },
     ],
   },
 };

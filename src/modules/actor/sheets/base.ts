@@ -1,5 +1,6 @@
 import ItemCarRoy from '../../item/entity.js';
 import { CarrotRoyale } from '../../config.js';
+import ActorClassConfig from '../../apps/class-config.js';
 
 /**
  * Extend the basic ActorSheet class to suppose system-specific logic and functionality.
@@ -250,7 +251,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
       //html.find('.trait-selector').click(this._onTraitSelector.bind(this));
 
       // Configure Special Flags
-      //html.find('.config-button').click(this._onConfigMenu.bind(this));
+      html.find('.config-button').click(this._onConfigMenu.bind(this));
 
       // Owned Item management
       html.find('.item-create').click(this._onItemCreate.bind(this));
@@ -319,6 +320,23 @@ export default class ActorSheetCarRoy extends ActorSheet {
       input.value = getProperty(this.actor.data, input.name) + delta;
     } else if (value[0] === '=') {
       input.value = value.slice(1);
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle spawning the TraitSelector application which allows a checkbox of multiple trait options
+   * @param {Event} event   The click event which originated the selection
+   * @private
+   */
+  _onConfigMenu(event: { preventDefault: () => void; currentTarget: any }) {
+    event.preventDefault();
+    const button = event.currentTarget;
+    switch (button.dataset.action) {
+      case 'class':
+        new ActorClassConfig(this.object).render(true);
+        break;
     }
   }
 

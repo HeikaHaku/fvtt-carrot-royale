@@ -7,8 +7,6 @@ Hooks.once('ready', async () => {
 
   Handlebars.registerHelper('firstUpper', (arg: string) => arg.titleCase());
 
-  Handlebars.registerHelper('modCalc', (arg: number) => (arg >= 10 ? '+' : '') + Math.floor((arg - 10) / 2));
-
   Handlebars.registerHelper('equipped', (arg: boolean) => (arg ? 'Equipped' : 'Not Equipped'));
 
   Handlebars.registerHelper('onehand', (arg: boolean) => (arg ? '2h ' : '1h '));
@@ -16,4 +14,19 @@ Hooks.once('ready', async () => {
   Handlebars.registerHelper('meleeRanged', (melee: boolean, ranged: boolean) => (melee ? 'Melee' : ranged ? 'Ranged' : 'Unknown'));
 
   Handlebars.registerHelper('conlog', (arg: any) => console.log(arg));
+
+  Handlebars.registerHelper('formatChoice', (arg: any[], options) => {
+    if (arg[0] === 'feature') {
+      if (options['hash']['value']) return [arg[0], arg[1].name, arg[1].id].join(',');
+      else return arg[1].name;
+    } else {
+      let sign = Math.sign(arg[1]);
+
+      return (sign > -1 ? '+' : '') + arg.reverse().join(' ').titleCase();
+    }
+  });
+
+  Handlebars.registerHelper('choicesLength', (arg) => {
+    return Object.values(arg).length;
+  });
 });
