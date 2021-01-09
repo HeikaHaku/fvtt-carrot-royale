@@ -99,11 +99,13 @@ export default class ActorSheetCarRoy extends ActorSheet {
    */
   _getMovementSpeed(actorData: any): number {
     let movement: number = actorData.data?.attributes?.movement?.value || 6;
+
     const race = actorData.items.find((item: { type: string }) => item.type === 'race');
     if (race) {
       const raceConfig = CONFIG.CarrotRoyale.raceFeatures[race?.name?.toLowerCase()];
       movement += raceConfig?.bonus.stats.movement || 0;
     }
+
     const armor = actorData.items
       .filter((item: { type: string }) => item.type === 'armor')
       .reduce((a: number, b: { data: { armorType: any } }) => {
@@ -112,6 +114,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
         const cur = ['light', 'medium', 'heavy'].indexOf(type);
         return a < cur ? cur : a;
       }, 0);
+
     const item = actorData.items
       .filter((item: { type: string; data: { bonus: { stats: any } } }) => !['race', 'class'].includes(item.type) && item.data.bonus?.stats)
       .reduce((a: number, b: { data: { bonus: { stats: any } } }) => {
@@ -121,7 +124,16 @@ export default class ActorSheetCarRoy extends ActorSheet {
         }
         return a;
       }, 0);
-    return movement - armor + item;
+
+    const flags = actorData.flags?.carroy?.classSpecial;
+    let classBonus = 0;
+    if (!!flags)
+      for (const c of Object.values(flags) as string[]) {
+        let tmp = c.split(',');
+        if (tmp[0] === 'movement') classBonus += parseInt(tmp[1]);
+      }
+
+    return movement - armor + item + classBonus;
   }
 
   /* -------------------------------------------- */
