@@ -28,7 +28,6 @@ export default class ActorClassConfig extends BaseEntitySheet {
     const data: Record<string, any> = {};
     data.actor = this.object;
     data.flags = this._getFlags();
-    console.log(data);
 
     return data;
   }
@@ -94,7 +93,43 @@ export default class ActorClassConfig extends BaseEntitySheet {
     const actor = this.object;
     let updateData = expandObject(formData);
 
-    console.log(formData, updateData);
+    const oldBonus = actor.data.flags?.carroy?.classSpecial;
+    if (oldBonus)
+      for (const c of Object.entries(oldBonus)) {
+        let newBonus = updateData.flags.carroy.classSpecial[c[0]];
+        if (c[1] === newBonus) continue;
+        let tmp = (c[1] as string).split(',');
+        let tmp2 = newBonus.split(',');
+        if (tmp[0] === 'feature') {
+          let oldFeat = actor.items.find((item: { type: string; name: string }) => item.type === 'feature' && item.name === tmp[1]);
+          if (oldFeat) await actor.deleteOwnedItem(oldFeat._id);
+        }
+        if (tmp2[0] === 'feature') {
+          let toCreate = [];
+          let item = await fromUuid(tmp2[2]);
+          const existing = new Set(actor.items.map((i: { name: any }) => i.name));
+          if (!existing.has(item.name)) {
+            toCreate.push(item);
+          }
+
+          if (toCreate.length) await actor.createEmbeddedEntity('OwnedItem', toCreate);
+        }
+      }
+    else
+      for (const c of Object.entries(updateData.flags.carroy.classSpecial)) {
+        let newBonus = updateData.flags.carroy.classSpecial[c[0]];
+        let tmp2 = newBonus.split(',');
+        if (tmp2[0] === 'feature') {
+          let toCreate = [];
+          let item = await fromUuid(tmp2[2]);
+          const existing = new Set(actor.items.map((i: { name: any }) => i.name));
+          if (!existing.has(item.name)) {
+            toCreate.push(item);
+          }
+
+          if (toCreate.length) await actor.createEmbeddedEntity('OwnedItem', toCreate);
+        }
+      }
 
     await actor.update(updateData, { diff: false });
   }
