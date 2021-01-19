@@ -40,10 +40,10 @@ export default class ActorCarRoy extends Actor {
     data.abilities.wis.value = cls?.abilities?.wis || 10;
     data.abilities.cha.value = cls?.abilities?.cha || 10;
 
-    const classBonuses = (Object.values(flags?.classSpecial) as string[]).reduce((a: any, b) => {
+    const classBonuses = (Object.values(flags?.classSpecial || {}) as string[]).reduce((a: any, b) => {
       const tmp = b.split(',');
       if (tmp[0] === 'feature') return a;
-      else a[tmp[0]] = parseInt(tmp[1]);
+      else a[tmp[0]] = (a[tmp[0]] || 0) + parseInt(tmp[1]);
       return a;
     }, {});
 
