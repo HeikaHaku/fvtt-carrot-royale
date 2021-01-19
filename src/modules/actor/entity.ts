@@ -40,6 +40,13 @@ export default class ActorCarRoy extends Actor {
     data.abilities.wis.value = cls?.abilities?.wis || 10;
     data.abilities.cha.value = cls?.abilities?.cha || 10;
 
+    const classBonuses = (Object.values(flags?.classSpecial) as string[]).reduce((a: any, b) => {
+      const tmp = b.split(',');
+      if (tmp[0] === 'feature') return a;
+      else a[tmp[0]] = parseInt(tmp[1]);
+      return a;
+    }, {});
+
     const items = actorData.items.filter(
       (item: { type: string; data: { bonus: { stats: any } } }) => !['race', 'class'].includes(item.type) && item.data.bonus?.stats
     );
@@ -61,13 +68,13 @@ export default class ActorCarRoy extends Actor {
       abl.total = abl.value + (abl?.bonus || 0);*/
       abl.total = abl.value + (raceConfig?.bonus?.stats?.[id] || 0) + (itemBonuses[id] || 0);
       abl.mod = Math.floor((abl.total - 10) / 2);
-      abl.save = abl.mod + (raceConfig?.bonus?.stats?.saves || 0) + (itemBonuses['saves'] || 0);
+      abl.save = abl.mod + (raceConfig?.bonus?.stats?.saves || 0) + (itemBonuses['saves'] || 0) + (classBonuses?.saves || 0);
     }
 
     // Determine Initiative Modifier
     const init = data.attributes.init;
     init.mod = data.abilities.dex.mod;
-    init.total = init.mod + init.bonus + (itemBonuses.init || 0) + (raceConfig?.bonus?.stats?.init || 0);
+    init.total = init.mod + init.bonus + (itemBonuses.init || 0) + (raceConfig?.bonus?.stats?.init || 0) + (classBonuses?.init || 0);
 
     const ac = data.attributes.ac;
     const armorAC = armors.reduce(
@@ -84,7 +91,14 @@ export default class ActorCarRoy extends Actor {
       },
       { shield: 0, type: -1, ac: 0 }
     );
-    ac.value = 6 + data.abilities.dex.mod + (raceConfig?.bonus?.stats?.ac || 0) + (itemBonuses?.ac || 0) + (armorAC.ac || 0) + (armorAC.shield || 0);
+    ac.value =
+      6 +
+      data.abilities.dex.mod +
+      (raceConfig?.bonus?.stats?.ac || 0) +
+      (itemBonuses?.ac || 0) +
+      (armorAC.ac || 0) +
+      (armorAC.shield || 0) +
+      (classBonuses?.ac || 0);
 
     const hp = data.attributes.hp;
     let tmp = hp.max - hp.value;
