@@ -1,3 +1,31 @@
+#### 0.3.2 (2021-01-19)
+
+##### New Features
+
+*  Track Bonuses. ([cbdad5c2](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/cbdad5c2a4cc3ded9d81e3fa593f097395e9edf1))
+*  New Class Images. ([4a6329a9](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/4a6329a919739404bc150de7a36ebba4b3ad1ead))
+*  Apply HP and Stats, honoring Main Class Choice. ([bffb4be4](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/bffb4be4765b1ae8b461ddabfe6135fe025e94d7))
+*  Apply Movement Boost from Class Special. ([b53cc44d](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/b53cc44dad2fb6bb13fa22d09aefbce0ed75903b))
+*  Apply Features from Class Special. ([f939a2c3](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/f939a2c338f15ba60d995633449d3bee9f4128ec))
+*  Class Choices Implemented. ([fcf36101](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/fcf3610108f2be5b57cdc032a8ac214fdcff0073))
+
+##### Bug Fixes
+
+*  Fix case where no Class Specials are Defined. ([e85b2d47](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/e85b2d47938d5a68cfcc1ee3f3aa5949067739ca))
+*  Fix Handlebar Helper. ([eacba369](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/eacba3698572bfe6eb6db3d1db9da56b00ef854f))
+*  Don't add duplicate class features. ([0aedb049](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/0aedb049bd09a47542d9e95262945fff71f82c38))
+*  Fixed Class Images. ([79dfbd84](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/79dfbd847d086e698300d90903f7f526396bd4eb))
+*  Fixed movement Speed. ([8b14f909](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/8b14f909cbb20814e82de3a3aa5f02d57d006b47))
+
+##### Other Changes
+
+*  More Localization Strings and Translations. ([4fdac17e](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/4fdac17e26593b79e68ab2eb2cbbb44fad76dc24))
+*  Added Typings. ([78dd8fb0](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/78dd8fb0617024721531180501191c96ab700e52))
+
+##### Code Style Changes
+
+*  Style fixes. ([70bbb13f](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/70bbb13ff3ddd947b8ce3e9a28bf46a5defff3ba))
+
 #### 0.3.1 (2021-01-07)
 
 ##### New Features
