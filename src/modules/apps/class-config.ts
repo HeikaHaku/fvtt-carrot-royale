@@ -116,7 +116,7 @@ export default class ActorClassConfig extends BaseEntitySheet {
         }
       }
     else
-      for (const c of Object.entries(updateData.flags.carroy.classSpecial)) {
+      for (const c of Object.entries(updateData?.flags?.carroy?.classSpecial || {})) {
         let newBonus = updateData.flags.carroy.classSpecial[c[0]];
         let tmp2 = newBonus.split(',');
         if (tmp2[0] === 'feature') {
