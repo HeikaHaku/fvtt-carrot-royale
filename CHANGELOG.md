@@ -1,3 +1,13 @@
+#### 0.3.3 (2021-01-19)
+
+##### Bug Fixes
+
+*  Nullchecking. ([a7a859bf](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/a7a859bf10985d38c59156a30a5b116ca290fc32))
+
+##### Other Changes
+
+*  Compendium Updates. ([025c8eef](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/025c8eef0601899ee5e4f8d780cc9dd73f8078e8))
+
 #### 0.3.2 (2021-01-19)
 
 ##### New Features
