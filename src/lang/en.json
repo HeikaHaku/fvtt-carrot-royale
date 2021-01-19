@@ -311,6 +311,14 @@
   "CarRoy.ChatContextDoubleDamage": "Apply Double Damage",
   "CarRoy.ChatContextHalfDamage": "Apply Half Damage",
 
+  "CarRoy.ClassConfig": "Configure Class Flags",
+  "CarRoy.ClassConfigHint": "Configure the Class Flags for this character.",
+  "CarRoy.MainClass": "Main Class",
+  "CarRoy.MainClassHint": "The Main Class for this character, from which to take stats.",
+  "CarRoy.ClassSpecial": "Special Feature",
+  "CarRoy.ClassSpecialHint": "Pick the Level 5 bonus you'll receive from this class.",
+  "CarRoy.ClassConfigSave": "Save Changes",
+
   "CarRoy.ActionWarningNoItem": "The requested item {item} no longer exists on Actor {name}",
   "CarRoy.ActionWarningNoToken": "You must have one or more controlled Tokens in order to use this option.",
 

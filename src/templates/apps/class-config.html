@@ -1,0 +1,42 @@
+<form autocomplete="off">
+    <section class="form-body">
+        <p class="notes">{{localize 'CarRoy.ClassConfigHint'}}</p>
+
+        {{#each flags as |fs section|}}
+            <h3 class="form-header">{{localize section}}</h3>
+
+            {{#each fs as |flag key|}}
+                {{#if (gt (choicesLength flag.choices) 1)}}
+                    <div class="form-group">
+                        <label>{{localize flag.name}}</label>
+                        <select name="{{key}}" data-dtype="{{flag.type}}">
+                            {{#select flag.value}}
+                                {{#each flag.choices as |v k|}}
+                                    {{#if flag.isSpecial}}
+                                        <option value="{{formatChoice v value=true}}">
+                                            {{formatChoice v value=false}}
+                                        </option>
+                                    {{else}}
+                                        <option value="{{k}}">{{v}}</option>
+                                    {{/if}}
+                                {{/each}}
+                            {{/select}}
+                        </select>
+
+                        <p class="notes">{{localize flag.hint}}</p>
+                    </div>
+                {{else}}
+                    {{#each flag.choices as |v k|}}
+                        <input type="hidden" name="{{key}}" value="{{k}}" data-dtype="{{flag.type}}" />
+                    {{/each}}
+                {{/if}}
+            {{/each}}
+        {{/each}}
+    </section>
+
+    <footer class="form-footer">
+        <button type="submit" name="submit">
+            <i class="far fa-save"></i> {{localize 'CarRoy.ClassConfigSave'}}
+        </button>
+    </footer>
+</form>

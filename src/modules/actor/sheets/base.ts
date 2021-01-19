@@ -1,5 +1,6 @@
 import ItemCarRoy from '../../item/entity.js';
 import { CarrotRoyale } from '../../config.js';
+import ActorClassConfig from '../../apps/class-config.js';
 
 /**
  * Extend the basic ActorSheet class to suppose system-specific logic and functionality.
@@ -98,11 +99,13 @@ export default class ActorSheetCarRoy extends ActorSheet {
    */
   _getMovementSpeed(actorData: any): number {
     let movement: number = actorData.data?.attributes?.movement?.value || 6;
+
     const race = actorData.items.find((item: { type: string }) => item.type === 'race');
     if (race) {
       const raceConfig = CONFIG.CarrotRoyale.raceFeatures[race?.name?.toLowerCase()];
       movement += raceConfig?.bonus.stats.movement || 0;
     }
+
     const armor = actorData.items
       .filter((item: { type: string }) => item.type === 'armor')
       .reduce((a: number, b: { data: { armorType: any } }) => {
@@ -111,6 +114,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
         const cur = ['light', 'medium', 'heavy'].indexOf(type);
         return a < cur ? cur : a;
       }, 0);
+
     const item = actorData.items
       .filter((item: { type: string; data: { bonus: { stats: any } } }) => !['race', 'class'].includes(item.type) && item.data.bonus?.stats)
       .reduce((a: number, b: { data: { bonus: { stats: any } } }) => {
@@ -120,7 +124,16 @@ export default class ActorSheetCarRoy extends ActorSheet {
         }
         return a;
       }, 0);
-    return movement - armor + item;
+
+    const flags = actorData.flags?.carroy?.classSpecial;
+    let classBonus = 0;
+    if (!!flags)
+      for (const c of Object.values(flags) as string[]) {
+        let tmp = c.split(',');
+        if (tmp[0] === 'movement') classBonus += parseInt(tmp[1]);
+      }
+
+    return movement - armor + item + classBonus;
   }
 
   /* -------------------------------------------- */
@@ -250,7 +263,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
       //html.find('.trait-selector').click(this._onTraitSelector.bind(this));
 
       // Configure Special Flags
-      //html.find('.config-button').click(this._onConfigMenu.bind(this));
+      html.find('.config-button').click(this._onConfigMenu.bind(this));
 
       // Owned Item management
       html.find('.item-create').click(this._onItemCreate.bind(this));
@@ -319,6 +332,23 @@ export default class ActorSheetCarRoy extends ActorSheet {
       input.value = getProperty(this.actor.data, input.name) + delta;
     } else if (value[0] === '=') {
       input.value = value.slice(1);
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle spawning the TraitSelector application which allows a checkbox of multiple trait options
+   * @param {Event} event   The click event which originated the selection
+   * @private
+   */
+  _onConfigMenu(event: { preventDefault: () => void; currentTarget: any }) {
+    event.preventDefault();
+    const button = event.currentTarget;
+    switch (button.dataset.action) {
+      case 'class':
+        new ActorClassConfig(this.object).render(true);
+        break;
     }
   }
 

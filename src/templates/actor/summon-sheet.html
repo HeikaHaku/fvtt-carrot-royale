@@ -81,7 +81,7 @@
               <h4 class="ability-name box-title rollable">{{firstUpper (localize (prepAbilityLocale name))}}</h4>
               <input class="ability-score" name="data.abilities.{{name}}.value" type="text" value="{{ability.value}}" data-dtype="Number" placeholder="10" />
               <div class="ability-modifiers flexrow">
-                <span class="ability-mod" title="{{localize 'CarRoy.Modifier'}}">{{modCalc ability.value}}</span>
+                <span class="ability-mod" title="{{localize 'CarRoy.Modifier'}}">{{ability.value}}</span>
               </div>
             </li>
             <!--div class="ability"><label class="ability-label">{{firstUpper (localize (prepAbilityLocaleAbbr name))}}</label>{{ability.value}}</div-->

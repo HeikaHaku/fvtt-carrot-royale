@@ -4,11 +4,5 @@
   "jsxSingleQuote": true,
   "singleQuote": true,
   "endOfLine": "auto",
-  "printWidth": 160,
-
-  "overrides": [
-    {
-      "files": ["*.hbs", "*.html"]
-    }
-  ]
+  "printWidth": 160
 }

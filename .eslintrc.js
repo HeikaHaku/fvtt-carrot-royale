@@ -4,7 +4,7 @@ module.exports = {
     es2020: true,
     node: true,
   },
-  extends: ['eslint:recommended', 'plugin:foundry-vtt/recommended', 'stylelint'],
+  extends: ['eslint:recommended', 'plugin:foundry-vtt/recommended'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 12,
@@ -13,6 +13,5 @@ module.exports = {
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
-    'hbs/check-hbs-template-literals': 2
   },
 };

@@ -22,6 +22,31 @@ export default class ActorCarRoy extends Actor {
     const flags = actorData.flags.carroy || {};
     const bonuses = getProperty(data, 'bonuses.abilities') || {};
 
+    const cls =
+      CONFIG.CarrotRoyale.classFeatures[
+        flags.mainClass ||
+          this.itemTypes.class.reduce(
+            (v, cur) => {
+              if (v.data.data.levels < cur.data.data.levels) v = cur;
+              return v;
+            },
+            { data: { data: { levels: 0 }, name: '' } }
+          ).data.name
+      ];
+    data.abilities.str.value = cls?.abilities?.str || 10;
+    data.abilities.dex.value = cls?.abilities?.dex || 10;
+    data.abilities.con.value = cls?.abilities?.con || 10;
+    data.abilities.int.value = cls?.abilities?.int || 10;
+    data.abilities.wis.value = cls?.abilities?.wis || 10;
+    data.abilities.cha.value = cls?.abilities?.cha || 10;
+
+    const classBonuses = (Object.values(flags?.classSpecial) as string[]).reduce((a: any, b) => {
+      const tmp = b.split(',');
+      if (tmp[0] === 'feature') return a;
+      else a[tmp[0]] = parseInt(tmp[1]);
+      return a;
+    }, {});
+
     const items = actorData.items.filter(
       (item: { type: string; data: { bonus: { stats: any } } }) => !['race', 'class'].includes(item.type) && item.data.bonus?.stats
     );
@@ -43,13 +68,13 @@ export default class ActorCarRoy extends Actor {
       abl.total = abl.value + (abl?.bonus || 0);*/
       abl.total = abl.value + (raceConfig?.bonus?.stats?.[id] || 0) + (itemBonuses[id] || 0);
       abl.mod = Math.floor((abl.total - 10) / 2);
-      abl.save = abl.mod + (raceConfig?.bonus?.stats?.saves || 0) + (itemBonuses['saves'] || 0);
+      abl.save = abl.mod + (raceConfig?.bonus?.stats?.saves || 0) + (itemBonuses['saves'] || 0) + (classBonuses?.saves || 0);
     }
 
     // Determine Initiative Modifier
     const init = data.attributes.init;
     init.mod = data.abilities.dex.mod;
-    init.total = init.mod + init.bonus + (itemBonuses.init || 0) + (raceConfig?.bonus?.stats?.init || 0);
+    init.total = init.mod + init.bonus + (itemBonuses.init || 0) + (raceConfig?.bonus?.stats?.init || 0) + (classBonuses?.init || 0);
 
     const ac = data.attributes.ac;
     const armorAC = armors.reduce(
@@ -66,9 +91,30 @@ export default class ActorCarRoy extends Actor {
       },
       { shield: 0, type: -1, ac: 0 }
     );
-    ac.value = 6 + data.abilities.dex.mod + (raceConfig?.bonus?.stats?.ac || 0) + (itemBonuses?.ac || 0) + (armorAC.ac || 0) + (armorAC.shield || 0);
+    ac.value =
+      6 +
+      data.abilities.dex.mod +
+      (raceConfig?.bonus?.stats?.ac || 0) +
+      (itemBonuses?.ac || 0) +
+      (armorAC.ac || 0) +
+      (armorAC.shield || 0) +
+      (classBonuses?.ac || 0);
 
     const hp = data.attributes.hp;
+    let tmp = hp.max - hp.value;
+    const baseHP = actorData.items
+      .filter((item: { type: string }) => item.type === 'class')
+      .reduce((a: any, b: { name: string; data: { levels: number } }) => {
+        a += b.data.levels * ((CONFIG.CarrotRoyale.classFeatures[b.name.toLowerCase()]?.abilities?.hp || 0) + data.abilities.con.mod);
+        return a;
+      }, 0);
+    hp.max = baseHP + (raceConfig?.bonus?.stats?.hp || 0) + (itemBonuses?.hp || 0);
+    if (tmp > hp.max) tmp = hp.max;
+    hp.value = hp.value == 0 ? 0 : hp.max - tmp;
+
+    try {
+      await this.update({ data: data }, { diff: true });
+    } catch {}
   }
 
   /* -------------------------------------------- */
@@ -113,11 +159,11 @@ export default class ActorCarRoy extends Actor {
       }
     }
 
-    console.log(ids);
+    //console.log(ids);
 
     const features: ItemCarRoy[] = await Promise.all(
       ids.map(async (id) => {
-        console.log(id);
+        //console.log(id);
         let item = await fromUuid(id);
         if (overrides[id]?.level) item.data.data.level = overrides[id].level;
         if (overrides[id]?.uses) item.data.data.uses.limit += overrides[id].uses;
@@ -125,7 +171,7 @@ export default class ActorCarRoy extends Actor {
       })
     );
 
-    console.log(features);
+    //console.log(features);
 
     return features;
   }
