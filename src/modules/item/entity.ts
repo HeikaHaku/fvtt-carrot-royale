@@ -497,6 +497,16 @@ export default class ItemCarRoy extends Item {
     if (itemData.attackBonus) parts.push(itemData.attackBonus);
     const actorBonus = actorData?.bonuses?.[itemData.actionType] || {};
     if (actorBonus.attack) parts.push(actorBonus.attack);
+    /*if (this.isOwned) {
+      const classBonuses = (Object.values(flags?.classSpecial || {}) as string[]).reduce((a: any, b) => {
+        const tmp = b.split(',');
+        if (tmp[0] === 'feature') return a;
+        else a[tmp[0]] = (a[tmp[0]] || 0 ) + parseInt(tmp[1]);
+        return a;
+      }, {});
+      if (this.data.type === 'weapon' && classBonuses?.mAttack) parts.push(classBonuses.mAttack);
+      else if (this.data.type === 'spell' && classBonuses?.)
+    }*/
 
     // Ammunition Bonus
     /*delete this._ammo;
