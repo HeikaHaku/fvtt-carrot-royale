@@ -21,7 +21,7 @@ devDependencies:
   eslint-plugin-node: 11.1.0_eslint@7.18.0
   eslint-plugin-prettier: 3.3.1_eslint@7.18.0+prettier@2.2.1
   eslint-plugin-promise: 4.2.1
-  foundry-pc-types: gitlab.com/foundry-projects/foundry-pc/foundry-pc-types/1fef092cee2b9b393d6f9bb162fde215eb0b0573
+  foundry-vtt-types: github.com/kmoschcau/foundry-vtt-types/e13fec692bcd3902418471a4293a74ef8d5432bf
   gulp: 4.0.2
   gulp-bump: 3.2.0
   gulp-sass: 4.1.0
@@ -1409,10 +1409,6 @@ packages:
       postcss-syntax: '>=0.36.2'
     resolution:
       integrity: sha512-2kGbqUVJUGE8dM+bMzXG/PYUWKkjLIkRLWNh39OaADkiabDRdw8ATFCgbMz5xdIcvwspPAluSL7uY+ZiTWdWmQ==
-  /@types/howler/2.2.1:
-    dev: true
-    resolution:
-      integrity: sha512-1MiSldngr+eAO4lDPtjzl4Nf2GmRh8VDHIpNBIkyd25L22JExVlI6w3fjSM7+FNc1e1WZAPNq7/flkw685byfg==
   /@types/jquery/3.5.5:
     dependencies:
       '@types/sizzle': 2.3.2
@@ -7624,18 +7620,15 @@ packages:
     dev: true
     resolution:
       integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==
-  gitlab.com/foundry-projects/foundry-pc/foundry-pc-types/1fef092cee2b9b393d6f9bb162fde215eb0b0573:
+  github.com/kmoschcau/foundry-vtt-types/e13fec692bcd3902418471a4293a74ef8d5432bf:
     dependencies:
-      '@types/howler': 2.2.1
       '@types/jquery': 3.5.5
       '@types/socket.io-client': 1.4.35
       '@types/tinymce': 4.6.0
-      handlebars: 4.7.6
-      pixi.js: 5.3.7
     dev: true
-    name: foundry-pc-types
+    name: foundry-vtt-types
     resolution:
-      tarball: https://gitlab.com/foundry-projects/foundry-pc/foundry-pc-types/repository/archive.tar.gz?ref=1fef092cee2b9b393d6f9bb162fde215eb0b0573
+      tarball: https://codeload.github.com/kmoschcau/foundry-vtt-types/tar.gz/e13fec692bcd3902418471a4293a74ef8d5432bf
     version: 0.1.0
 specifiers:
   '@babel/core': ^7.12.10
@@ -7658,7 +7651,7 @@ specifiers:
   eslint-plugin-node: ^11.1.0
   eslint-plugin-prettier: ^3.3.1
   eslint-plugin-promise: ^4.2.1
-  foundry-pc-types: gitlab:foundry-projects/foundry-pc/foundry-pc-types
+  foundry-vtt-types: github:kmoschcau/foundry-vtt-types
   generate-changelog: ^1.8.0
   gulp: ^4.0.2
   gulp-bump: ^3.2.0
