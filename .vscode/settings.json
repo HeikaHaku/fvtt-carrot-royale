@@ -4,5 +4,6 @@
     "html.format.indentHandlebars": true,
     "prettier.requirePragma": true,
     "prettier.insertPragma": true,
-    "typescript.tsdk": "node_modules\\typescript\\lib"
+    "typescript.tsdk": "node_modules\\typescript\\lib",
+    "json.format.enable": false
 }

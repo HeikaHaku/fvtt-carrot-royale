@@ -3,7 +3,7 @@ const bump = require('gulp-bump');
 const sass = require('gulp-sass');
 const fs = require('fs');
 const ts = require('gulp-typescript');
-const project = ts.createProject('tsconfig.json');
+const project = ts.createProject('src/tsconfig.json');
 const del = require('del');
 
 sass.compiler = require('node-sass');
@@ -15,7 +15,10 @@ gulp.task('sass', () => {
 gulp.task('sass:watch', () => gulp.watch('./sass/**/*.scss', ['sass']));
 
 gulp.task('compile', () => {
-  return gulp.src('src/**/*.ts').pipe(project()).pipe(gulp.dest('dist/'));
+  return gulp
+    .src('src/**/*.ts')
+    .pipe(project().on('error', () => {}))
+    .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('copy', async (cb: Function) => {
