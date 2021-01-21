@@ -1,3 +1,4 @@
+import ActorClassConfig from '../../apps/class-config.js';
 import ActorCarRoy from '../entity.js';
 import ActorSheetCarRoy from './base.js';
 
@@ -187,7 +188,9 @@ export class HeroSheet extends ActorSheetCarRoy {
         const next = Math.min(priorLevel + 1, 5 + priorLevel - this.actor.data.data.details.level);
         if (next > priorLevel) {
           (itemData as any).levels = next;
-          return await cls.update({ 'data.levels': next });
+          console.log(itemData);
+          await cls.update({ 'data.levels': next });
+          return await this._prepareMainClass(itemData, cls);
         } else return;
       } else if (this.actor.data.data.details.level >= 5) return;
       else {
@@ -198,24 +201,17 @@ export class HeroSheet extends ActorSheetCarRoy {
           if (!existing.has(f.name)) toCreate.push(f);
         }
         if (toCreate.length) await this.actor.createEmbeddedEntity('OwnedItem', toCreate);
-        if (this.actor.data.data.details.level == 0) {
+        this._prepareMainClass(itemData);
+        /*if (this.actor.data.data.details.level == 0) {
           const clsConfig = CONFIG.CarrotRoyale.classFeatures[itemData.name.toLowerCase()];
           //console.log(clsConfig, CONFIG.CarrotRoyale, itemData.name);
           if (clsConfig) {
             await this.actor.update({
-              'data.attributes.hp.value': clsConfig.abilities.hp,
-              'data.attributes.hp.max': clsConfig.abilities.hp,
-              'data.abilities.str.value': clsConfig.abilities.str,
-              'data.abilities.dex.value': clsConfig.abilities.dex,
-              'data.abilities.con.value': clsConfig.abilities.con,
-              'data.abilities.int.value': clsConfig.abilities.int,
-              'data.abilities.wis.value': clsConfig.abilities.wis,
-              'data.abilities.cha.value': clsConfig.abilities.cha,
+              'flags.carroy.mainClass': itemData.name.toLowerCase(),
             });
           }
-        }
+        } else this._prepareMainClass(itemData);*/
       }
-      const race = this.actor.itemTypes.race.find((r: any) => r);
     }
 
     if (itemData.type === 'race') {
@@ -228,5 +224,45 @@ export class HeroSheet extends ActorSheetCarRoy {
 
     // Default drop handling if levels were not added
     await super._onDropItemCreate(itemData);
+  }
+
+  private async _prepareMainClass(itemData: any, cls: any = null) {
+    let main = this.actor.itemTypes.class.reduce((a: null | any[] | any, b: { data: { data: { levels: number }; levels: any } }) => {
+      if (a === null) return (a = b);
+      if (Array.isArray(a)) {
+        let tmp = 0;
+        a.forEach((i) => (tmp < i.data.data.levels ? (tmp = i.data.data.levels) : (tmp = tmp)));
+        if (b.data.data.levels == tmp) a.push(b);
+      } else a.data.data.levels == b.data.data.levels ? (a = [a, b]) : a.data.data.levels < b.data.data.levels ? (a = b) : (a = a);
+      return a;
+    }, null);
+    if (main == null) return await this.actor.update({ 'flags.carroy.mainClass': itemData.name.toLowerCase() });
+    if (Array.isArray(main))
+      main[0].data.data.levels < (itemData as any).levels
+        ? (main = cls ?? { data: { name: itemData.name, data: { levels: itemData.levels } } })
+        : main[0].data.data.levels == (itemData as any).levels
+        ? main.push(cls ?? { data: { name: itemData.name, data: { levels: itemData.levels } } })
+        : (main = main);
+    else
+      main.data.data.levels < (itemData as any).levels
+        ? (main = cls ?? { data: { name: itemData.name, data: { levels: itemData.levels } } })
+        : main.data.data.levels == (itemData as any).levels
+        ? (main = [main, cls ?? { data: { name: itemData.name, data: { levels: itemData.levels } } }])
+        : (main = main);
+
+    if (Array.isArray(main)) {
+      if (
+        !main.reduce((a, b) => {
+          if (this.actor.data.flags.carroy.mainClass) a = a || this.actor.data.flags.carroy.mainClass === b.data.name.toLowerCase();
+          else a = true;
+          return a;
+        }, false)
+      )
+        return await this.actor.update({ 'flags.carroy.mainClass': main[~~(Math.random() * main.length)].data.name.toLowerCase() });
+      else return;
+    } else
+      this.actor.data?.flags?.carroy?.mainClass === main.data.name.toLowerCase()
+        ? (main = main)
+        : await this.actor.update({ 'flags.carroy.mainClass': main.data.name.toLowerCase() });
   }
 }
