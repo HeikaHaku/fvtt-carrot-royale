@@ -1,6 +1,7 @@
 import { CarrotRoyale } from '../config.js';
 import { d20Roll, damageRoll } from '../dice.js';
 import ItemCarRoy from '../item/entity.js';
+import { prepareMainClass } from '../utils.js';
 
 /**
  * Extend the base Actor class to implement additional system-specific logic.
@@ -184,6 +185,7 @@ export default class ActorCarRoy extends Actor {
     const createItems = embeddedName === 'OwnedItem' ? await this._createClassFeatures(data) : [];
     let updated = await super.updateEmbeddedEntity(embeddedName, data, options);
     if (createItems.length) await this.createEmbeddedEntity('OwnedItem', createItems);
+    await this._updateMainClass(data);
     return updated;
   }
 
@@ -219,6 +221,22 @@ export default class ActorCarRoy extends Actor {
       }
     }
     return toCreate;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Update Main Class when Class item is updated.
+   * @private
+   */
+
+  private async _updateMainClass(updated: any) {
+    let update = false;
+    for (let u of updated instanceof Array ? updated : [updated]) {
+      const item = this.items.get(u._id);
+      update = update || (!!item && item.data.type === 'class');
+    }
+    if (update) await prepareMainClass(this);
   }
 
   /* -------------------------------------------- */

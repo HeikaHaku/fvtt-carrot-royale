@@ -1,4 +1,5 @@
 import ActorClassConfig from '../../apps/class-config.js';
+import { prepareMainClass } from '../../utils.js';
 import ActorCarRoy from '../entity.js';
 import ActorSheetCarRoy from './base.js';
 
@@ -188,9 +189,8 @@ export class HeroSheet extends ActorSheetCarRoy {
         const next = Math.min(priorLevel + 1, 5 + priorLevel - this.actor.data.data.details.level);
         if (next > priorLevel) {
           (itemData as any).levels = next;
-          console.log(itemData);
           await cls.update({ 'data.levels': next });
-          return await this._prepareMainClass(itemData, cls);
+          return await prepareMainClass(this.actor, itemData, cls);
         } else return;
       } else if (this.actor.data.data.details.level >= 5) return;
       else {
@@ -201,16 +201,7 @@ export class HeroSheet extends ActorSheetCarRoy {
           if (!existing.has(f.name)) toCreate.push(f);
         }
         if (toCreate.length) await this.actor.createEmbeddedEntity('OwnedItem', toCreate);
-        this._prepareMainClass(itemData);
-        /*if (this.actor.data.data.details.level == 0) {
-          const clsConfig = CONFIG.CarrotRoyale.classFeatures[itemData.name.toLowerCase()];
-          //console.log(clsConfig, CONFIG.CarrotRoyale, itemData.name);
-          if (clsConfig) {
-            await this.actor.update({
-              'flags.carroy.mainClass': itemData.name.toLowerCase(),
-            });
-          }
-        } else this._prepareMainClass(itemData);*/
+        await prepareMainClass(this.actor, itemData);
       }
     }
 
@@ -226,43 +217,15 @@ export class HeroSheet extends ActorSheetCarRoy {
     await super._onDropItemCreate(itemData);
   }
 
-  private async _prepareMainClass(itemData: any, cls: any = null) {
-    let main = this.actor.itemTypes.class.reduce((a: null | any[] | any, b: { data: { data: { levels: number }; levels: any } }) => {
-      if (a === null) return (a = b);
-      if (Array.isArray(a)) {
-        let tmp = 0;
-        a.forEach((i) => (tmp < i.data.data.levels ? (tmp = i.data.data.levels) : (tmp = tmp)));
-        if (b.data.data.levels == tmp) a.push(b);
-      } else a.data.data.levels == b.data.data.levels ? (a = [a, b]) : a.data.data.levels < b.data.data.levels ? (a = b) : (a = a);
-      return a;
-    }, null);
-    if (main == null) return await this.actor.update({ 'flags.carroy.mainClass': itemData.name.toLowerCase() });
-    if (Array.isArray(main))
-      main[0].data.data.levels < (itemData as any).levels
-        ? (main = cls ?? { data: { name: itemData.name, data: { levels: itemData.levels } } })
-        : main[0].data.data.levels == (itemData as any).levels
-        ? main.push(cls ?? { data: { name: itemData.name, data: { levels: itemData.levels } } })
-        : (main = main);
-    else
-      main.data.data.levels < (itemData as any).levels
-        ? (main = cls ?? { data: { name: itemData.name, data: { levels: itemData.levels } } })
-        : main.data.data.levels == (itemData as any).levels
-        ? (main = [main, cls ?? { data: { name: itemData.name, data: { levels: itemData.levels } } }])
-        : (main = main);
+  /**
+   * Handle deleting an existing Owned Item for the Actor
+   * @param {Event} event   The originating click event
+   * @private
+   * @override
+   */
+  async _onItemDelete(event: any) {
+    await super._onItemDelete(event);
 
-    if (Array.isArray(main)) {
-      if (
-        !main.reduce((a, b) => {
-          if (this.actor.data.flags.carroy.mainClass) a = a || this.actor.data.flags.carroy.mainClass === b.data.name.toLowerCase();
-          else a = true;
-          return a;
-        }, false)
-      )
-        return await this.actor.update({ 'flags.carroy.mainClass': main[~~(Math.random() * main.length)].data.name.toLowerCase() });
-      else return;
-    } else
-      this.actor.data?.flags?.carroy?.mainClass === main.data.name.toLowerCase()
-        ? (main = main)
-        : await this.actor.update({ 'flags.carroy.mainClass': main.data.name.toLowerCase() });
+    await prepareMainClass(this.actor);
   }
 }
