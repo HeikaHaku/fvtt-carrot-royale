@@ -1,3 +1,15 @@
+#### 0.3.4 (2021-01-24)
+
+##### New Features
+
+*  Intelligently set Main Class when classes are edited or deleted. ([ba6f41ed](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/ba6f41ed6952758f0f196505a36d70db356c40e0))
+*  Intelligently set Main Class. ([cbdc6edf](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/cbdc6edf117c6a94d21eb6996023d6855b40d7ff))
+*  Switched to different FVTT Type Module. ([bff6bbc3](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/bff6bbc3179153460780c5bc1f0ebe6706182c29))
+
+##### Bug Fixes
+
+*  Fixed TSConfig. ([5b6c61fd](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/5b6c61fd3b7d1a085d4090f50d36d34574164491))
+
 #### 0.3.3 (2021-01-19)
 
 ##### Bug Fixes
