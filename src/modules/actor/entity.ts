@@ -1,7 +1,7 @@
 import { CarrotRoyale } from '../config.js';
 import { d20Roll, damageRoll } from '../dice.js';
 import ItemCarRoy from '../item/entity.js';
-import { prepareMainClass } from '../utils.js';
+import { getBonuses, prepareMainClass } from '../utils.js';
 
 /**
  * Extend the base Actor class to implement additional system-specific logic.
@@ -129,7 +129,8 @@ export default class ActorCarRoy extends Actor {
       }
       return obj;
     }, {});
-    data.prof = this.data.data.attributes.prof || 0;
+    //data.prof = this.data.data.attributes.prof || 0;
+    data.prof = 0;
     return data;
   }
 
@@ -425,19 +426,40 @@ export default class ActorCarRoy extends Actor {
    * @param {Object} options      Options which configure how ability tests are rolled
    * @return {Promise<Roll>}      A Promise which resolves to the created Roll instance
    */
-  rollAbilitySave(abilityId: string, options: any = {}) {
+  async rollAbilitySave(abilityId: string, options: any = {}) {
     const label = game.i18n.localize(CONFIG.CarrotRoyale.abilities[abilityId]);
     const abl = this.data.data.abilities[abilityId];
+    const flags = this.data.data.flags || {};
 
     // Construct parts
     const parts = ['@mod'];
     const data: any = { mod: abl.mod };
 
     // Include a global actor ability save bonus
-    const bonuses = getProperty(this.data.data, 'bonuses.abilities') || {};
+    /*const bonuses = getProperty(this.data.data, 'bonuses.abilities') || {};
     if (bonuses.save) {
       parts.push('@saveBonus');
       data.saveBonus = bonuses.save;
+    }*/
+    //const raceBonus = this.itemTypes.race.find((item) => item)?.data.data.bonus?.saves;
+    /*const race = CONFIG.CarrotRoyale.raceFeatures[this.itemTypes.race.find((item) => item)?.name.toLowerCase() || ''];
+    if (race?.bonus?.stats?.saves) {
+      parts.push('@saveBonus');
+      data.saveBonus = getBonuses(this, 'saves');
+      console.log(data.saveBonus);
+      /*data.saveBonus = race.bonus?.stats?.saves || 0;
+      for (let item of this.items.filter((item: { type: string; }) => ['race', 'class'].includes(item.type))) {
+        let bonus = item?.data.data.bonus || {};
+        let stat = item.data.bonus
+        if (bonus.)
+      }
+    }*/
+
+    const bonus = await getBonuses(this, 'saves');
+    console.log(bonus);
+    if (bonus) {
+      parts.push('@saveBonus');
+      data.saveBonus = bonus;
     }
 
     // Add provided extra roll parts now because they will get clobbered by mergeObject below
