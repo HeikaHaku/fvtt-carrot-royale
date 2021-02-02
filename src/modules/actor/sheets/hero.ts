@@ -1,3 +1,5 @@
+import ActorClassConfig from '../../apps/class-config.js';
+import { prepareMainClass } from '../../utils.js';
 import ActorCarRoy from '../entity.js';
 import ActorSheetCarRoy from './base.js';
 
@@ -187,7 +189,8 @@ export class HeroSheet extends ActorSheetCarRoy {
         const next = Math.min(priorLevel + 1, 5 + priorLevel - this.actor.data.data.details.level);
         if (next > priorLevel) {
           (itemData as any).levels = next;
-          return await cls.update({ 'data.levels': next });
+          await cls.update({ 'data.levels': next });
+          return await prepareMainClass(this.actor, itemData, cls);
         } else return;
       } else if (this.actor.data.data.details.level >= 5) return;
       else {
@@ -198,24 +201,8 @@ export class HeroSheet extends ActorSheetCarRoy {
           if (!existing.has(f.name)) toCreate.push(f);
         }
         if (toCreate.length) await this.actor.createEmbeddedEntity('OwnedItem', toCreate);
-        if (this.actor.data.data.details.level == 0) {
-          const clsConfig = CONFIG.CarrotRoyale.classFeatures[itemData.name.toLowerCase()];
-          //console.log(clsConfig, CONFIG.CarrotRoyale, itemData.name);
-          if (clsConfig) {
-            await this.actor.update({
-              'data.attributes.hp.value': clsConfig.abilities.hp,
-              'data.attributes.hp.max': clsConfig.abilities.hp,
-              'data.abilities.str.value': clsConfig.abilities.str,
-              'data.abilities.dex.value': clsConfig.abilities.dex,
-              'data.abilities.con.value': clsConfig.abilities.con,
-              'data.abilities.int.value': clsConfig.abilities.int,
-              'data.abilities.wis.value': clsConfig.abilities.wis,
-              'data.abilities.cha.value': clsConfig.abilities.cha,
-            });
-          }
-        }
+        await prepareMainClass(this.actor, itemData);
       }
-      const race = this.actor.itemTypes.race.find((r: any) => r);
     }
 
     if (itemData.type === 'race') {
@@ -228,5 +215,17 @@ export class HeroSheet extends ActorSheetCarRoy {
 
     // Default drop handling if levels were not added
     await super._onDropItemCreate(itemData);
+  }
+
+  /**
+   * Handle deleting an existing Owned Item for the Actor
+   * @param {Event} event   The originating click event
+   * @private
+   * @override
+   */
+  async _onItemDelete(event: any) {
+    await super._onItemDelete(event);
+
+    await prepareMainClass(this.actor);
   }
 }

@@ -103,7 +103,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
     const race = actorData.items.find((item: { type: string }) => item.type === 'race');
     if (race) {
       const raceConfig = CONFIG.CarrotRoyale.raceFeatures[race?.name?.toLowerCase()];
-      movement += raceConfig?.bonus.stats.movement || 0;
+      movement += raceConfig?.bonus?.stats?.movement || 0;
     }
 
     const armor = actorData.items
@@ -457,7 +457,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
     event.preventDefault();
     const li = event.currentTarget.closest('.item');
     const item = this.actor.items.get(li.dataset.itemId);
-    this.actor.deleteOwnedItem(li.dataset.itemId);
+    await this.actor.deleteOwnedItem(li.dataset.itemId);
   }
 
   /* -------------------------------------------- */

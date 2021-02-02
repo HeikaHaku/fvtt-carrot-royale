@@ -3,7 +3,7 @@ const bump = require('gulp-bump');
 const sass = require('gulp-sass');
 const fs = require('fs');
 const ts = require('gulp-typescript');
-const project = ts.createProject('tsconfig.json');
+const project = ts.createProject('./src/tsconfig.json');
 const del = require('del');
 
 sass.compiler = require('node-sass');
