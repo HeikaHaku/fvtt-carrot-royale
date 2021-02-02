@@ -35,9 +35,15 @@ export default class ItemCarRoy extends Item {
       // Weapons
       else if (this.data.type === 'weapon') {
         const wt = itemData.weaponType;
+        const wgt = itemData.weight;
+
+        if (wt.toLowerCase() === 'melee') {
+          if (wgt.toLowerCase() === 'light') return actorData.abilities['dex'].mod >= actorData.abilities['str'] ? 'dex' : 'str';
+          return 'str';
+        }
 
         // Melee weapons - Str or Dex if Finesse (PHB pg. 147)
-        if (['simpleM', 'martialM'].includes(wt)) {
+        /*if (['simpleM', 'martialM'].includes(wt)) {
           if (itemData.properties.fin === true) {
             // Finesse weapons
             return actorData.abilities['dex'].mod >= actorData.abilities['str'].mod ? 'dex' : 'str';
@@ -46,7 +52,7 @@ export default class ItemCarRoy extends Item {
         }
 
         // Ranged weapons - Dex (PH p.194)
-        else if (['simpleR', 'martialR'].includes(wt)) return 'dex';
+        else if (['simpleR', 'martialR'].includes(wt)) return 'dex';*/
       }
       return 'str';
     }
