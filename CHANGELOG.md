@@ -1,3 +1,14 @@
+#### 0.3.5 (2021-02-02)
+
+##### New Features
+
+*  Bonus Getter Function. ([2db59900](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/2db599007a6a7b8eec750295795447f98d76098c))
+*  Item Weight Consideration. ([2f3f2d52](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/2f3f2d52bc1c9e62eae93be6b8f0f410f1f20fcc))
+
+##### Bug Fixes
+
+*  Movement bug ([881e4ba8](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/881e4ba8d0fd874112d194d482a2bc7ea0e9a1bc))
+
 #### 0.3.4 (2021-01-24)
 
 ##### New Features
