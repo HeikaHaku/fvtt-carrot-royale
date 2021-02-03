@@ -1,3 +1,22 @@
+#### 0.3.6 (2021-02-03)
+
+##### New Features
+
+*  Use Bonuses on Item Rolls. ([7592442d](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/7592442d7857c4651b778bfb8c7fc824b5247302))
+*  Switch Teams! ([fd9b5ef1](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/fd9b5ef1a705fed5e374db936acc3e0e9224230d))
+*  Use New Bonus Calculator. ([6aa820f5](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/6aa820f5316d50f9a145a67a86d66c229ccdc641))
+*  More Efficient Bonus Calculator. ([a306bedd](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/a306bedd01aa3c586f150731b59ea579fdf0ffce))
+*  Properly Use Initiative Modifiers. ([fc7e9acf](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/fc7e9acf89b39ca55d6c6e80b44ff6ae779756f6))
+
+##### Bug Fixes
+
+*  Temporary Workaround for Enchantments. ([1dca0f23](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/1dca0f233a53a8cbef42c22b75bfbe4f0c76005d))
+
+##### Other Changes
+
+*  More strings. ([e6c40e43](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/e6c40e43d26c251fb6dc4d2b6c6455005c5e0dac))
+*  Typing Update. ([94539152](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/94539152050d58fc9b8008c097c027732798d292))
+
 #### 0.3.5 (2021-02-02)
 
 ##### New Features

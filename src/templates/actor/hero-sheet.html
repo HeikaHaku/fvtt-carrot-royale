@@ -18,6 +18,14 @@
             {{/if}}
           </span>
         </li>
+        <li class="team-select">
+          <select name="data.team" data-dtype="Number">
+            {{#select data.team}}
+              <option value="1">{{localize 'CarRoy.Team1'}}</option>
+              <option value="2">{{localize 'CarRoy.Team2'}}</option>
+            {{/select}}
+          </select>
+        </li>
 
       </ul>
 

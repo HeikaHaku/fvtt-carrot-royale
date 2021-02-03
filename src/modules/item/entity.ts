@@ -1,5 +1,7 @@
 import { d20Roll, damageRoll } from '../dice.js';
 import AbilityUseDialog from '../apps/ability-use-dialog.js';
+import { getBonuses } from '../utils.js';
+import ActorCarRoy from '../actor/entity.js';
 
 /**
  * Override and extend the basic :class:`Item` implementation
@@ -494,15 +496,19 @@ export default class ItemCarRoy extends Item {
     const rollData = this.getRollData();
 
     // Define Roll bonuses
-    const parts = [`@mod`];
+    const parts: (string | number)[] = [`@mod`];
     if (!['weapon', 'consumable'].includes(this.data.type) || itemData.proficient) {
       parts.push('@prof');
     }
 
     // Attack Bonus
-    if (itemData.attackBonus) parts.push(itemData.attackBonus);
-    const actorBonus = actorData?.bonuses?.[itemData.actionType] || {};
-    if (actorBonus.attack) parts.push(actorBonus.attack);
+    //if (itemData.attackBonus) parts.push(itemData.attackBonus);
+    //const actorBonus = actorData?.bonuses?.[itemData.actionType] || {};
+    //if (actorBonus.attack) parts.push(actorBonus.attack);
+    if (this.actor) {
+      const actorBonus = ((await getBonuses((this.actor as unknown) as ActorCarRoy, 'attack')) || 0) + parseInt(this.data.data?.enchantment?.value || 0);
+      if (actorBonus) parts.push(actorBonus);
+    }
     /*if (this.isOwned) {
       const classBonuses = (Object.values(flags?.classSpecial || {}) as string[]).reduce((a: any, b) => {
         const tmp = b.split(',');
@@ -599,7 +605,7 @@ export default class ItemCarRoy extends Item {
    * @param {object} [options]      Additional options passed to the damageRoll function
    * @return {Promise<Roll>}        A Promise which resolves to the created Roll instance
    */
-  rollDamage({ critical = false, event = null, options = {} }: DamageRoll = {}) {
+  async rollDamage({ critical = false, event = null, options = {} }: DamageRoll = {}) {
     if (!this.hasDamage) throw new Error('You may not make a Damage Roll with this Item.');
     const itemData = this.data.data;
     const actorData = this.actor?.data.data;
@@ -649,10 +655,17 @@ export default class ItemCarRoy extends Item {
     }
 
     // Add damage bonus formula
-    const actorBonus = getProperty(actorData, `bonuses.${itemData.actionType}`) || {};
+    /*const actorBonus = getProperty(actorData, `bonuses.${itemData.actionType}`) || {};
     if (actorBonus.damage && parseInt(actorBonus.damage) !== 0) {
       parts.push(actorBonus.damage);
+    }*/
+    if (['spell', 'weapon'].includes(this.data.type) && this.actor) {
+      const actorBonus =
+        (await getBonuses((this.actor as unknown) as ActorCarRoy, this.data.type === 'spell' ? 'mDamage' : 'damage')) +
+        parseInt(this.data.data?.enchantment?.value || 0);
+      if (actorBonus) parts.push(actorBonus);
     }
+    //const actorBonus = getBonuses(actorData, 'mDamage');
 
     // Add ammunition damage
     /*if (this._ammo) {
