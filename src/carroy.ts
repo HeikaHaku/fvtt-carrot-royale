@@ -11,6 +11,7 @@ import ItemSheetCarRoy from './modules/item/sheet.js';
 import * as chat from './modules/chat.js';
 import * as dice from './modules/dice.js';
 import * as migrations from './modules/migrations.js';
+import { _getInitiativeFormula } from './modules/combat.js';
 
 export const log = (...args: unknown[]) => console.log('Carrot Royale | ' + args);
 
@@ -39,6 +40,10 @@ Hooks.once('init', function () {
 
   //Register System Settings
   registerSystemSettings();
+
+  // Patch Core Functions
+  CONFIG.Combat.initiative.formula = '1d20 + @attributes.init.mod + @attributes.init.prof + @attributes.init.bonus';
+  Combat.prototype._getInitiativeFormula = _getInitiativeFormula;
 
   //Register Sheets
   Actors.unregisterSheet('core', ActorSheet);
