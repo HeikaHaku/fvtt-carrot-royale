@@ -213,6 +213,8 @@ export class HeroSheet extends ActorSheetCarRoy {
       }
     }
 
+    if (itemData.type === 'enchantment') return;
+
     // Default drop handling if levels were not added
     await super._onDropItemCreate(itemData);
   }
@@ -227,5 +229,23 @@ export class HeroSheet extends ActorSheetCarRoy {
     await super._onItemDelete(event);
 
     await prepareMainClass(this.actor);
+  }
+
+  /* -------------------------------------------- */
+  /*  Form Submission                             */
+  /* -------------------------------------------- */
+
+  /** @override */
+  _getSubmitData(updateData = {}): any {
+    // Create the expanded update data object
+    const fd = new FormDataExtended(this.form, { editors: this.editors });
+    let data = fd.toObject();
+    if (updateData) data = mergeObject(data, updateData);
+    else data = expandObject(data);
+
+    data.data.team = parseInt(data.data.team);
+
+    // Return the flattened submission data
+    return flattenObject(data);
   }
 }

@@ -160,4 +160,23 @@
   .biography {
     max-width: calc(100% - 180px);
   }
+
+  .summary .team-select {
+    line-height: 22px;
+    margin-left: -6px;
+    padding-left: 6px;
+
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      border: none;
+      font-family: 'Modesto Condensed', 'Palatino Linotype', serif;
+      font-weight: 900;
+      font-size: medium;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
 }
