@@ -64,18 +64,21 @@ export default class ActorCarRoy extends Actor {
     const raceConfig = race ? CONFIG.CarrotRoyale.raceFeatures[race.name?.toLowerCase()] : {};
 
     // Ability modifiers and saves
+    const saves = await getBonuses(this, 'saves');
     for (let [id, abl] of Object.entries(data.abilities) as [string, any]) {
       /*abl.mod = Math.floor((abl.value + (abl?.bonus || 0) - 10) / 2);
       abl.total = abl.value + (abl?.bonus || 0);*/
-      abl.total = abl.value + (raceConfig?.bonus?.stats?.[id] || 0) + (itemBonuses[id] || 0);
+      abl.total = abl.value + (await getBonuses(this, abl)); //(raceConfig?.bonus?.stats?.[id] || 0) + (itemBonuses[id] || 0);
       abl.mod = Math.floor((abl.total - 10) / 2);
-      abl.save = abl.mod + (raceConfig?.bonus?.stats?.saves || 0) + (itemBonuses['saves'] || 0) + (classBonuses?.saves || 0);
+      abl.save = abl.mod + saves; //(raceConfig?.bonus?.stats?.saves || 0) + (itemBonuses['saves'] || 0) + (classBonuses?.saves || 0);
     }
 
     // Determine Initiative Modifier
     const init = data.attributes.init;
     init.mod = data.abilities.dex.mod;
-    init.total = init.mod + init.bonus + (itemBonuses.init || 0) + (raceConfig?.bonus?.stats?.init || 0) + (classBonuses?.init || 0);
+    init.bonus = await getBonuses(this, 'init');
+    init.total = init.mod + init.bonus;
+    //init.total = init.mod + init.bonus + (await getBonuses(this, 'init')) + (raceConfig?.bonus?.stats?.init || 0) + (classBonuses?.init || 0);
 
     const ac = data.attributes.ac;
     const armorAC = armors.reduce(
@@ -88,10 +91,20 @@ export default class ActorCarRoy extends Actor {
         const cur = ['light', 'medium', 'heavy'].indexOf(type);
         a.type = a.type < cur ? cur : a.type;
         a.ac = a.type === cur ? b.data.ac : a.ac;
+        a.ac += parseInt(b.data?.enchantment?.value || 0);
         return a;
       },
       { shield: 0, type: -1, ac: 0 }
     );
+    /*ac.value =
+      6 +
+      data.abilities.dex.mod +
+      (raceConfig?.bonus?.stats?.ac || 0) +
+      (itemBonuses?.ac || 0) +
+      (armorAC.ac || 0) +
+      (armorAC.shield || 0) +
+      (classBonuses?.ac || 0);*/
+    //ac.value = 6 + data.abilities.dex.mod + getBonuses(this, 'ac', true);
     ac.value =
       6 +
       data.abilities.dex.mod +
@@ -99,7 +112,10 @@ export default class ActorCarRoy extends Actor {
       (itemBonuses?.ac || 0) +
       (armorAC.ac || 0) +
       (armorAC.shield || 0) +
-      (classBonuses?.ac || 0);
+      (classBonuses?.ac || 0) +
+      (await getBonuses(this, 'ac', true));
+
+    console.log(await getBonuses(this, 'ac', true), await getBonuses(this, 'ac'));
 
     const hp = data.attributes.hp;
     let tmp = hp.max - hp.value;
@@ -109,7 +125,7 @@ export default class ActorCarRoy extends Actor {
         a += b.data.levels * ((CONFIG.CarrotRoyale.classFeatures[b.name.toLowerCase()]?.abilities?.hp || 0) + data.abilities.con.mod);
         return a;
       }, 0);
-    hp.max = baseHP + (raceConfig?.bonus?.stats?.hp || 0) + (itemBonuses?.hp || 0);
+    hp.max = baseHP + (await getBonuses(this, 'hp')); //(raceConfig?.bonus?.stats?.hp || 0) + (itemBonuses?.hp || 0);
     if (tmp > hp.max) tmp = hp.max;
     hp.value = hp.value == 0 ? 0 : hp.max - tmp;
 
@@ -456,7 +472,7 @@ export default class ActorCarRoy extends Actor {
     }*/
 
     const bonus = await getBonuses(this, 'saves');
-    console.log(bonus);
+    //console.log(bonus);
     if (bonus) {
       parts.push('@saveBonus');
       data.saveBonus = bonus;
