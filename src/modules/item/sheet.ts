@@ -17,6 +17,7 @@ export default class ItemSheetCarRoy extends ItemSheet {
   }
 
   static get defaultOptions() {
+    console.log(super.defaultOptions);
     return mergeObject(super.defaultOptions, {
       classes: ['carroy', 'item', 'sheet'],
       width: 560,
@@ -27,6 +28,14 @@ export default class ItemSheetCarRoy extends ItemSheet {
           navSelector: '.tabs',
           contentSelector: '.sheet-body',
           initial: 'description',
+        },
+      ],
+      dragDrop: [
+        {
+          dragSelector: '.enchantment',
+          dropSelector: '.armor, .weapon',
+          //permissions: { dragStart: this._canDragStart.bind(this), drop: this._canDragDrop.bind(this) },
+          //callbacks: { dragStart: this._onDragStart.bind(this), drop: this._onDragDrop.bind(this) },
         },
       ],
     });
@@ -46,6 +55,7 @@ export default class ItemSheetCarRoy extends ItemSheet {
 
   /** @override */
   getData(): ItemSheet<any, any> {
+    console.log(this);
     this.item.prepareData();
     const data: any = super.getData();
     data.labels = this.item.labels;
@@ -299,5 +309,38 @@ export default class ItemSheetCarRoy extends ItemSheet {
   async _onSubmit(...args: [Event | JQuery.Event, { updateData?: any; preventClose?: boolean }?]) {
     if (this._tabs[0].active === 'details') this.position.height = 'auto';
     await super._onSubmit(...args);
+  }
+
+  /*
+  _canDragDrop(): boolean {
+    //return this.
+    //return true;
+    return this._dragDrop.reduce((a: boolean, b: any) => {
+      if (b.can('dragStart', b.dragSelector)) a = true;
+      return a;
+    }, false);
+  }
+
+  _canDragStart(): boolean {
+    return this._dragDrop.reduce((a: boolean, b: any) => {
+      if (b.can('dragStart', b.dragSelector)) a = true;
+      return a;
+    }, false);
+  }*/
+
+  /*protected _onDragStart() {}
+
+  protected _onDragDrop() {}*/
+
+  /** @override */
+  async _onDropItemCreate(itemData: ItemData) {
+    // Create a Consumable spell scroll on the Inventory tab
+    //if (itemData.type === 'spell' && this._tabs[0].active === 'inventory') {
+    //const scroll = await ItemCarRoy.createScrollFromSpell(itemData);
+    //itemData = scroll.data;
+    //}
+    // Create the owned item as normal
+    console.log(itemData, this);
+    //return super._onDropItemCreate(itemData);
   }
 }
