@@ -11,6 +11,18 @@
       {{#each itemProperties}}
         <li>{{this}}</li>
       {{/each}}
+      {{#if (or (eq item.type 'armor') (eq item.type 'weapon'))}}
+        <li>
+          <label>{{localize 'ITEM.TypeEnchantment'}}</label>
+          <select name="data.enchantment.value">
+            {{#select data.enchantment.value}}
+              <option value="0"></option>
+              <option value="1">+1</option>
+              <option value="2">+2</option>
+            {{/select}}
+          </select>
+      {{/if}}
+      </li>
     </ol>
   </div>
 
