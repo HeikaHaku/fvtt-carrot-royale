@@ -319,6 +319,10 @@
   "CarRoy.ClassSpecialHint": "Pick the Level 5 bonus you'll receive from this class.",
   "CarRoy.ClassConfigSave": "Save Changes",
 
+  "CarRoy.Team": "Team",
+  "CarRoy.Team1": "Team 1",
+  "CarRoy.Team2": "Team 2",
+
   "CarRoy.ActionWarningNoItem": "The requested item {item} no longer exists on Actor {name}",
   "CarRoy.ActionWarningNoToken": "You must have one or more controlled Tokens in order to use this option.",
 
