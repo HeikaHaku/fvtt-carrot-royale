@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/HeikaHaku/fvtt-carrot-royale#readme",
   "dependencies": {
-    "@babel/runtime": "^7.12.5",
+    "@babel/runtime": "^7.12.13",
     "generate-changelog": "^1.8.0"
   },
   "devDependencies": {
