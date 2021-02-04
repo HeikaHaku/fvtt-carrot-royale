@@ -17,7 +17,6 @@ export default class ItemSheetCarRoy extends ItemSheet {
   }
 
   static get defaultOptions() {
-    console.log(super.defaultOptions);
     return mergeObject(super.defaultOptions, {
       classes: ['carroy', 'item', 'sheet'],
       width: 560,
@@ -55,7 +54,6 @@ export default class ItemSheetCarRoy extends ItemSheet {
 
   /** @override */
   getData(): ItemSheet<any, any> {
-    console.log(this);
     this.item.prepareData();
     const data: any = super.getData();
     data.labels = this.item.labels;
@@ -340,7 +338,7 @@ export default class ItemSheetCarRoy extends ItemSheet {
     //itemData = scroll.data;
     //}
     // Create the owned item as normal
-    console.log(itemData, this);
+    //console.log(itemData, this);
     //return super._onDropItemCreate(itemData);
   }
 }
