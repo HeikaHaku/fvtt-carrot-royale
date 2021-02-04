@@ -115,8 +115,6 @@ export default class ActorCarRoy extends Actor {
       (classBonuses?.ac || 0) +
       (await getBonuses(this, 'ac', true));
 
-    console.log(await getBonuses(this, 'ac', true), await getBonuses(this, 'ac'));
-
     const hp = data.attributes.hp;
     let tmp = hp.max - hp.value;
     const baseHP = actorData.items
@@ -233,7 +231,23 @@ export default class ActorCarRoy extends Actor {
         const existing = new Set(this.items.map((i: { name: any }) => i.name));
         const features = await ActorCarRoy.getClassFeatures(config);
         for (let f of features) {
-          if (!existing.has(f.name)) toCreate.push(f);
+          if (!existing.has(f.name)) {
+            if (CONFIG.CarrotRoyale.featureScale.hasOwnProperty(f.name)) {
+              const { name, formula } = CONFIG.CarrotRoyale.featureScale[f.name][f.data.data.level] || [f.name, f.data.data.formula];
+              let f2: any = duplicate(f);
+              [f2.name, f2.data.formula] = [name, formula];
+              toCreate.push(f2);
+            } else toCreate.push(f);
+          } else {
+            const feature = this.items.find((item: { name: string }) => item.name === f.name);
+            if (feature.data.data.level && f.data.data.level && feature.data.data.level < f.data.data.level) {
+              if (!CONFIG.CarrotRoyale.featureScale.hasOwnProperty(f.name)) continue;
+              const { name, formula } = CONFIG.CarrotRoyale.featureScale[f.name][f.data.data.level] || [f.name, f.data.data.formula];
+              let f2: any = duplicate(f);
+              [f2.name, f2.data.formula] = [name, formula];
+              toCreate.push(f2);
+            }
+          }
         }
       }
     }

@@ -197,9 +197,16 @@ export class HeroSheet extends ActorSheetCarRoy {
         let toCreate = [];
         const features = await ActorCarRoy.getClassFeatures({ className: itemData.name, level: 1, priorLevel: 0 });
         const existing = new Set(this.actor.items.map((i: { name: any }) => i.name));
-        for (let f of features) {
-          if (!existing.has(f.name)) toCreate.push(f);
-        }
+        for (let f of features)
+          if (!existing.has(f.name)) {
+            if (CONFIG.CarrotRoyale.featureScale.hasOwnProperty(f.name)) {
+              const { name, formula } = CONFIG.CarrotRoyale.featureScale[f.name][f.data.data.level] || [f.name, f.data.data.formula];
+              let f2: any = duplicate(f);
+              [f2.name, f2.data.formula] = [name, formula];
+              toCreate.push(f2);
+            } else toCreate.push(f);
+          }
+
         if (toCreate.length) await this.actor.createEmbeddedEntity('OwnedItem', toCreate);
         await prepareMainClass(this.actor, itemData);
       }
