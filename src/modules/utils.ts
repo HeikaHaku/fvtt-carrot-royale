@@ -46,7 +46,7 @@ export async function getBonuses(actor: ActorCarRoy, bonusName: string, buffOnly
   const race = CONFIG.CarrotRoyale.raceFeatures[actor.itemTypes.race.find((item) => item)?.name.toLowerCase() || ''];
   const flags = actor.data.flags;
 
-  let sum = 0;
+  let sum = { number: 0, string: '' };
 
   const actors: ActorCarRoy[] =
     (await game.actors?.filter((actr: { data: { type: string }; hasPlayerOwner: boolean }) => actr.data.type === 'hero' && actr.hasPlayerOwner)) || [];
@@ -65,14 +65,20 @@ export async function getBonuses(actor: ActorCarRoy, bonusName: string, buffOnly
       const classConfig = CONFIG.CarrotRoyale.classFeatures[cls.name.toLowerCase()];
       for (let buff of (Object.entries(classConfig?.buffs || {}) as [string, any]) || []) {
         if (cls.data.data.levels >= parseInt(buff[0])) {
-          sum += buff[1]?.team?.[bonusName] || 0;
+          let b = buff[1]?.team?.[bonusName] || 0;
+          if (typeof b === 'number') sum.number += b;
+          else if (typeof b === 'string') sum.string += ` + ${b}`;
+          else continue;
+          //sum += buff[1]?.team?.[bonusName] || 0;
           restricted = restricted < (buff[1]?.restricted?.[bonusName] || 100000) ? buff[1]?.restricted?.[bonusName] || 0 : restricted;
         }
       }
     }
   }
 
-  sum += restricted;
+  if (typeof restricted === 'number') sum.number += restricted;
+  else if (typeof restricted === 'string') sum.string += ` + ${restricted}`;
+  //sum += restricted;
 
   if (buffOnly) return sum;
   restricted = 0;
@@ -82,26 +88,41 @@ export async function getBonuses(actor: ActorCarRoy, bonusName: string, buffOnly
       const classConfig = CONFIG.CarrotRoyale.classFeatures[cls.name.toLowerCase()];
       for (let debuff of (Object.entries(classConfig?.debuffs || {}) as [string, any]) || []) {
         if (cls.data.data.levels >= parseInt(debuff[0])) {
-          sum -= debuff[1].team?.[bonusName] || 0;
+          let d = debuff[1]?.team?.[bonusName] || 0;
+          if (typeof d === 'number') sum.number += d;
+          else if (typeof d === 'string') sum.string += ` + ${d}`;
+          else continue;
+          //sum -= debuff[1].team?.[bonusName] || 0;
           restricted = restricted < (debuff[1]?.restricted?.[bonusName] || 100000) ? debuff[1]?.restricted?.[bonusName] || 0 : restricted;
         }
       }
     }
   }
 
-  sum -= restricted;
+  if (!isNaN(parseInt(restricted + ''))) sum.number += restricted;
+  else sum.string += ` + ${restricted}`;
+  //sum += restricted;
+  //sum -= restricted;
 
-  if (race?.bonus?.stats?.[bonusName]) sum += race?.bonus?.stats?.[bonusName] || 0;
+  if (race?.bonus?.stats?.[bonusName]) {
+    if (!isNaN(parseInt(race?.bonus?.stats?.[bonusName]))) sum.number += race?.bonus?.stats?.[bonusName] || 0;
+  }
   for (let item of actor.items.filter((item: { type: string }) => !['class', 'race'].includes(item.type))) {
-    for (let stats of item.data?.data?.bonus?.stats || []) {
-      if (stats[1] === bonusName) sum += parseInt(stats[0]) || 0;
+    for (let stats of (item.data?.data?.bonus?.stats as [string, string]) || []) {
+      if (stats[1] === bonusName) {
+        if (!isNaN(parseInt(stats[0]))) sum.number += parseInt(stats[0]) || 0;
+        else sum.string += ` + ${stats[0]}`;
+      }
     }
   }
 
   if (flags?.carroy?.classSpecial) {
     for (let special of Object.values(flags.carroy.classSpecial) as string[]) {
       let [type, value] = special.split(',');
-      if (type === bonusName) sum += parseInt(value) || 0;
+      if (type === bonusName) {
+        if (isNaN(parseInt(value))) sum.string += ` + ${value}`;
+        else sum.number += parseInt(value) || 0;
+      }
     }
   }
   return sum;
