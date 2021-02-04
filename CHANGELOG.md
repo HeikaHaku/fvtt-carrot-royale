@@ -1,3 +1,9 @@
+#### 0.4.1 (2021-02-04)
+
+##### New Features
+
+*  Martial Proficiency. ([4075bfac](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/4075bfacaf0e2bacb8f7dbe3fc23b64fa8dc4f33))
+
 ### 0.4.0 (2021-02-04)
 
 ##### New Features
