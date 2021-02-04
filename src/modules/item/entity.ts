@@ -506,8 +506,9 @@ export default class ItemCarRoy extends Item {
     //const actorBonus = actorData?.bonuses?.[itemData.actionType] || {};
     //if (actorBonus.attack) parts.push(actorBonus.attack);
     if (this.actor) {
-      const actorBonus = ((await getBonuses((this.actor as unknown) as ActorCarRoy, 'attack')) || 0) + parseInt(this.data.data?.enchantment?.value || 0);
-      if (actorBonus) parts.push(actorBonus);
+      const actorBonus = (await getBonuses((this.actor as unknown) as ActorCarRoy, 'attack')) || 0;
+      actorBonus.number += parseInt(this.data.data?.enchantment?.value || 0);
+      if (actorBonus) parts.push(actorBonus.string, actorBonus.number || '');
     }
     /*if (this.isOwned) {
       const classBonuses = (Object.values(flags?.classSpecial || {}) as string[]).reduce((a: any, b) => {
@@ -659,11 +660,15 @@ export default class ItemCarRoy extends Item {
     if (actorBonus.damage && parseInt(actorBonus.damage) !== 0) {
       parts.push(actorBonus.damage);
     }*/
-    if (['spell', 'weapon'].includes(this.data.type) && this.actor) {
-      const actorBonus =
-        (await getBonuses((this.actor as unknown) as ActorCarRoy, this.data.type === 'spell' ? 'mDamage' : 'damage')) +
-        parseInt(this.data.data?.enchantment?.value || 0);
-      if (actorBonus) parts.push(actorBonus);
+
+    if (this.data.data.action && this.data.data.action === 'healing') {
+      const actorBonus = await getBonuses((this.actor as unknown) as ActorCarRoy, 'healing');
+      parts.push(actorBonus.string, actorBonus.number || '');
+      console.log(actorBonus, parts);
+    } else if (['spell', 'weapon'].includes(this.data.type) && this.actor) {
+      const actorBonus = await getBonuses((this.actor as unknown) as ActorCarRoy, this.data.type === 'spell' ? 'mDamage' : 'damage');
+      actorBonus.number += parseInt(this.data.data?.enchantment?.value || 0);
+      if (actorBonus) parts.push(actorBonus.string, actorBonus.number || '');
     }
     //const actorBonus = getBonuses(actorData, 'mDamage');
 

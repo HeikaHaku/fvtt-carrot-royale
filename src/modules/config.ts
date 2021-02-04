@@ -194,6 +194,36 @@ CarrotRoyale.currencies = {
 
 /* -------------------------------------------- */
 
+/**
+ * Define Feature Scaling
+ * @type (Object)
+ */
+CarrotRoyale.featureScale = {
+  'Cure Wounds': {
+    1: {
+      name: 'Cure Wounds I',
+      formula: '2d6+2',
+    },
+    2: {
+      name: 'Cure Wounds II',
+      formula: '3d8+2',
+    },
+    3: {
+      name: 'Cure Wounds III',
+      formula: '4d8+3',
+    },
+    4: {
+      name: 'Cure Wounds IV',
+      formula: '6d8+2',
+    },
+    5: {
+      name: 'Cure Wounds V',
+      formula: '5d8+2',
+    },
+  },
+};
+
+/* -------------------------------------------- */
 // Class Features
 CarrotRoyale.classFeatures = ClassFeatures;
 

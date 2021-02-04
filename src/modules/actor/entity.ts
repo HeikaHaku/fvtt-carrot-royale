@@ -68,7 +68,7 @@ export default class ActorCarRoy extends Actor {
     for (let [id, abl] of Object.entries(data.abilities) as [string, any]) {
       /*abl.mod = Math.floor((abl.value + (abl?.bonus || 0) - 10) / 2);
       abl.total = abl.value + (abl?.bonus || 0);*/
-      abl.total = abl.value + (await getBonuses(this, abl)); //(raceConfig?.bonus?.stats?.[id] || 0) + (itemBonuses[id] || 0);
+      abl.total = abl.value + (await getBonuses(this, abl)).number; //(raceConfig?.bonus?.stats?.[id] || 0) + (itemBonuses[id] || 0);
       abl.mod = Math.floor((abl.total - 10) / 2);
       abl.save = abl.mod + saves; //(raceConfig?.bonus?.stats?.saves || 0) + (itemBonuses['saves'] || 0) + (classBonuses?.saves || 0);
     }
@@ -76,7 +76,7 @@ export default class ActorCarRoy extends Actor {
     // Determine Initiative Modifier
     const init = data.attributes.init;
     init.mod = data.abilities.dex.mod;
-    init.bonus = await getBonuses(this, 'init');
+    init.bonus = (await getBonuses(this, 'init')).number;
     init.total = init.mod + init.bonus;
     //init.total = init.mod + init.bonus + (await getBonuses(this, 'init')) + (raceConfig?.bonus?.stats?.init || 0) + (classBonuses?.init || 0);
 
@@ -113,11 +113,10 @@ export default class ActorCarRoy extends Actor {
       (armorAC.ac || 0) +
       (armorAC.shield || 0) +
       (classBonuses?.ac || 0) +
-      (await getBonuses(this, 'ac', true));
-
-    console.log(await getBonuses(this, 'ac', true), await getBonuses(this, 'ac'));
+      (await getBonuses(this, 'ac', true)).number;
 
     const hp = data.attributes.hp;
+    if (hp.max && hp.value > hp.max) hp.value = hp.max;
     let tmp = hp.max - hp.value;
     const baseHP = actorData.items
       .filter((item: { type: string }) => item.type === 'class')
@@ -125,7 +124,7 @@ export default class ActorCarRoy extends Actor {
         a += b.data.levels * ((CONFIG.CarrotRoyale.classFeatures[b.name.toLowerCase()]?.abilities?.hp || 0) + data.abilities.con.mod);
         return a;
       }, 0);
-    hp.max = baseHP + (await getBonuses(this, 'hp')); //(raceConfig?.bonus?.stats?.hp || 0) + (itemBonuses?.hp || 0);
+    hp.max = baseHP + (await getBonuses(this, 'hp')).number; //(raceConfig?.bonus?.stats?.hp || 0) + (itemBonuses?.hp || 0);
     if (tmp > hp.max) tmp = hp.max;
     hp.value = hp.value == 0 ? 0 : hp.max - tmp;
 
@@ -233,7 +232,23 @@ export default class ActorCarRoy extends Actor {
         const existing = new Set(this.items.map((i: { name: any }) => i.name));
         const features = await ActorCarRoy.getClassFeatures(config);
         for (let f of features) {
-          if (!existing.has(f.name)) toCreate.push(f);
+          if (!existing.has(f.name)) {
+            if (CONFIG.CarrotRoyale.featureScale.hasOwnProperty(f.name)) {
+              const { name, formula } = CONFIG.CarrotRoyale.featureScale[f.name][f.data.data.level] || [f.name, f.data.data.formula];
+              let f2: any = duplicate(f);
+              [f2.name, f2.data.formula] = [name, formula];
+              if (!existing.has(f2.name)) toCreate.push(f2);
+            } else toCreate.push(f);
+          } else {
+            const feature = this.items.find((item: { name: string }) => item.name === f.name);
+            if (feature.data.data.level && f.data.data.level && feature.data.data.level < f.data.data.level) {
+              if (!CONFIG.CarrotRoyale.featureScale.hasOwnProperty(f.name)) continue;
+              const { name, formula } = CONFIG.CarrotRoyale.featureScale[f.name][f.data.data.level] || [f.name, f.data.data.formula];
+              let f2: any = duplicate(f);
+              [f2.name, f2.data.formula] = [name, formula];
+              if (!existing.has(f2.name)) toCreate.push(f2);
+            }
+          }
         }
       }
     }
@@ -471,7 +486,7 @@ export default class ActorCarRoy extends Actor {
       }
     }*/
 
-    const bonus = await getBonuses(this, 'saves');
+    const bonus = (await getBonuses(this, 'saves')).number;
     //console.log(bonus);
     if (bonus) {
       parts.push('@saveBonus');
