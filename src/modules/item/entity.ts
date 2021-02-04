@@ -508,6 +508,15 @@ export default class ItemCarRoy extends Item {
     if (this.actor) {
       const actorBonus = (await getBonuses((this.actor as unknown) as ActorCarRoy, 'attack')) || 0;
       actorBonus.number += parseInt(this.data.data?.enchantment?.value || 0);
+      if (this.data.type === 'weapon') {
+        if (
+          this.actor.itemTypes.class.reduce((a, b) => {
+            if (CONFIG.CarrotRoyale.classFeatures[b.name.toLowerCase()].martial) a = true;
+            return a;
+          }, false)
+        )
+          parts.push(2);
+      }
       if (actorBonus) parts.push(actorBonus.string, actorBonus.number || '');
     }
     /*if (this.isOwned) {
@@ -551,7 +560,7 @@ export default class ItemCarRoy extends Item {
     // Compose roll options
     const rollConfig = mergeObject(
       {
-        parts: parts,
+        parts: parts.filter((item) => item),
         actor: this.actor,
         data: rollData,
         title: title,
@@ -618,26 +627,6 @@ export default class ItemCarRoy extends Item {
     const rollData = this.getRollData();
     //if (spellLevel) rollData.item.level = spellLevel;
 
-    // Configure the damage roll
-    const title = `${this.name} - ${game.i18n.localize('CarRoy.DamageRoll')}`;
-    const rollConfig: Record<string, any> = {
-      actor: this.actor,
-      critical: critical ?? event?.altKey ?? false,
-      data: rollData,
-      event: event,
-      fastForward: event ? event?.shiftKey || event?.altKey || event?.ctrlKey || event?.metaKey : false,
-      parts: parts,
-      title: title,
-      flavor: this.labels.damageTypes?.length ? `${title} (${this.labels.damageTypes})` : title,
-      speaker: ChatMessage.getSpeaker({ actor: this.actor ?? undefined }),
-      dialogOptions: {
-        width: 400,
-        top: event ? event.clientY - 80 : null,
-        left: window.innerWidth - 710,
-      },
-      messageData: messageData,
-    };
-
     // Adjust damage from versatile usage
     /*if (versatile && itemData.damage.versatile) {
       parts[0] = itemData.damage.versatile;
@@ -679,6 +668,26 @@ export default class ItemCarRoy extends Item {
       rollConfig.flavor += ` [${this._ammo.name}]`;
       delete this._ammo;
     }*/
+
+    // Configure the damage roll
+    const title = `${this.name} - ${game.i18n.localize('CarRoy.DamageRoll')}`;
+    const rollConfig: Record<string, any> = {
+      actor: this.actor,
+      critical: critical ?? event?.altKey ?? false,
+      data: rollData,
+      event: event,
+      fastForward: event ? event?.shiftKey || event?.altKey || event?.ctrlKey || event?.metaKey : false,
+      parts: parts.filter((item) => item),
+      title: title,
+      flavor: this.labels.damageTypes?.length ? `${title} (${this.labels.damageTypes})` : title,
+      speaker: ChatMessage.getSpeaker({ actor: this.actor ?? undefined }),
+      dialogOptions: {
+        width: 400,
+        top: event ? event.clientY - 80 : null,
+        left: window.innerWidth - 710,
+      },
+      messageData: messageData,
+    };
 
     // Scale melee critical hit damage
     if (itemData.actionType === 'mwak') {
