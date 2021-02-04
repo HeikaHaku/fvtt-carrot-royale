@@ -659,7 +659,11 @@ export default class ItemCarRoy extends Item {
     if (actorBonus.damage && parseInt(actorBonus.damage) !== 0) {
       parts.push(actorBonus.damage);
     }*/
-    if (['spell', 'weapon'].includes(this.data.type) && this.actor) {
+
+    if (this.data.data.action && this.data.data.action === 'healing') {
+      const actorBonus = await getBonuses((this.actor as unknown) as ActorCarRoy, 'healing');
+      parts.push(actorBonus);
+    } else if (['spell', 'weapon'].includes(this.data.type) && this.actor) {
       const actorBonus =
         (await getBonuses((this.actor as unknown) as ActorCarRoy, this.data.type === 'spell' ? 'mDamage' : 'damage')) +
         parseInt(this.data.data?.enchantment?.value || 0);
