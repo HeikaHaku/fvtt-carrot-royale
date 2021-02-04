@@ -1,3 +1,19 @@
+### 0.4.0 (2021-02-04)
+
+##### New Features
+
+*  Handle String Bonuses. ([83e0ddfd](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/83e0ddfde0f587c55d917a7838494e19fcdb8867))
+*  Feature Scaling Initial Implementation. ([1e9e24fa](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/1e9e24fa01e691c41bd2c693e9b948fe59570048))
+*  Feature Scaling Config. ([237663d0](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/237663d0d94adff3707c46d7b1611f6a284a0ae6))
+
+##### Bug Fixes
+
+*  Separate Healing type from Damage roll. ([68badb54](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/68badb54d235049caf927587125d265bf152326a))
+
+##### Other Changes
+
+*  Remove Console Logs. ([e73f0948](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/e73f09486fcbc763fbf4990d688ac04b53e31eb7))
+
 #### 0.3.6 (2021-02-03)
 
 ##### New Features
