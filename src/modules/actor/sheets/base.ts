@@ -457,7 +457,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
     event.preventDefault();
     const li = event.currentTarget.closest('.item');
     const item = this.actor.items.get(li.dataset.itemId);
-    await this.actor.deleteOwnedItem(li.dataset.itemId);
+    this.actor.deleteOwnedItem(li.dataset.itemId);
   }
 
   /* -------------------------------------------- */

@@ -129,7 +129,7 @@ export default class ActorCarRoy extends Actor {
     hp.value = hp.value == 0 ? 0 : hp.max - tmp;
 
     try {
-      await this.update({ data: data }, { diff: true });
+      if (this.owner) await this.update({ data: data }, { diff: true });
     } catch {}
   }
 

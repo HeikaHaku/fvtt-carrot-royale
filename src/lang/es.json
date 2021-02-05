@@ -263,6 +263,8 @@
   "CarRoy.SpellAdd": "Add Spell",
 
   "CarRoy.ItemNew": "New {type}",
+  "CarRoy.ItemEdit": "Edit Item",
+  "CarRoy.ItemDelete": "Delete Item",
 
   "CarRoy.ItemTypeArmorPl": "Armor",
   "CarRoy.ItemTypeClassPl": "Class Levels",

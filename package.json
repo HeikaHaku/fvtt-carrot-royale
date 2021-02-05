@@ -1,6 +1,6 @@
 {
   "name": "fvtt-carrot-royale",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Carrot Royale System for FoundryVTT",
   "main": "index.js",
   "scripts": {
@@ -32,7 +32,7 @@
     "@babel/plugin-transform-typescript": "^7.12.13",
     "@babel/preset-env": "^7.12.13",
     "@babel/register": "^7.12.13",
-    "@types/node": "^14.14.24",
+    "@types/node": "^14.14.25",
     "@types/tinymce": "^4.6.0",
     "@typescript-eslint/eslint-plugin": "^4.14.2",
     "@typescript-eslint/parser": "^4.14.2",
