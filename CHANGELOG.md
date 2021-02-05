@@ -1,3 +1,13 @@
+#### 0.4.2 (2021-02-05)
+
+##### Bug Fixes
+
+*  Fixed Permission and Deletion Bug. ([63f333b1](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/63f333b13caea38102e9a10c48180928c2526a2e))
+
+##### Other Changes
+
+*  Fixed missing strings. ([0e26a298](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/0e26a298bd567862d5b8448bab6b7e255f766aab))
+
 #### 0.4.1 (2021-02-04)
 
 ##### New Features
