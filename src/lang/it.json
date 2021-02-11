@@ -263,8 +263,8 @@
   "CarRoy.SpellAdd": "Aggiungi Incantesimo",
 
   "CarRoy.ItemNew": "Nuovo {type}",
-  "CarRoy.ItemEdit": "Edit Item",
-  "CarRoy.ItemDelete": "Delete Item",
+  "CarRoy.ItemEdit": "Modifica Oggetto",
+  "CarRoy.ItemDelete": "Rimuovi Oggetto",
 
   "CarRoy.ItemTypeArmorPl": "Armatura",
   "CarRoy.ItemTypeClassPl": "Livello della Classe",
@@ -321,12 +321,14 @@
   "CarRoy.ClassSpecialHint": "Scegli il Bonus di 5 livello fra quelli disponibili",
   "CarRoy.ClassConfigSave": "Salva le modifiche",
 
-  "CarRoy.Team": "Team",
-  "CarRoy.Team1": "Team 1",
-  "CarRoy.Team2": "Team 2",
+  "CarRoy.Team": "Squadra",
+  "CarRoy.Team1": "Squadra 1",
+  "CarRoy.Team2": "Squadra 2",
 
   "CarRoy.ActionWarningNoItem": "L'oggetto richiesto {item} non è piu disponibile su {name}",
   "CarRoy.ActionWarningNoToken": "Devi poter muovere almeno un toke per effettuare questa azione",
+
+  "CarRoy.ResetSheet": "Rifai Scheda",
 
   "CarRoy.SheetClassHero": "Scheda personaggio BASE Carrot Royale",
 

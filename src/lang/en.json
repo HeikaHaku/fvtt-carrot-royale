@@ -328,6 +328,8 @@
   "CarRoy.ActionWarningNoItem": "The requested item {item} no longer exists on Actor {name}",
   "CarRoy.ActionWarningNoToken": "You must have one or more controlled Tokens in order to use this option.",
 
+  "CarRoy.ResetSheet": "Reset Sheet",
+
   "CarRoy.SheetClassHero": "Default Carrot Royale Hero Sheet",
 
   "CarRoy.SheetClassArmor": "Default Carrot Royale Armor Sheet",
