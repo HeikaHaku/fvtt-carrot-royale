@@ -258,4 +258,37 @@ export class HeroSheet extends ActorSheetCarRoy {
     // Return the flattened submission data
     return flattenObject(data);
   }
+
+  /** @override */
+  _getHeaderButtons() {
+    let buttons = super._getHeaderButtons();
+
+    // Reset Button
+    const canConfigure = game.user.isGM || this.actor.owner;
+    if (this.options.editable && canConfigure) {
+      buttons = [
+        {
+          label: game.i18n.localize('CarRoy.ResetSheet'),
+          class: 'reset-sheet',
+          icon: 'fas fa-eraser',
+          onclick: (ev: any) => this._onClearAll(ev),
+        },
+      ].concat(buttons);
+    }
+
+    return buttons;
+  }
+
+  async _onClearAll(_event: any) {
+    if (game.user.isGM || this.actor.owner) {
+      let ids = this.actor.items.reduce((a: any[], b: { id: any }) => {
+        a.push(b.id);
+        return a;
+      }, []);
+
+      for (let id of ids) {
+        await this.actor.deleteOwnedItem(id, {});
+      }
+    }
+  }
 }
