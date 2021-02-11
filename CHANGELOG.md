@@ -1,3 +1,14 @@
+#### 0.4.3 (2021-02-11)
+
+##### New Features
+
+*  Unfinished Summon Sheet. ([48cd133c](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/48cd133ca79deb7d8402e326134dc07454214b7a))
+*  Reset Sheet and various bugfixes. ([b798563b](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/b798563b6f84cf3d4270686702db8828bee0e3d8))
+
+##### Other Changes
+
+*  More strings. ([df280ae9](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/df280ae9c9ff51b2b7db1e3dc81a80ab15b601eb))
+
 #### 0.4.2 (2021-02-05)
 
 ##### Bug Fixes

@@ -470,7 +470,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
   _onRollAbilityTest(event: any) {
     event.preventDefault();
     let ability = event.currentTarget.parentElement.dataset.ability;
-    this.actor.rollAbility(ability, { event: event });
+    this.actor.rollAbilitySave(ability, { event: event });
   }
 
   /* -------------------------------------------- */

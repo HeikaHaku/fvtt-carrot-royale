@@ -12,6 +12,7 @@ import * as chat from './modules/chat.js';
 import * as dice from './modules/dice.js';
 import * as migrations from './modules/migrations.js';
 import { _getInitiativeFormula } from './modules/combat.js';
+import { SummonSheet } from './modules/actor/sheets/summon.js';
 
 export const log = (...args: unknown[]) => console.log('Carrot Royale | ' + args);
 
@@ -51,6 +52,12 @@ Hooks.once('init', function () {
     types: ['hero'],
     makeDefault: true,
     label: 'CarRoy.SheetClassHero',
+  });
+
+  Actors.registerSheet('carroy', SummonSheet, {
+    types: ['summon'],
+    makeDefault: true,
+    label: 'CarRoy.SheetClassSummon',
   });
 
   /*Items.registerSheet('carroy', ArmorSheet, {
