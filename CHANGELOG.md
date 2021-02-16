@@ -1,3 +1,14 @@
+#### 0.4.4 (2021-02-16)
+
+##### New Features
+
+*  Spell Failure. ([41efb62c](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/41efb62cbab8a958bb2b2a6b994aedcf10683d11))
+*  Allow No Team for GM Users. ([119f2f20](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/119f2f20b823e361e0bba54c7bfff7305d4b0fd0))
+
+##### Bug Fixes
+
+*  Bugfixes and default Token Config. ([1353d1ae](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/1353d1ae3abb5bfdf93fdaa5aa264ef7d903a05a))
+
 #### 0.4.3 (2021-02-11)
 
 ##### New Features
