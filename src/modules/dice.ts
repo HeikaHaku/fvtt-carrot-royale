@@ -105,6 +105,13 @@ export async function d20Roll({
       }
     }
 
+    //console.log(form, parts);
+
+    const martial = parts.includes('@martial');
+    if (martial) {
+      data.martial = 2;
+    }
+
     // Execute the roll
     let roll: Roll = new Roll(parts.join(' + '), data);
     try {
@@ -332,4 +339,96 @@ async function _damageRollDialog({ template, title, parts, data, allowCritical, 
       dialogOptions
     ).render(true);
   });
+}
+
+/**
+ * A standardized helper function for managing core 5e "d20 rolls"
+ *
+ * Holding SHIFT, ALT, or CTRL when the attack is rolled will "fast-forward".
+ * This chooses the default options of a normal attack with no bonus, Advantage, or Disadvantage respectively
+ *
+ * @param {Array} parts             The dice roll component parts, excluding the initial d20
+ * @param {Object} data             Actor or item data against which to parse the roll
+ * @param {Event|object} event      The triggering event which initiated the roll
+ * @param {string} rollMode         A specific roll mode to apply as the default for the resulting roll
+ * @param {string|null} template    The HTML template used to render the roll dialog
+ * @param {string|null} title       The dice roll UI window title
+ * @param {Object} speaker          The ChatMessage speaker to pass when creating the chat
+ * @param {string|null} flavor      Flavor text to use in the posted chat message
+ * @param {Boolean} fastForward     Allow fast-forward advantage selection
+ * @param {Function} onClose        Callback for actions to take when the dialog form is closed
+ * @param {Object} dialogOptions    Modal dialog options
+ * @param {boolean} advantage       Apply advantage to the roll (unless otherwise specified)
+ * @param {boolean} disadvantage    Apply disadvantage to the roll (unless otherwise specified)
+ * @param {number} critical         The value of d20 result which represents a critical success
+ * @param {number} fumble           The value of d20 result which represents a critical failure
+ * @param {number} targetValue      Assign a target value against which the result of this roll should be compared
+ * @param {boolean} elvenAccuracy   Allow Elven Accuracy to modify this roll?
+ * @param {boolean} halflingLucky   Allow Halfling Luck to modify this roll?
+ * @param {boolean} reliableTalent  Allow Reliable Talent to modify this roll?
+ * @param {boolean} chatMessage     Automatically create a Chat Message for the result of this roll
+ * @param {object} messageData      Additional data which is applied to the created Chat Message, if any
+ *
+ * @return {Promise}                A Promise which resolves once the roll workflow has completed
+ */
+export async function spellFailureRoll({
+  parts = [],
+  data = {},
+  event = {},
+  rollMode = null,
+  template = null,
+  title = null,
+  speaker = null,
+  flavor = null,
+  fastForward = null,
+  dialogOptions = {},
+  advantage = null,
+  disadvantage = null,
+  critical = 10,
+  fumble = 1,
+  targetValue = null,
+  chatMessage = true,
+  messageData = {},
+}: RollOptions = {}): Promise<Roll | null> {
+  // Prepare Message Data
+  messageData.flavor = flavor || title;
+  messageData.speaker = speaker || ChatMessage.getSpeaker();
+  const messageOptions = { rollMode: rollMode || game.settings.get('core', 'rollMode') };
+
+  // Define the inner roll function
+  const _roll = (parts: any[]) => {
+    // Determine the d20 roll and modifiers
+
+    // Prepend the d20 roll
+    let formula = `1d10`;
+    parts.unshift(formula);
+
+    // Execute the roll
+    let roll: Roll = new Roll(parts.join(' + '), data);
+    try {
+      roll.roll();
+    } catch (err) {
+      console.error(err);
+      ui.notifications.error(`Dice roll evaluation failed: ${err.message}`);
+      return null;
+    }
+
+    // Flag d20 options for any 20-sided dice in the roll
+    for (let d of roll.dice) {
+      console.log(d, targetValue);
+      if (d.faces === 10) {
+        d.options.critical = critical;
+        d.options.fumble = fumble;
+        if (targetValue) d.options.target = targetValue;
+      }
+    }
+    return roll;
+  };
+
+  // Create the Roll instance
+  const roll = _roll(parts);
+
+  // Create a Chat Message
+  if (roll && chatMessage) roll.toMessage(messageData, messageOptions);
+  return roll;
 }

@@ -1,4 +1,4 @@
-import { d20Roll, damageRoll } from '../dice.js';
+import { d20Roll, damageRoll, spellFailureRoll } from '../dice.js';
 import AbilityUseDialog from '../apps/ability-use-dialog.js';
 import { getBonuses } from '../utils.js';
 import ActorCarRoy from '../actor/entity.js';
@@ -492,6 +492,15 @@ export default class ItemCarRoy extends Item {
     if (!this.hasAttack) {
       throw new Error('You may not place an Attack Roll with this Item.');
     }
+
+    if (
+      this.data.type === 'spell' &&
+      this.actor &&
+      this.actor.itemTypes.armor.find((item) => ['light', 'medium', 'heavy'].includes(item.data.data.armorType))
+    ) {
+      const fail = await this.rollSpellFailure(options);
+      if (fail && fail.total <= ((fail as unknown) as { fumble: number }).fumble) return null;
+    }
     let title = `${this.name} - ${game.i18n.localize('CarRoy.AttackRoll')}`;
     const rollData = this.getRollData();
 
@@ -515,7 +524,7 @@ export default class ItemCarRoy extends Item {
             return a;
           }, false)
         )
-          parts.push(2);
+          parts.push('@martial');
       }
       if (actorBonus) parts.push(actorBonus.string, actorBonus.number || '');
     }
@@ -596,6 +605,7 @@ export default class ItemCarRoy extends Item {
 
     // Invoke the d20 roll helper
     const roll = await d20Roll(rollConfig);
+    //this.rollSpellFailure(options);
     //if (!roll) return null;
 
     // Commit ammunition consumption on attack rolls resource consumption if the attack roll was made
@@ -620,6 +630,15 @@ export default class ItemCarRoy extends Item {
     const itemData = this.data.data;
     const actorData = this.actor?.data.data;
     const messageData = { 'flags.carroy.roll': { type: 'damage', itemId: this.id } };
+
+    if (
+      this.data.type === 'spell' &&
+      this.actor &&
+      this.actor.itemTypes.armor.find((item) => ['light', 'medium', 'heavy'].includes(item.data.data.armorType))
+    ) {
+      const fail = await this.rollSpellFailure(options);
+      if (fail && fail.total <= ((fail as unknown) as { fumble: number }).fumble) return null;
+    }
 
     // Get roll data
     //const parts = itemData.damage.parts.map((d: string[]) => d[0]);
@@ -653,7 +672,6 @@ export default class ItemCarRoy extends Item {
     if (this.data.data.action && this.data.data.action === 'healing') {
       const actorBonus = await getBonuses((this.actor as unknown) as ActorCarRoy, 'healing');
       parts.push(actorBonus.string, actorBonus.number || '');
-      console.log(actorBonus, parts);
     } else if (['spell', 'weapon'].includes(this.data.type) && this.actor) {
       const actorBonus = await getBonuses((this.actor as unknown) as ActorCarRoy, this.data.type === 'spell' ? 'mDamage' : 'damage');
       actorBonus.number += parseInt(this.data.data?.enchantment?.value || 0);
@@ -729,6 +747,60 @@ export default class ItemCarRoy extends Item {
 
   /* -------------------------------------------- */
 
+  /**
+   * Place an attack roll using an item (weapon, feat, spell, or equipment)
+   * Rely upon the d20Roll logic for the core implementation
+   *
+   * @param {object} options        Roll options which are configured and provided to the d20Roll function
+   * @return {Promise<Roll|null>}   A Promise which resolves to the created Roll instance
+   */
+  async rollSpellFailure(options: Record<string, any> = {}): Promise<Roll | null> {
+    let title = `${this.name} - ${game.i18n.localize('CarRoy.SpellFailure')}`;
+    const rollData = this.getRollData();
+
+    // Define Roll bonuses
+    const parts: (string | number)[] = [];
+
+    if (!this.actor) {
+      return null;
+    }
+    const fail = this.actor.itemTypes.armor.reduce((a, b) => {
+      if (!['light', 'medium', 'heavy'].includes(b.data.data.armorType)) return a;
+      return Math.max(a, ['light', 'medium', 'heavy'].indexOf(b.data.data.armorType) + 1);
+    }, 0);
+    title = `${title} (${game.i18n.localize(`CarRoy.${['Shield', 'Light', 'Medium', 'Heavy'][fail]}`)})`;
+
+    // Compose roll options
+    const rollConfig = mergeObject(
+      {
+        parts: parts.filter((item) => item),
+        actor: this.actor,
+        data: rollData,
+        title: title,
+        flavor: title,
+        speaker: ChatMessage.getSpeaker({ actor: this.actor ?? undefined }),
+        dialogOptions: {
+          width: 400,
+          top: options.event ? options.event.clientY - 80 : null,
+          left: window.innerWidth - 710,
+        },
+        messageData: { 'flags.carroy.roll': { type: 'attack', itemId: this.id } },
+        targetValue: fail + 1,
+      },
+      options
+    );
+    rollConfig.event = options.event;
+
+    // Expanded critical hit thresholds
+    if (fail) [rollConfig.fumble, rollConfig.critical] = [fail, fail + 1];
+
+    // Invoke the d20 roll helper
+    const roll = await spellFailureRoll(rollConfig);
+    if (roll) ((roll as unknown) as { fumble: number }).fumble = fail;
+
+    return roll;
+  }
+
   /* -------------------------------------------- */
 
   /**
@@ -750,6 +822,7 @@ export default class ItemCarRoy extends Item {
     // Include a proficiency score
     const prof = 'proficient' in rollData.item ? rollData.item.proficient || 0 : 1;
     rollData['prof'] = Math.floor(prof * (rollData.attributes.prof || 0));
+
     return rollData;
   }
 
