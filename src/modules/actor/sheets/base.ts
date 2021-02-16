@@ -52,6 +52,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
       cssClass: isOwner ? 'editable' : 'locked',
       isHero: this.entity.data.type === 'hero',
       isSummon: this.entity.data.type === 'summon',
+      isGM: game.user.isGM,
       config: CONFIG.CarrotRoyale,
     };
 
