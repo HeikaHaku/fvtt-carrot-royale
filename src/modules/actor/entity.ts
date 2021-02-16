@@ -86,6 +86,7 @@ export default class ActorCarRoy extends Actor {
         const type = b.data.armorType;
         if (type === 'shield') {
           a.shield = a.shield < b.data.ac ? b.data.ac : a.shield;
+          a.shield += parseInt(b.data?.enchantment?.value || 0);
           return a;
         }
         const cur = ['light', 'medium', 'heavy'].indexOf(type);
@@ -96,24 +97,8 @@ export default class ActorCarRoy extends Actor {
       },
       { shield: 0, type: -1, ac: 0 }
     );
-    /*ac.value =
-      6 +
-      data.abilities.dex.mod +
-      (raceConfig?.bonus?.stats?.ac || 0) +
-      (itemBonuses?.ac || 0) +
-      (armorAC.ac || 0) +
-      (armorAC.shield || 0) +
-      (classBonuses?.ac || 0);*/
-    //ac.value = 6 + data.abilities.dex.mod + getBonuses(this, 'ac', true);
-    ac.value =
-      6 +
-      data.abilities.dex.mod +
-      (raceConfig?.bonus?.stats?.ac || 0) +
-      (itemBonuses?.ac || 0) +
-      (armorAC.ac || 0) +
-      (armorAC.shield || 0) +
-      (classBonuses?.ac || 0) +
-      (await getBonuses(this, 'ac', true)).number;
+
+    ac.value = 6 + data.abilities.dex.mod + (armorAC.ac || 0) + (armorAC.shield || 0) + (await getBonuses(this, 'ac', true)).number;
 
     const hp = data.attributes.hp;
     if (hp.max && hp.value > hp.max) hp.value = hp.max;
@@ -290,6 +275,33 @@ export default class ActorCarRoy extends Actor {
       return levels;
     }, 0);
     data.details.level = level;
+  }
+
+  /* -------------------------------------------- */
+  /*  Socket Listeners and Handlers
+  /* -------------------------------------------- */
+
+  /** @override */
+  static async create(data: any, options = {}) {
+    console.log(data);
+    data.token = data.token || {};
+    if (data.type === 'hero') {
+      mergeObject(
+        data.token,
+        {
+          displayName: 50,
+          vision: true,
+          dimSight: 0,
+          brightSight: 60,
+          actorLink: true,
+          disposition: 1,
+          displayBars: 50,
+          bar1: { attribute: 'attributes.hp' },
+        },
+        { overwrite: false }
+      );
+    }
+    return super.create(data, options);
   }
 
   /* -------------------------------------------- */

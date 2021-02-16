@@ -48,11 +48,13 @@ export async function getBonuses(actor: ActorCarRoy, bonusName: string, buffOnly
 
   let sum = { number: 0, string: '' };
 
-  const actors: ActorCarRoy[] =
-    (await game.actors?.filter((actr: { data: { type: string }; hasPlayerOwner: boolean }) => actr.data.type === 'hero' && actr.hasPlayerOwner)) || [];
-  const [team, enemyTeam] = actors.reduce(
+  const [team, enemyTeam] = ((game.scenes?.active?.data as unknown) as { tokens: any[] })?.tokens.reduce(
     (a, b) => {
-      a[actor.data.data.team == b.data.data.team ? 0 : 1].push(b);
+      if (b.actorLink) {
+        let actr = game.actors?.get(b.actorId);
+        if (actr?.data?.type === 'hero') if (actr.data.data.team != 0) a[actor.data.data.team == actr.data.data.team ? 0 : 1].push(actr);
+        //a.push(game.actors.get(b.actorId));
+      }
       return a;
     },
     [[] as ActorCarRoy[], [] as ActorCarRoy[]]
@@ -107,6 +109,7 @@ export async function getBonuses(actor: ActorCarRoy, bonusName: string, buffOnly
   if (race?.bonus?.stats?.[bonusName]) {
     if (!isNaN(parseInt(race?.bonus?.stats?.[bonusName]))) sum.number += race?.bonus?.stats?.[bonusName] || 0;
   }
+
   for (let item of actor.items.filter((item: { type: string }) => !['class', 'race'].includes(item.type))) {
     for (let stats of (item.data?.data?.bonus?.stats as [string, string]) || []) {
       if (stats[1] === bonusName) {
