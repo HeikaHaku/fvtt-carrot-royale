@@ -129,8 +129,13 @@ export default class ActorCarRoy extends Actor {
       }
       return obj;
     }, {});
+    data.levels = Object.keys(CONFIG.CarrotRoyale.classFeatures).reduce((a, b) => {
+      a[b] = data.classes[b]?.levels || 0;
+      return a;
+    }, {} as { [key: string]: number });
     //data.prof = this.data.data.attributes.prof || 0;
     data.prof = 0;
+    console.log(data);
     return data;
   }
 
