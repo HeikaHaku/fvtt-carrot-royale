@@ -1,3 +1,9 @@
+#### 0.4.5 (2021-02-17)
+
+##### Other Changes
+
+*  Check that all of them use the new scaling. ([bc07d51d](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/bc07d51d563a176707ec8f56d6dcb8e9edd92608))
+
 #### 0.4.4 (2021-02-16)
 
 ##### New Features

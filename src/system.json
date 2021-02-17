@@ -2,7 +2,7 @@
   "name": "carroy",
   "title": "Carrot Royale",
   "description": "A Foundry VTT Implementation of Carrot Royale",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "templateVersion": 2,
   "author": "HeikaHaku",
   "scripts": [],
