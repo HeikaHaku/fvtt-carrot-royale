@@ -62,6 +62,12 @@
         "classes": [],
         "features": [],
         "level": 0
+      },
+      "attributes": {
+        "death": {
+          "success": 0,
+          "failure": 0
+        }
       }
     },
     "summon": {
@@ -136,6 +142,9 @@
       },
       "leveled": {
         "level": 1
+      },
+      "summonable": {
+        "summons": []
       }
     },
     "armor": {
@@ -162,7 +171,7 @@
       "bonus": 0
     },
     "feature": {
-      "templates": ["common", "damage", "duration", "usable", "leveled"]
+      "templates": ["common", "damage", "duration", "usable", "leveled", "summonable"]
     },
     "magic": {
       "templates": ["bonus", "common", "damage", "duration", "equippable", "usable"],
@@ -176,7 +185,7 @@
       }
     },
     "spell": {
-      "templates": ["common", "damage", "duration", "usable", "leveled"],
+      "templates": ["common", "damage", "duration", "usable", "leveled", "summonable"],
       "atWill": false,
       "components": {
         "concentration": false
