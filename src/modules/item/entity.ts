@@ -276,7 +276,7 @@ export default class ItemCarRoy extends Item {
       const configuration: any = await AbilityUseDialog.create(this);
       if (!configuration) return;
 
-      const summon = CONFIG.CarrotRoyale.summonFeatures[configuration?.summonEntity.toLowerCase() || ''];
+      const summon = CONFIG.CarrotRoyale.summonFeatures[configuration?.summonEntity?.toLowerCase() || ''];
 
       if (summon) {
         const items: never[] = [];
