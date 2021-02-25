@@ -114,9 +114,9 @@ export default class ActorCarRoy extends Actor {
       if (tmp > hp.max) tmp = hp.max;
       hp.value = hp.value == 0 ? 0 : hp.max - tmp;
 
-      /*try {
+      try {
         if (this.owner) await this.update({ data: data }, { diff: true });
-      } catch {}*/
+      } catch {}
     } else if (this.data.type === 'summon') {
       const smn = CONFIG.CarrotRoyale.summonFeatures[this.name.toLowerCase()];
 

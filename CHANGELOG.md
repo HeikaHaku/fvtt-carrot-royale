@@ -1,3 +1,14 @@
+#### 0.4.7 (2021-02-25)
+
+##### Bug Fixes
+
+*  Fix for spells not working. ([896bf98e](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/896bf98e431ac307bd19fde91a258d5791099fd0))
+*  Fixed Missing Summons. ([4f9ac17f](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/4f9ac17ff9637a856a9ebdcfb587f29ef3ec7d7c))
+
+##### Other Changes
+
+*  Put back Temporary Fix for stats. ([6c33508a](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/6c33508aa9b9e80b58cef7603ae2cd96d8a3bc7c))
+
 #### 0.4.6 (2021-02-25)
 
 ##### New Features
