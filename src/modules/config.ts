@@ -1,5 +1,6 @@
 import { ClassFeatures } from './classFeatures.js';
 import { RaceFeatures } from './raceFeatures.js';
+import { SummonFeatures } from './summonFeatures.js';
 
 // Namespace Configuration Values
 export const CarrotRoyale: any = {};
@@ -229,3 +230,6 @@ CarrotRoyale.classFeatures = ClassFeatures;
 
 // Race Features
 CarrotRoyale.raceFeatures = RaceFeatures;
+
+//Summon Features
+CarrotRoyale.summonFeatures = SummonFeatures;
