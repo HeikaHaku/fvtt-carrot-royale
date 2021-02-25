@@ -1,3 +1,27 @@
+#### 0.4.6 (2021-02-25)
+
+##### New Features
+
+*  Dice Coloration on Spell Failure Rolls. ([48ffacd3](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/48ffacd3424b27b8c45f3b7700133626eed15884))
+*  Compendium Updates. ([d32418f0](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/d32418f0cf97bbc0be1840f1e814c37183793185))
+*  Death Saves and Summons. ([d7207afe](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/d7207afe3609cdee496e6def0f61d404ba3228b4))
+*  Stats for Summons. ([0bd46ff8](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/0bd46ff87982cec72bc22822504b4c3a941f121c))
+*  Data Model Update. ([5ae042fc](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/5ae042fcb4de748879e5c65a5b078b4a6bb73cda))
+
+##### Bug Fixes
+
+*  Image Name Standardization for Summons. ([b21c0cc7](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/b21c0cc7b13e0e2048383ce8c89e3804fd0f53c4))
+
+##### Other Changes
+
+*  More Strings. ([66f0cc55](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/66f0cc5572c832a0fe11d174b952f33815ae9f1e))
+*  Remove Console Logs. ([c3208c78](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/c3208c78faed921c03219f2a7486e0c6aed52e56))
+*  Data Migration Update. ([514de791](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/514de7915f89a81ef394dcb594a42ad0224acac6))
+
+##### Code Style Changes
+
+*  Styles for Summoning. ([fbde2177](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/fbde217737895d755c96f683366c0020925394df))
+
 #### 0.4.5 (2021-02-17)
 
 ##### Other Changes
