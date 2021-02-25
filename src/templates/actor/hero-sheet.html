@@ -73,7 +73,7 @@
           </div>
           <footer class="attribute-footer">
             <span>{{localize 'CarRoy.Modifier'}}</span>
-            <input name="data.attributes.init.value" type="text" data-dtype="Number" placeholder="0" value="{{numberFormat data.attributes.init.value decimals=0 sign=true}}" />
+            <input name="data.attributes.init.bonus" type="text" data-dtype="Number" placeholder="0" value="{{numberFormat data.attributes.init.bonus decimals=0 sign=true}}" />
           </footer>
         </li>
       </ul>
@@ -108,6 +108,21 @@
             <!--div class="ability"><label class="ability-label">{{firstUpper (localize (prepAbilityLocaleAbbr name))}}</label>{{ability.value}}</div-->
           {{/each}}
         </ul>
+      </section>
+
+      <section class="center-pane flexcol">
+        {{!-- Counters --}}
+        <section class="counters">
+          <div class="counter flexrow death-saves">
+            <h4 class="rollable" data-action="rollDeathSave">{{localize 'CarRoy.DeathSave'}}</h4>
+            <div class="counter-value">
+              <i class="fas fa-check"></i>
+              <input name="data.attributes.death.success" type="number" placeholder="0" value="{{data.attributes.death.success}}" />
+              <i class="fas fa-times"></i>
+              <input name="data.attributes.death.failure" type="number" placeholder="0" value="{{data.attributes.death.failure}}" />
+            </div>
+          </div>
+        </section>
       </section>
     </div>
 

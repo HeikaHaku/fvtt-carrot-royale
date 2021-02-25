@@ -12,4 +12,16 @@
       </label>
     </div>
   {{/if}}
+  {{#if canSummon}}
+    <div class="form-fields">
+      <label>{{localize 'CarRoy.SummonEntity'}}</label>
+      <select name="summonEntity">
+        {{#select summonEntity}}
+          {{#each item.data.summons as |summon|}}
+            <option value="{{summon}}">{{summon}}</option>
+          {{/each}}
+        {{/select}}
+      </select>
+    </div>
+  {{/if}}
 </form>

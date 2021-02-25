@@ -127,6 +127,16 @@ export default class ItemCarRoy extends Item {
   }
 
   /* -------------------------------------------- */
+
+  /**
+   * Does the Item have an area of effect target
+   * @type {boolean}
+   */
+  get hasSummons() {
+    return this.data.data?.summons?.length > 0 || false;
+  }
+
+  /* -------------------------------------------- */
   /*	Data Preparation														*/
   /* -------------------------------------------- */
   /**
@@ -253,6 +263,7 @@ export default class ItemCarRoy extends Item {
 
     // Define follow-up actions resulting from the item usage
     let createMeasuredTemplate = hasArea; // Trigger a template creation
+    let createSummon = this.hasSummons;
     //let consumeRecharge = !!recharge.value; // Consume recharge
     //let consumeResource = !!resource.target && resource.type !== 'ammo'; // Consume a linked (non-ammo) resource
     //let consumeSpellSlot = requireSpellSlot; // Consume a spell slot
@@ -260,10 +271,48 @@ export default class ItemCarRoy extends Item {
     //let consumeQuantity = uses.autoDestroy; // Consume quantity of the item in lieu of uses
 
     // Display a configuration dialog to customize the usage
-    const needsConfiguration = createMeasuredTemplate; // || consumeRecharge || consumeResource || consumeSpellSlot || consumeUsage;
+    const needsConfiguration = createMeasuredTemplate || createSummon; // || consumeRecharge || consumeResource || consumeSpellSlot || consumeUsage;
     if (configureDialog && needsConfiguration) {
-      const configuration = await AbilityUseDialog.create(this);
+      const configuration: any = await AbilityUseDialog.create(this);
       if (!configuration) return;
+
+      const summon = CONFIG.CarrotRoyale.summonFeatures[configuration?.summonEntity.toLowerCase() || ''];
+
+      if (summon) {
+        const items: never[] = [];
+        const team = this.actor?.data.data?.team || 0;
+        let img = this.img;
+        if (team && summon.img) img = 'systems/carroy/assets/summons/' + summon.img + team + '.jpg';
+        if (summon.attacks) {
+        }
+
+        const smn = await ActorCarRoy.create({
+          name: configuration.summonEntity,
+          type: 'summon',
+          img,
+          data: {
+            attributes: {
+              ac: {
+                value: summon.stats?.ac || 0,
+              },
+              hp: {
+                max: summon.stats?.hp || 0,
+                value: summon.stats?.hp || 0,
+              },
+              init: {
+                value: summon.stats?.init || 0,
+                bonus: 0,
+              },
+              movement: {
+                value: summon.stats?.movement || 0,
+                bonus: 0,
+              },
+            },
+            items: items,
+            team: this.actor?.data.data?.team || 0,
+          },
+        });
+      }
 
       // Determine consumption preferences
       //createMeasuredTemplate = Boolean(configuration.placeTemplate);

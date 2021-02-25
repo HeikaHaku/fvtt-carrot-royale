@@ -56,7 +56,7 @@
           </div>
           <footer class="attribute-footer">
             <span>{{localize 'CarRoy.Modifier'}}</span>
-            <input name="data.attributes.init.value" type="text" data-dtype="Number" placeholder="0" value="{{numberFormat data.attributes.init.value decimals=0 sign=true}}" />
+            <input name="data.attributes.init.bonus" type="text" data-dtype="Number" placeholder="0" value="{{numberFormat data.attributes.init.bonus decimals=0 sign=true}}" />
           </footer>
         </li>
       </ul>
@@ -79,9 +79,11 @@
           {{#each data.abilities as |ability name|}}
             <li class="ability" data-ability="{{name}}">
               <h4 class="ability-name box-title rollable">{{firstUpper (localize (prepAbilityLocale name))}}</h4>
-              <input class="ability-score" name="data.abilities.{{name}}.value" type="text" value="{{ability.value}}" data-dtype="Number" placeholder="10" />
+              <span class="ability-score">{{ability.total}}</span>
               <div class="ability-modifiers flexrow">
-                <span class="ability-mod" title="{{localize 'CarRoy.Modifier'}}">{{ability.value}}</span>
+                <span class="ability-mod" title="{{localize 'CarRoy.Modifier'}}">{{numberFormat ability.mod decimals=0 sign=true}}</span>
+                <span class="ability-proficiency"></span>
+                <span class="ability-save" title="{{localize 'CarRoy.ActionSave'}}">{{numberFormat ability.save decimals=0 sign=true}}</span>
               </div>
             </li>
             <!--div class="ability"><label class="ability-label">{{firstUpper (localize (prepAbilityLocaleAbbr name))}}</label>{{ability.value}}</div-->
