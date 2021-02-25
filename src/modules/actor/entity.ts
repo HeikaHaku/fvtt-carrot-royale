@@ -121,7 +121,7 @@ export default class ActorCarRoy extends Actor {
       const smn = CONFIG.CarrotRoyale.summonFeatures[this.name.toLowerCase()];
 
       // Ability modifiers and saves
-      const saves = smn.stats?.saves || 0;
+      const saves = smn?.stats?.saves || 0;
       for (let [id, abl] of Object.entries(data.abilities) as [string, any]) {
         abl.total = abl.value;
         abl.mod = Math.floor((abl.total - 10) / 2);

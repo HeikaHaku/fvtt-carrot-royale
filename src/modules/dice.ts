@@ -393,6 +393,16 @@ export async function spellFailureRoll({
   // Prepare Message Data
   messageData.flavor = flavor || title;
   messageData.speaker = speaker || ChatMessage.getSpeaker();
+  messageData.flags = Object.assign(
+    {
+      carroy: {
+        roll: {
+          type: 'spellFailure',
+        },
+      },
+    },
+    messageData.flags || {}
+  );
   const messageOptions = { rollMode: rollMode || game.settings.get('core', 'rollMode') };
 
   // Define the inner roll function
