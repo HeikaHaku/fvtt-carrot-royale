@@ -251,6 +251,9 @@
   "CarRoy.SpellName": "Nome dell'Incantesimo",
   "CarRoy.WeaponName": "Nome dell'Arma",
 
+  "CarRoy.SummonList": "Lista Evocationi",
+  "CarRoy.SummonEntity": "Quale creatura vuoi evocare?",
+
   "CarRoy.Add": "Aggiungi",
   "CarRoy.Usage": "Usa",
 
@@ -304,6 +307,7 @@
   "CarRoy.CriticalHit": "Colpo Critico",
   "CarRoy.Critical": "Critico",
   "CarRoy.AbilityUseHint": "Decidi come preferisci utilizzare {name} {type}.",
+  "CarRoy.AbilityUseUse": "Usa Abilità",
   "CarRoy.PlaceTemplate": "Posiziona Area di Effetto",
   "CarRoy.AbilityUseCast": "Utilizzo Abilità",
   "CarRoy.UsageConfiguration": "Usa Configurazione",
@@ -324,6 +328,10 @@
   "CarRoy.Team": "Squadra",
   "CarRoy.Team1": "Squadra 1",
   "CarRoy.Team2": "Squadra 2",
+
+  "CarRoy.DeathSaveUnnecessary": "TS contro Morte non necessario.",
+  "CarRoy.DeathSaveSuccess": "{name} si alza.",
+  "CarRoy.DeathSaveFailure": "{name} è morto.",
 
   "CarRoy.ActionWarningNoItem": "L'oggetto richiesto {item} non è piu disponibile su {name}",
   "CarRoy.ActionWarningNoToken": "Devi poter muovere almeno un toke per effettuare questa azione",
