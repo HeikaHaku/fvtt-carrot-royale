@@ -30,6 +30,20 @@
     <div class="tab details" data-group="primary" data-tab="details">
       <h3 class="form-header">{{localize 'CarRoy.SpellDetails'}}</h3>
 
+      {{!-- Summonable --}}
+      <h4 class="summon-header">
+        {{localize 'CarRoy.SummonList'}}
+        <a class="summon-control add-summon"><i class="fas fa-plus"></i></a>
+      </h4>
+      <ol class="summon-parts form-group">
+        {{#each data.summons as |part i|}}
+          <li class="summon-part flexrow" data-summon-part="{{i}}">
+            <input type="text" name="data.summons.{{i}}" value="{{lookup this "0"}}">
+            <a class="summon-control delete-summon"><i class="fas fa-minus"></i></a>
+          </li>
+        {{/each}}
+      </ol>
+
       {{!-- Spell Type --}}
       <div class="form-group stacked">
         <label>{{localize 'CarRoy.SpellProperties'}}</label>

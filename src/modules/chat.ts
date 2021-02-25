@@ -11,18 +11,29 @@ export const highlightCriticalSuccessFailure = function (message: ChatMessage, h
 
   // Ensure it is an un-modified d20 roll
   const isD20 = d.faces === 20 && d.values.length === 1;
-  if (!isD20) return;
+  const type = message.data?.flags?.carroy?.roll?.type;
+  const override = ['spellFailure'].includes(type);
+  if (!isD20 && !override) return;
   const isModifiedRoll = 'success' in d.results[0] || d.options.marginSuccess || d.options.marginFailure;
   if (isModifiedRoll) return;
 
   // Highlight successes and failures
   const critical = d.options.critical || 20;
   const fumble = d.options.fumble || 1;
-  if (d.total >= critical) html.find('.dice-total').addClass('critical');
-  else if (d.total <= fumble) html.find('.dice-total').addClass('fumble');
-  else if (d.options.target) {
-    if (roll.total >= d.options.target) html.find('.dice-total').addClass('success');
-    else html.find('.dice-total').addClass('failure');
+  if (type === 'spellFailure') {
+    if (d.total >= critical) html.find('.dice-total').addClass('critical');
+    else if (d.total <= fumble) html.find('.dice-total').addClass('fumble');
+    if (d.options.target) {
+      if (roll.total >= d.options.target) html.find('.dice-total').addClass('success');
+      else html.find('.dice-total').addClass('failure');
+    }
+  } else {
+    if (d.total >= critical) html.find('.dice-total').addClass('critical');
+    else if (d.total <= fumble) html.find('.dice-total').addClass('fumble');
+    else if (d.options.target) {
+      if (roll.total >= d.options.target) html.find('.dice-total').addClass('success');
+      else html.find('.dice-total').addClass('failure');
+    }
   }
 };
 

@@ -150,7 +150,7 @@ Hooks.once('ready', function () {
   if (!game.user.isGM) return;
   const _cv = game.settings.get('carroy', 'systemMigrationVersion');
   const currentVersion = isNaN(_cv) ? game.system.data.version : _cv;
-  const NEEDS_MIGRATION_VERSION = '0.2.0';
+  const NEEDS_MIGRATION_VERSION = '0.4.6';
   const COMPATIBLE_MIGRATION_VERSION = '0.0.2';
   const needsMigration = currentVersion && isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion);
   if (!needsMigration) return;

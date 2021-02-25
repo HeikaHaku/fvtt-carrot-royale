@@ -393,6 +393,16 @@ export async function spellFailureRoll({
   // Prepare Message Data
   messageData.flavor = flavor || title;
   messageData.speaker = speaker || ChatMessage.getSpeaker();
+  messageData.flags = Object.assign(
+    {
+      carroy: {
+        roll: {
+          type: 'spellFailure',
+        },
+      },
+    },
+    messageData.flags || {}
+  );
   const messageOptions = { rollMode: rollMode || game.settings.get('core', 'rollMode') };
 
   // Define the inner roll function
@@ -415,7 +425,7 @@ export async function spellFailureRoll({
 
     // Flag d20 options for any 20-sided dice in the roll
     for (let d of roll.dice) {
-      console.log(d, targetValue);
+      //console.log(d, targetValue);
       if (d.faces === 10) {
         d.options.critical = critical;
         d.options.fumble = fumble;

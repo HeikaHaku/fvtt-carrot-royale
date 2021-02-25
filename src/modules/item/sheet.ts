@@ -199,6 +199,13 @@ export default class ItemSheetCarRoy extends ItemSheet {
       }
     }
 
+    if (['spell', 'feature'].includes(this.item.data.type)) {
+      const summons = data.data?.summons;
+      if (summons) {
+        data.data.summons = Object.values(summons || {}).map((d: any) => [d || '']);
+      }
+    }
+
     // Return the flattened submission data
     return flattenObject(data);
   }
@@ -211,6 +218,7 @@ export default class ItemSheetCarRoy extends ItemSheet {
     if (this.isEditable) {
       html.find('.bonus-control').click(this._onBonusControl.bind(this));
       html.find('.choice-control').click(this._onChoiceControl.bind(this));
+      html.find('.summon-control').click(this._onSummonControl.bind(this));
       /*html.find('.trait-selector.class-skills').click(this._onConfigureClassSkills.bind(this));
         html.find('.effect-control').click((ev: any) => {
           if (this.item.isOwned)
@@ -298,6 +306,35 @@ export default class ItemSheetCarRoy extends ItemSheet {
       const group = Number(groupli.dataset.choiceGroup);
       choices[group].splice(Number(li.dataset.ChoicePart), 1);
       return this.item.update({ 'data.bonus.choices': choices });
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Add or remove a Summon part from the Summons List
+   * @param {Event} event     The original click event
+   * @return {Promise}
+   * @private
+   */
+  async _onSummonControl(event: any) {
+    event.preventDefault();
+    const a = event.currentTarget;
+
+    // Add new damage component
+    if (a.classList.contains('add-summon')) {
+      await this._onSubmit(event); // Submit any unsaved changes
+      const summons = this.item.data.data.summons;
+      return this.item.update({ 'data.summons': summons.concat([['']]) });
+    }
+
+    // Remove a damage component
+    if (a.classList.contains('delete-summon')) {
+      await this._onSubmit(event); // Submit any unsaved changes
+      const li = a.closest('.summon-part');
+      const summons = duplicate(this.item.data.data.summons);
+      summons.splice(Number(li.dataset.summonPart), 1);
+      return this.item.update({ 'data.summons': summons });
     }
   }
 

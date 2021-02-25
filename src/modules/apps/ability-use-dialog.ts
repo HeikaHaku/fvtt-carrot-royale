@@ -8,7 +8,7 @@ export default class AbilityUseDialog extends Dialog {
   [x: string]: any;
   constructor(item: ItemCarRoy, dialogData = {}, options = {}) {
     super(dialogData, options);
-    this.options.classes = ['carot-royale', 'dialog'];
+    this.options.classes = ['carrot-royale', 'dialog'];
 
     /**
      * Store a reference to the Item entity being used
@@ -52,6 +52,7 @@ export default class AbilityUseDialog extends Dialog {
       createTemplate: game.user.can('TEMPLATE_CREATE') && item.hasAreaTarget,
       errors: [],
       isSpell: false,
+      canSummon: game.user.can('ACTOR_CREATE') && item.hasSummons,
     };
     if (item.data.type === 'spell') this._getSpellData(actorData, itemData, data);
 

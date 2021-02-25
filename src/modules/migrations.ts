@@ -121,12 +121,25 @@ export const migrateCompendium = async function (pack: any) {
 /**
  * Migrate a single Actor entity to incorporate latest data model changes
  * Return an Object of updateData to be applied
- * @param {Actor} actor   The actor to Update
+ * @param {ActorData} actor   The actor to Update
  * @return {Object}       The updateData to apply
  */
 
-export const migrateActorData = (actor: Actor<any>) => {
-  const updateData: any = {};
+export const migrateActorData = (actor: ActorData<any>) => {
+  console.log(typeof actor);
+  const updateData: any =
+    actor.type === 'hero'
+      ? {
+          data: {
+            attributes: {
+              death: {
+                success: 0,
+                failure: 0,
+              },
+            },
+          },
+        }
+      : {};
 
   if (!actor.items) return updateData;
   let hasItemUpdates = false;
@@ -176,13 +189,20 @@ function cleanActorData(actorData: ActorData<any>) {
  */
 export const migrateItemData = function (item: any) {
   const updateData =
-    item.type === 'spell' || item.type === 'feature' || item.type === 'magic'
+    /*item.type === 'spell' || item.type === 'feature' || item.type === 'magic'
       ? {
           data: {
             uses: {
               value: 0,
               limit: 0,
             },
+          },
+        }
+      : {};*/
+    item.type === 'spell' || item.type === 'feature'
+      ? {
+          data: {
+            summons: [],
           },
         }
       : {};

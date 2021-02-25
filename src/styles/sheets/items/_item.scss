@@ -211,14 +211,31 @@
     flex: 0 0 98px;
   }
 
-  .bonus-parts.form-group {
-    flex-direction: column;
+  .form-group {
+    &.bonus-parts,
+    &.summon-parts {
+      flex-direction: column;
+    }
 
-    .bonus-part {
+    &.bonus-parts .bonus-part {
       flex: 1;
       width: 100%;
 
       .bonus-control.delete-bonus {
+        flex: 0;
+      }
+
+      & > * {
+        margin-bottom: 5px;
+        margin-right: 5px;
+      }
+    }
+
+    &.summon-parts .summon-part {
+      flex: 1;
+      width: 100%;
+
+      .summon-control.delete-summon {
         flex: 0;
       }
 
