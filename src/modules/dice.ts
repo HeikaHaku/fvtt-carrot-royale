@@ -415,7 +415,7 @@ export async function spellFailureRoll({
 
     // Flag d20 options for any 20-sided dice in the roll
     for (let d of roll.dice) {
-      console.log(d, targetValue);
+      //console.log(d, targetValue);
       if (d.faces === 10) {
         d.options.critical = critical;
         d.options.fumble = fumble;
