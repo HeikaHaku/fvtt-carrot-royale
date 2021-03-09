@@ -123,6 +123,20 @@
             </div>
           </div>
         </section>
+
+        <section class="cb">
+          <div class="cb-controls">
+            {{#each cb as |class cid|}}
+              <span style="display: block">
+                <a class="cb-toggle" data-name="{{cid}}">{{cid}}</a> — {{class}}
+              </span>
+            {{/each}}
+            <h4>
+              <a class="cb-submit">{{localize 'CarRoy.BuildCharacter'}}</a>
+            </h4>
+            <!--a class="config-button" data-action="class" title="{{localize 'CarRoy.ClassConfig'}}"><i class="fas fa-cog"></i></a-->
+          </div>
+        </section>
       </section>
     </div>
 

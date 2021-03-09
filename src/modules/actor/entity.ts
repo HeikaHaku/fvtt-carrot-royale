@@ -168,6 +168,7 @@ export default class ActorCarRoy extends Actor {
     className = className.toLowerCase();
 
     const clsConfig = CONFIG.CarrotRoyale.classFeatures[className];
+    console.log(clsConfig);
     if (!clsConfig) return [];
 
     let ids: string[] = [];
@@ -187,9 +188,9 @@ export default class ActorCarRoy extends Actor {
     const features: ItemCarRoy[] = await Promise.all(
       ids.map(async (id) => {
         //console.log(id);
-        let item = await fromUuid(id);
-        if (overrides[id]?.level) item.data.data.level = overrides[id].level;
-        if (overrides[id]?.uses) item.data.data.uses.limit += overrides[id].uses;
+        let item = duplicate(await fromUuid(id));
+        if (overrides[id]?.level) item.data.level = overrides[id].level;
+        if (overrides[id]?.uses) item.data.uses.limit += overrides[id].uses;
         return item;
       })
     );
@@ -240,16 +241,16 @@ export default class ActorCarRoy extends Actor {
         for (let f of features) {
           if (!existing.has(f.name)) {
             if (CONFIG.CarrotRoyale.featureScale.hasOwnProperty(f.name)) {
-              const { name, formula } = CONFIG.CarrotRoyale.featureScale[f.name][f.data.data.level] || [f.name, f.data.data.formula];
+              const { name, formula } = CONFIG.CarrotRoyale.featureScale[f.name][f.data.level] || [f.name, f.data.formula];
               let f2: any = duplicate(f);
               [f2.name, f2.data.formula] = [name, formula];
               if (!existing.has(f2.name)) toCreate.push(f2);
             } else toCreate.push(f);
           } else {
             const feature = this.items.find((item: { name: string }) => item.name === f.name);
-            if (feature.data.data.level && f.data.data.level && feature.data.data.level < f.data.data.level) {
+            if (feature.data.data.level && f.data.level && feature.data.data.level < f.data.level) {
               if (!CONFIG.CarrotRoyale.featureScale.hasOwnProperty(f.name)) continue;
-              const { name, formula } = CONFIG.CarrotRoyale.featureScale[f.name][f.data.data.level] || [f.name, f.data.data.formula];
+              const { name, formula } = CONFIG.CarrotRoyale.featureScale[f.name][f.data.level] || [f.name, f.data.formula];
               let f2: any = duplicate(f);
               [f2.name, f2.data.formula] = [name, formula];
               if (!existing.has(f2.name)) toCreate.push(f2);
