@@ -15,7 +15,10 @@ gulp.task('sass', () => {
 gulp.task('sass:watch', () => gulp.watch('./sass/**/*.scss', ['sass']));
 
 gulp.task('compile', () => {
-  return gulp.src('src/**/*.ts').pipe(project()).pipe(gulp.dest('dist/'));
+  return gulp
+    .src('src/**/*.ts')
+    .pipe(project().on('error', () => {}))
+    .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('copy', async (cb: Function) => {
