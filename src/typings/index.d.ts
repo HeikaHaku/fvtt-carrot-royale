@@ -9,3 +9,4 @@ import './types/framework/chatmessage';
 import './types/ui/dialog';
 import './types/fvtt-carroy';
 import './types/utils';
+import './types/config';
