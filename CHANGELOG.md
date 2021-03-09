@@ -1,3 +1,20 @@
+### 0.5.0 (2021-03-09)
+
+##### New Features
+
+*  Character Builder Prototype. ([d721c131](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/d721c13139684fcae1de68fe5c14eb30a6b050cd))
+
+##### Bug Fixes
+
+*  Fixed Type Errors. ([a11c27d4](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/a11c27d48ed5418a76de3e3e51af44be2b8774e4))
+*  Type Error fixes. ([6f74a24d](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/6f74a24d03de93377c07c36a92a67b8121032181))
+*  Fix Type Reference in tsconfig. ([1a3bed1a](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/1a3bed1a89a686ae7fc7ecc449a7a27f16a0a12b))
+
+##### Other Changes
+
+*  Ignore Build Errors until Type Errors are fixed. ([f622f1ae](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/f622f1ae25180e0043479ebb09c9215a369841cb))
+*  New Typing changes. ([51013e91](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/51013e91d6cd18b6cc9a8dfe0ecc6d57bc9ac5ee))
+
 #### 0.4.7 (2021-02-25)
 
 ##### Bug Fixes
