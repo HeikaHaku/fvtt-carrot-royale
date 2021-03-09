@@ -11,7 +11,7 @@ export const highlightCriticalSuccessFailure = function (message: ChatMessage, h
 
   // Ensure it is an un-modified d20 roll
   const isD20 = d.faces === 20 && d.values.length === 1;
-  const type = message.data?.flags?.carroy?.roll?.type;
+  const type = (message.data?.flags?.carroy as { roll?: { type?: string } })?.roll?.type || '';
   const override = ['spellFailure'].includes(type);
   if (!isD20 && !override) return;
   const isModifiedRoll = 'success' in d.results[0] || d.options.marginSuccess || d.options.marginFailure;
@@ -49,9 +49,9 @@ export const displayChatActionButtons = function (message: ChatMessage, html: JQ
     if (flavor.text() === html.find('.item-name').text()) flavor.remove();
 
     // If the user is the message author or the actor owner, proceed
-    let actor = game.actors.get(data.message.speaker.actor);
+    let actor = game.actors?.get(data.message.speaker.actor);
     if (actor && actor.owner) return;
-    else if (game.user.isGM || data.author.id === game.user.id) return;
+    else if (game.user?.isGM || data.author.id === game.user?.id) return;
 
     // Otherwise conceal action buttons except for saving throw
     const buttons = chatCard.find('button[data-action]');
@@ -75,8 +75,8 @@ export const displayChatActionButtons = function (message: ChatMessage, html: JQ
  */
 export const addChatMessageContextOptions = function (html: JQuery, options: any[]) {
   let canApply = (li: { data: (arg0: string) => string }) => {
-    const message = game.messages.get(li.data('messageId'));
-    return message.isRoll && message.isContentVisible && canvas.tokens.controlled.length;
+    const message = game.messages?.get(li.data('messageId'));
+    return message?.isRoll && message.isContentVisible && (canvas as Canvas).tokens.controlled.length;
   };
   options.push(
     {
@@ -120,7 +120,7 @@ export const addChatMessageContextOptions = function (html: JQuery, options: any
 function applyChatCardDamage(roll: JQuery, multiplier: number) {
   const amount = roll.find('.dice-total').text();
   return Promise.all(
-    canvas.tokens.controlled.map((t: { actor: any }) => {
+    (canvas as Canvas).tokens.controlled.map((t: { actor: any }) => {
       const a = t.actor;
       return a.applyDamage(amount, multiplier);
     })

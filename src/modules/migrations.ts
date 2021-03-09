@@ -4,12 +4,12 @@
  */
 
 export const migrateWorld = async () => {
-  ui.notifications.info(
+  ui.notifications?.info(
     `Applying Carrot Royale System Migration for ${game.system.data.version}. Please be patient and do not close your game or shut down your server.`
   );
 
   // Migrate World Actors
-  for (let a of game.actors.entities as any) {
+  for (let a of game.actors?.entities as any) {
     try {
       const updateData = migrateActorData(a.data);
       if (!isObjectEmpty(updateData)) {
@@ -23,7 +23,7 @@ export const migrateWorld = async () => {
   }
 
   // Migrate World Items
-  for (let i of game.items.entities) {
+  for (let i of game.items?.entities || []) {
     try {
       const updateData = migrateItemData(i.data);
       if (!isObjectEmpty(updateData)) {
@@ -37,7 +37,7 @@ export const migrateWorld = async () => {
   }
 
   // Migrate Actor Override Tokens
-  for (let s of game.scenes.entities) {
+  for (let s of game.scenes?.entities || []) {
     try {
       const updateData = migrateSceneData(s.data);
       if (!isObjectEmpty(updateData)) {
@@ -59,7 +59,7 @@ export const migrateWorld = async () => {
 
   // Set the migration as complete
   game.settings.set('carroy', 'systemMigrationVersion', game.system.data.version);
-  ui.notifications.info(`Carrot Royale System Migration to version ${game.system.data.version} completed!`, { permanent: true });
+  ui.notifications?.info(`Carrot Royale System Migration to version ${game.system.data.version} completed!`, { permanent: true });
 };
 
 /* -------------------------------------------- */
@@ -169,7 +169,7 @@ function cleanActorData(actorData: ActorData<any>) {
   actorData.data = filterObject(actorData.data, model);
 
   // Scrub system flags
-  const allowedFlags = CONFIG.CarotRoyale.allowedActorFlags.reduce((obj: any, f: any) => {
+  const allowedFlags = CONFIG.CarrotRoyale.allowedActorFlags?.reduce((obj: any, f: any) => {
     obj[f] = null;
     return obj;
   }, {});

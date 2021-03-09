@@ -147,7 +147,7 @@ Hooks.once('ready', function () {
   //Hooks.on('hotbarDrop', (bar: any, data: any, slot: any) => macros.create5eMacro(data, slot));
 
   // Determine whether a system migration is required and feasible
-  if (!game.user.isGM) return;
+  if (!game.user?.isGM) return;
   const _cv = game.settings.get('carroy', 'systemMigrationVersion');
   const currentVersion = isNaN(_cv) ? game.system.data.version : _cv;
   const NEEDS_MIGRATION_VERSION = '0.4.6';
@@ -158,7 +158,7 @@ Hooks.once('ready', function () {
   // Perform the migration
   if (currentVersion && isNewerVersion(COMPATIBLE_MIGRATION_VERSION, currentVersion)) {
     const warning = `Your Carrot Royale system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`;
-    ui.notifications.error(warning, { permanent: true });
+    ui.notifications?.error(warning, { permanent: true });
   }
   migrations.migrateWorld();
 });

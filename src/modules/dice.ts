@@ -118,7 +118,7 @@ export async function d20Roll({
       roll.roll();
     } catch (err) {
       console.error(err);
-      ui.notifications.error(`Dice roll evaluation failed: ${err.message}`);
+      ui.notifications?.error(`Dice roll evaluation failed: ${err.message}`);
       return null;
     }
 
@@ -274,7 +274,7 @@ export async function damageRoll({
       return roll.roll();
     } catch (err) {
       console.error(err);
-      ui.notifications.error(`Dice roll evaluation failed: ${err.message}`);
+      ui.notifications?.error(`Dice roll evaluation failed: ${err.message}`);
       return null;
     }
   };
@@ -419,7 +419,7 @@ export async function spellFailureRoll({
       roll.roll();
     } catch (err) {
       console.error(err);
-      ui.notifications.error(`Dice roll evaluation failed: ${err.message}`);
+      ui.notifications?.error(`Dice roll evaluation failed: ${err.message}`);
       return null;
     }
 

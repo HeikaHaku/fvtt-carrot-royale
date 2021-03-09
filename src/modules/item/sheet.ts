@@ -56,7 +56,7 @@ export default class ItemSheetCarRoy extends ItemSheet {
   getData(): ItemSheet<any, any> {
     this.item.prepareData();
     const data: any = super.getData();
-    data.labels = this.item.labels;
+    data.labels = (this.item as { labels?: string[] }).labels;
     data.config = CONFIG.CarrotRoyale;
 
     // Item Type, Status, and Details
