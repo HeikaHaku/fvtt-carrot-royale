@@ -1,6 +1,7 @@
 import ItemCarRoy from '../../item/entity.js';
 import { CarrotRoyale } from '../../config.js';
 import ActorClassConfig from '../../apps/class-config.js';
+import ActorCarRoy from '../entity.js';
 
 /**
  * Extend the basic ActorSheet class to suppose system-specific logic and functionality.
@@ -9,8 +10,8 @@ import ActorClassConfig from '../../apps/class-config.js';
  */
 export default class ActorSheetCarRoy extends ActorSheet {
   _filters: any;
-  constructor(...args: any[]) {
-    super(...args);
+  constructor(actor: ActorCarRoy, options?: any) {
+    super(actor, options);
 
     this._filters = {
       inventory: new Set(),
@@ -34,7 +35,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
 
   /** @override */
   get template() {
-    if (!game.user.isGM && this.actor.limited) return 'systems/carroy/templates/actor/limited-sheet.html';
+    if (!game.user!.isGM && this.actor.limited) return 'systems/carroy/templates/actor/limited-sheet.html';
     return `systems/carroy/templates/actor/${this.actor.data.type}-sheet.html`;
   }
 
@@ -52,7 +53,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
       cssClass: isOwner ? 'editable' : 'locked',
       isHero: this.entity.data.type === 'hero',
       isSummon: this.entity.data.type === 'summon',
-      isGM: game.user.isGM,
+      isGM: game.user!.isGM,
       config: CONFIG.CarrotRoyale,
     };
 
@@ -65,7 +66,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
     // The Actor and its Items
     data.items.sort((a: any, b: any) => (a.sort || 0) - (b.sort || 0));
     data.data = data.actor.data;
-    data.labels = this.actor.labels || {};
+    data.labels = ((this.actor as unknown) as { labels: object }).labels || {};
     data.filters = this._filters;
 
     // Ability Scores
@@ -80,7 +81,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
     //this._prepareTraits(data.actor.data.traits);
 
     // Prepare owned items
-    this._prepareItems(data);
+    ((this as unknown) as { _prepareItems: (data: any) => unknown })._prepareItems(data);
 
     // Prepare active effects
     //data.effects = prepareActiveEffectCategories(this.entity.effects);
@@ -356,7 +357,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  async _onDropItemCreate(itemData: ItemData) {
+  async _onDropItemCreate(itemData: ActorSheet.OwnedItemData<ActorCarRoy>) {
     // Create a Consumable spell scroll on the Inventory tab
     //if (itemData.type === 'spell' && this._tabs[0].active === 'inventory') {
     //const scroll = await ItemCarRoy.createScrollFromSpell(itemData);
@@ -377,7 +378,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
     event.preventDefault();
     const itemId = event.currentTarget.closest('.item').dataset.itemId;
     const item = this.actor.getOwnedItem(itemId);
-    return item.roll();
+    return (item as ItemCarRoy)?.roll();
   }
 
   /* -------------------------------------------- */
@@ -390,7 +391,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
     event.preventDefault();
     let li = $(event.currentTarget).parents('.item'),
       item = this.actor.getOwnedItem(li.data('item-id')),
-      chatData = item.getChatData({ secrets: this.actor.owner });
+      chatData = (item as ItemCarRoy).getChatData({ secrets: this.actor.owner });
 
     // Toggle summary
     if (li.hasClass('expanded')) {
@@ -444,7 +445,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
     event.preventDefault();
     const li = event.currentTarget.closest('.item');
     const item = this.actor.getOwnedItem(li.dataset.itemId);
-    item.sheet.render(true);
+    item?.sheet?.render(true);
   }
 
   /* -------------------------------------------- */
@@ -471,7 +472,7 @@ export default class ActorSheetCarRoy extends ActorSheet {
   _onRollAbilityTest(event: any) {
     event.preventDefault();
     let ability = event.currentTarget.parentElement.dataset.ability;
-    this.actor.rollAbilitySave(ability, { event: event });
+    (this.actor as ActorCarRoy).rollAbilitySave(ability, { event: event });
   }
 
   /* -------------------------------------------- */

@@ -66,16 +66,16 @@ export class SummonSheet extends ActorSheetCarRoy {
     const button: any = event.currentTarget;
     switch (button.dataset.action) {
       case 'rollDeathSave':
-        return this.actor.rollDeathSave({ event: event });
+        return (this.actor as ActorCarRoy).rollDeathSave({ event: event });
       case 'rollInitiative':
-        return this.actor.rollInitiative({ createCombatants: true });
+        return ((this.actor as unknown) as { rollInitiative: (...args: any) => unknown }).rollInitiative({ createCombatants: true });
     }
   }
 
   /* -------------------------------------------- */
 
   /** @override */
-  async _onDropItemCreate(itemData: ItemData) {
+  async _onDropItemCreate(itemData: any) {
     // Increment the number of class levels a character instead of creating a new item
     return;
 
@@ -88,9 +88,9 @@ export class SummonSheet extends ActorSheetCarRoy {
   /* -------------------------------------------- */
 
   /** @override */
-  _getSubmitData(updateData = {}): any {
+  _getSubmitData(updateData = {}) {
     // Create the expanded update data object
-    const fd = new FormDataExtended(this.form, { editors: this.editors });
+    const fd = new FormDataExtended(this.form as HTMLElement, { editors: this.editors });
     let data = fd.toObject();
     if (updateData) data = mergeObject(data, updateData);
     else data = expandObject(data);

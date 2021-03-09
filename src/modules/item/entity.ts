@@ -10,7 +10,7 @@ export default class ItemCarRoy extends Item {
   //labels: Record<string, any>;
   [key: string]: any;
 
-  constructor(...args: [data: EntityData<unknown>, options: any]) {
+  constructor(...args: any) {
     super(...args);
 
     //this.labels = {};
@@ -244,11 +244,7 @@ export default class ItemCarRoy extends Item {
    *                                        the prepared chat message data (if false).
    * @return {Promise<ChatMessage|object|void>}
    */
-  async roll({
-    configureDialog = true,
-    rollMode,
-    createMessage = true,
-  }: { configureDialog?: boolean; rollMode?: string; createMessage?: boolean } = {}): Promise<ChatMessage | object | void> {
+  async roll({ configureDialog = true, rollMode, createMessage = true }: { configureDialog?: boolean; rollMode?: string; createMessage?: boolean } = {}) {
     let item = this;
     const actor = this.actor;
 
@@ -390,8 +386,8 @@ export default class ItemCarRoy extends Item {
     const html = await renderTemplate(template, templateData);
 
     // Create the ChatMessage data object
-    const chatData: ChatData = {
-      user: game.user._id,
+    const chatData: ChatMessage.Data | { [key: string]: any } = {
+      user: game.user!._id,
       type: CONST.CHAT_MESSAGE_TYPES.OTHER,
       content: html,
       flavor: this.data.data.chatFlavor || this.name,
@@ -405,7 +401,7 @@ export default class ItemCarRoy extends Item {
     }
 
     // Apply the roll mode to adjust message visibility
-    ChatMessage.applyRollMode(chatData, rollMode || game.settings.get('core', 'rollMode'));
+    ChatMessage.applyRollMode(chatData as ChatMessage.Data, rollMode || game.settings.get('core', 'rollMode'));
 
     // Create the Chat Message or return its data
     return createMessage ? ChatMessage.create(chatData) : chatData;
@@ -420,7 +416,7 @@ export default class ItemCarRoy extends Item {
    * @param {Object} htmlOptions    Options used by the TextEditor.enrichHTML function
    * @return {Object}               An object of chat data to render
    */
-  getChatData(htmlOptions = {}) {
+  getChatData(htmlOptions: any = {}) {
     const data = duplicate(this.data.data);
     const labels = this.labels;
 
@@ -545,7 +541,7 @@ export default class ItemCarRoy extends Item {
     if (
       this.data.type === 'spell' &&
       this.actor &&
-      this.actor.itemTypes.armor.find((item) => ['light', 'medium', 'heavy'].includes(item.data.data.armorType))
+      this.actor.itemTypes.armor.find((item: ItemCarRoy) => ['light', 'medium', 'heavy'].includes(item.data.data.armorType))
     ) {
       const fail = await this.rollSpellFailure(options);
       if (fail && fail.total <= ((fail as unknown) as { fumble: number }).fumble) return null;
@@ -568,7 +564,7 @@ export default class ItemCarRoy extends Item {
       actorBonus.number += parseInt(this.data.data?.enchantment?.value || 0);
       if (this.data.type === 'weapon') {
         if (
-          this.actor.itemTypes.class.reduce((a, b) => {
+          this.actor.itemTypes.class.reduce((a: boolean, b: { name: string }) => {
             if (CONFIG.CarrotRoyale.classFeatures[b.name.toLowerCase()].martial) a = true;
             return a;
           }, false)
@@ -683,7 +679,7 @@ export default class ItemCarRoy extends Item {
     if (
       this.data.type === 'spell' &&
       this.actor &&
-      this.actor.itemTypes.armor.find((item) => ['light', 'medium', 'heavy'].includes(item.data.data.armorType))
+      this.actor.itemTypes.armor.find((item: ItemCarRoy) => ['light', 'medium', 'heavy'].includes(item.data.data.armorType))
     ) {
       const fail = await this.rollSpellFailure(options);
       if (fail && fail.total <= ((fail as unknown) as { fumble: number }).fumble) return null;
@@ -813,7 +809,7 @@ export default class ItemCarRoy extends Item {
     if (!this.actor) {
       return null;
     }
-    const fail = this.actor.itemTypes.armor.reduce((a, b) => {
+    const fail = this.actor.itemTypes.armor.reduce((a: number, b: ItemCarRoy) => {
       if (!['light', 'medium', 'heavy'].includes(b.data.data.armorType)) return a;
       return Math.max(a, ['light', 'medium', 'heavy'].indexOf(b.data.data.armorType) + 1);
     }, 0);
@@ -900,22 +896,22 @@ export default class ItemCarRoy extends Item {
     button.disabled = true;
     const card = button.closest('.chat-card');
     const messageId = card.closest('.message').dataset.messageId;
-    const message = game.messages.get(messageId);
+    const message = game.messages!.get(messageId);
     const action = button.dataset.action;
 
     // Validate permission to proceed with the roll
     const isTargetted = action === 'save';
-    if (!(isTargetted || game.user.isGM || message.isAuthor)) return;
+    if (!(isTargetted || game.user!.isGM || message!.isAuthor)) return;
 
     // Recover the actor for the chat card
     const actor = this._getChatCardActor(card);
     if (!actor) return;
 
     // Get the Item from stored flag data or by the item ID on the Actor
-    const storedData = message.getFlag('carroy', 'itemData');
+    const storedData = message!.getFlag('carroy', 'itemData') as DeepPartial<unknown>;
     const item = (storedData ? this.createOwned(storedData, actor) : actor.getOwnedItem(card.dataset.itemId)) as ItemCarRoy | null;
     if (!item) {
-      return ui.notifications.error(game.i18n.format('CarRoy.ActionWarningNoItem', { item: card.dataset.itemId, name: actor.name }));
+      return ui.notifications!.error(game.i18n.format('CarRoy.ActionWarningNoItem', { item: card.dataset.itemId, name: actor.name }));
     }
     const spellLevel = parseInt(card.dataset.spellLevel) || null;
 
@@ -937,16 +933,16 @@ export default class ItemCarRoy extends Item {
       case 'save':
         const targets = this._getChatCardTargets(card);
         for (let token of targets) {
-          const speaker = ChatMessage.getSpeaker({ scene: canvas.scene, token: token });
-          await token.actor.rollAbilitySave(button.dataset.ability, { event, speaker });
+          const speaker = ChatMessage.getSpeaker({ scene: (canvas as Canvas).scene, token: token });
+          await (token.actor as ActorCarRoy).rollAbilitySave(button.dataset.ability, { event, speaker });
         }
         break;
       /*case 'toolCheck':
         await item.rollToolCheck({ event });
         break;*/
       case 'placeTemplate':
-        const template = game.carroy.canvas.AbilityTemplate.fromItem(item);
-        if (template) template.drawPreview();
+        //const template = game.carroy.canvas.AbilityTemplate.fromItem(item);
+        //if (template) template.drawPreview();
         break;
     }
 
@@ -982,7 +978,7 @@ export default class ItemCarRoy extends Item {
     const tokenKey = card.dataset.tokenId;
     if (tokenKey) {
       const [sceneId, tokenId] = tokenKey.split('.');
-      const scene = game.scenes.get(sceneId);
+      const scene = game.scenes!.get(sceneId);
       if (!scene) return null;
       const tokenData = scene.getEmbeddedEntity('Token', tokenId);
       if (!tokenData) return null;
@@ -992,7 +988,7 @@ export default class ItemCarRoy extends Item {
 
     // Case 2 - use Actor ID directory
     const actorId = card.dataset.actorId ?? '';
-    return game.actors.get(actorId) || null;
+    return game.actors!.get(actorId) || null;
   }
 
   /* -------------------------------------------- */
@@ -1004,9 +1000,9 @@ export default class ItemCarRoy extends Item {
    * @private
    */
   static _getChatCardTargets(card: HTMLElement) {
-    let targets = canvas.tokens.controlled.filter((t: { actor: any }) => !!t.actor);
-    if (!targets.length && game.user.character) targets = targets.concat(game.user.character.getActiveTokens());
-    if (!targets.length) ui.notifications.warn(game.i18n.localize('CarRoy.ActionWarningNoToken'));
+    let targets = (canvas as Canvas).tokens.controlled.filter((t: { actor: any }) => !!t.actor);
+    if (!targets.length && game.user!.character) targets = targets.concat(game.user!.character.getActiveTokens());
+    if (!targets.length) ui.notifications!.warn(game.i18n.localize('CarRoy.ActionWarningNoToken'));
     return targets;
   }
 }

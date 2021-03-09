@@ -207,7 +207,7 @@ export class HeroSheet extends ActorSheetCarRoy {
               } else toCreate.push(f);
             }
         }
-        await this.actor.update({ 'data.attributes.hp.value': 500 });
+        await (this.actor as ActorCarRoy).update({ 'data.attributes.hp.value': 500 });
 
         if (toCreate.length) await this.actor.createEmbeddedEntity('OwnedItem', toCreate);
 
@@ -291,16 +291,16 @@ export class HeroSheet extends ActorSheetCarRoy {
           yes: () => this.actor.convertCurrency(),
         });*/
       case 'rollDeathSave':
-        return this.actor.rollDeathSave({ event: event });
+        return (this.actor as ActorCarRoy).rollDeathSave({ event: event });
       case 'rollInitiative':
-        return this.actor.rollInitiative({ createCombatants: true });
+        return ((this.actor as unknown) as { rollInitiative: (...args: any) => unknown }).rollInitiative({ createCombatants: true });
     }
   }
 
   /* -------------------------------------------- */
 
   /** @override */
-  async _onDropItemCreate(itemData: ItemData) {
+  async _onDropItemCreate(itemData: any) {
     // Increment the number of class levels a character instead of creating a new item
     if (itemData.type === 'class') {
       const cls = this.actor.itemTypes.class.find((c: any) => c.name === itemData.name);
@@ -310,7 +310,7 @@ export class HeroSheet extends ActorSheetCarRoy {
         if (next > priorLevel) {
           (itemData as any).levels = next;
           await cls.update({ 'data.levels': next });
-          await this.actor.update({ 'data.attributes.hp.value': this.actor.data.data.attributes.hp.max });
+          await (this.actor as ActorCarRoy).update({ 'data.attributes.hp.value': this.actor.data.data.attributes.hp.max });
           return await prepareMainClass(this.actor, itemData, cls);
         } else return;
       } else if (this.actor.data.data.details.level >= 5) return;
@@ -327,7 +327,7 @@ export class HeroSheet extends ActorSheetCarRoy {
               if (!existing.has(f2.name)) toCreate.push(f2);
             } else toCreate.push(f);
           }
-        if (!priorLevel) await this.actor.update({ 'data.attributes.hp.value': 500 });
+        if (!priorLevel) await (this.actor as ActorCarRoy).update({ 'data.attributes.hp.value': 500 });
 
         if (toCreate.length) await this.actor.createEmbeddedEntity('OwnedItem', toCreate);
         await prepareMainClass(this.actor, itemData);
@@ -368,7 +368,7 @@ export class HeroSheet extends ActorSheetCarRoy {
   /** @override */
   _getSubmitData(updateData = {}): any {
     // Create the expanded update data object
-    const fd = new FormDataExtended(this.form, { editors: this.editors });
+    const fd = new FormDataExtended(this.form as HTMLElement, { editors: this.editors });
     let data = fd.toObject();
     if (updateData) data = mergeObject(data, updateData);
     else data = expandObject(data);
@@ -381,26 +381,26 @@ export class HeroSheet extends ActorSheetCarRoy {
 
   /** @override */
   _getHeaderButtons() {
-    let buttons = super._getHeaderButtons();
+    let buttons = super._getHeaderButtons() || [];
 
     // Reset Button
-    const canConfigure = game.user.isGM || this.actor.owner;
+    const canConfigure = game.user!.isGM || this.actor.owner;
     if (this.options.editable && canConfigure) {
-      buttons = [
+      buttons = ([
         {
           label: game.i18n.localize('CarRoy.ResetSheet'),
           class: 'reset-sheet',
           icon: 'fas fa-eraser',
           onclick: (ev: any) => this._onClearAll(ev),
         },
-      ].concat(buttons);
+      ] as Application.HeaderButton[]).concat(buttons);
     }
 
     return buttons;
   }
 
   async _onClearAll(_event: any) {
-    if (game.user.isGM || this.actor.owner) {
+    if (game.user!.isGM || this.actor.owner) {
       let ids = this.actor.items.reduce((a: any[], b: { id: any }) => {
         a.push(b.id);
         return a;

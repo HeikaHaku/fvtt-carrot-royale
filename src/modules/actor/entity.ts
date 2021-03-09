@@ -49,11 +49,9 @@ export default class ActorCarRoy extends Actor {
         return a;
       }, {});
 
-      const items = actorData.items.filter(
-        (item: { type: string; data: { bonus: { stats: any } } }) => !['race', 'class'].includes(item.type) && item.data.bonus?.stats
-      );
+      const items = actorData.items.filter((item: any) => !['race', 'class'].includes(item.type) && item.data.bonus?.stats);
       const itemBonuses: Record<string, any> = {};
-      items.forEach((item) => {
+      items.forEach((item: any) => {
         for (let [stat, id] of item.data.bonus.stats) {
           if (!itemBonuses[id]) itemBonuses[id] = 0;
           itemBonuses[id] += parseInt(stat);
@@ -83,7 +81,7 @@ export default class ActorCarRoy extends Actor {
 
       const ac = data.attributes.ac;
       const armorAC = armors.reduce(
-        (a, b) => {
+        (a, b: any) => {
           const type = b.data.armorType;
           if (type === 'shield') {
             a.shield = a.shield < b.data.ac ? b.data.ac : a.shield;
@@ -106,7 +104,7 @@ export default class ActorCarRoy extends Actor {
       let tmp = hp.max - hp.value;
       const baseHP = actorData.items
         .filter((item: { type: string }) => item.type === 'class')
-        .reduce((a: any, b: { name: string; data: { levels: number } }) => {
+        .reduce((a: any, b: any) => {
           a += b.data.levels * ((CONFIG.CarrotRoyale.classFeatures[b.name.toLowerCase()]?.abilities?.hp || 0) + data.abilities.con.mod);
           return a;
         }, 0);
@@ -164,7 +162,7 @@ export default class ActorCarRoy extends Actor {
    * @param {number} priorLevel       The previous level of the added class
    * @return {Promise<ItemCarRoy[]>}     Array of ItemCarRoy entities
    */
-  static async getClassFeatures({ className = '', level = 1, priorLevel = 0 } = {}): Promise<ItemCarRoy[]> {
+  static async getClassFeatures({ className = '', level = 1, priorLevel = 0 } = {}) {
     className = className.toLowerCase();
 
     const clsConfig = CONFIG.CarrotRoyale.classFeatures[className];
@@ -185,10 +183,10 @@ export default class ActorCarRoy extends Actor {
 
     //console.log(ids);
 
-    const features: ItemCarRoy[] = await Promise.all(
+    const features: any[] = await Promise.all(
       ids.map(async (id) => {
         //console.log(id);
-        let item = duplicate(await fromUuid(id));
+        let item = duplicate(await fromUuid(id)) as any;
         if (overrides[id]?.level) item.data.level = overrides[id].level;
         if (overrides[id]?.uses) item.data.uses.limit += overrides[id].uses;
         return item;
@@ -248,7 +246,7 @@ export default class ActorCarRoy extends Actor {
             } else toCreate.push(f);
           } else {
             const feature = this.items.find((item: { name: string }) => item.name === f.name);
-            if (feature.data.data.level && f.data.level && feature.data.data.level < f.data.level) {
+            if (feature?.data.data.level && f.data.level && feature.data.data.level < f.data.level) {
               if (!CONFIG.CarrotRoyale.featureScale.hasOwnProperty(f.name)) continue;
               const { name, formula } = CONFIG.CarrotRoyale.featureScale[f.name][f.data.level] || [f.name, f.data.formula];
               let f2: any = duplicate(f);
@@ -322,13 +320,15 @@ export default class ActorCarRoy extends Actor {
         { overwrite: false }
       );
     }
+
+    //@ts-ignore
     return super.create(data, options);
   }
 
   /* -------------------------------------------- */
 
   /** @override */
-  async update(data: object | object[], options = {}) {
+  async update(data: any, options = {}) {
     // Reset death save counters
     if (this.data.data.attributes.hp.value <= 0 && getProperty(data, 'data.attributes.hp.value') > 0) {
       setProperty(data, 'data.attributes.death.success', 0);
@@ -558,7 +558,7 @@ export default class ActorCarRoy extends Actor {
     // Display a warning if we are not at zero HP or if we already have reached 3
     const death = this.data.data.attributes.death;
     if (this.data.data.attributes.hp.value > 0 || death.failure >= 3 || death.success >= 3) {
-      ui.notifications.warn(game.i18n.localize('CarRoy.DeathSaveUnnecessary'));
+      ui.notifications!.warn(game.i18n.localize('CarRoy.DeathSaveUnnecessary'));
       return null;
     }
 

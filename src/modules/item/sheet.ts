@@ -2,9 +2,11 @@
  * @extends {ItemSheet}
  */
 
+import ItemCarRoy from './entity';
+
 export default class ItemSheetCarRoy extends ItemSheet {
-  constructor(...args: any[]) {
-    super(...args);
+  constructor(item: any, options?: Options) {
+    super(item, options);
 
     //Expand the default size of a sheet.
     /*
@@ -53,7 +55,7 @@ export default class ItemSheetCarRoy extends ItemSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  getData(): ItemSheet<any, any> {
+  getData() {
     this.item.prepareData();
     const data: any = super.getData();
     data.labels = (this.item as { labels?: string[] }).labels;
@@ -66,7 +68,7 @@ export default class ItemSheetCarRoy extends ItemSheet {
     data.isPhysical = data.item.data.hasOwnProperty('quantity');
 
     // Action Details
-    data.hasAttackRoll = this.item.hasAttack;
+    data.hasAttackRoll = (this.item as ItemCarRoy).hasAttack;
     data.isHealing = data.item.data.actionType === 'healing';
     //data.isFlatDC = getProperty(data.item.data, 'save.scaling') === 'flat';
     data.isLine = ['line', 'wall'].includes(data.item.data.target?.type);
@@ -104,7 +106,7 @@ export default class ItemSheetCarRoy extends ItemSheet {
    */
   _getItemProperties(item: { labels: unknown; type: string; data: { properties: Array<any>; atWill: boolean; bonus: number; activation: Object } }) {
     const props: any[] = [];
-    const labels = this.item.labels;
+    const labels = (this.item as ItemCarRoy).labels;
 
     if (item.type === 'weapon') {
       props.push(
@@ -181,7 +183,7 @@ export default class ItemSheetCarRoy extends ItemSheet {
   /** @override */
   _getSubmitData(updateData = {}): any {
     // Create the expanded update data object
-    const fd = new FormDataExtended(this.form, { editors: this.editors });
+    const fd = new FormDataExtended(this.form as HTMLElement, { editors: this.editors });
     let data = fd.toObject();
     if (updateData) data = mergeObject(data, updateData);
     else data = expandObject(data);
@@ -341,41 +343,8 @@ export default class ItemSheetCarRoy extends ItemSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  async _onSubmit(...args: [Event | JQuery.Event, { updateData?: any; preventClose?: boolean }?]) {
+  async _onSubmit(event: Event, u?: { updateData?: any; preventClose?: boolean }) {
     if (this._tabs[0].active === 'details') this.position.height = 'auto';
-    await super._onSubmit(...args);
-  }
-
-  /*
-  _canDragDrop(): boolean {
-    //return this.
-    //return true;
-    return this._dragDrop.reduce((a: boolean, b: any) => {
-      if (b.can('dragStart', b.dragSelector)) a = true;
-      return a;
-    }, false);
-  }
-
-  _canDragStart(): boolean {
-    return this._dragDrop.reduce((a: boolean, b: any) => {
-      if (b.can('dragStart', b.dragSelector)) a = true;
-      return a;
-    }, false);
-  }*/
-
-  /*protected _onDragStart() {}
-
-  protected _onDragDrop() {}*/
-
-  /** @override */
-  async _onDropItemCreate(itemData: ItemData) {
-    // Create a Consumable spell scroll on the Inventory tab
-    //if (itemData.type === 'spell' && this._tabs[0].active === 'inventory') {
-    //const scroll = await ItemCarRoy.createScrollFromSpell(itemData);
-    //itemData = scroll.data;
-    //}
-    // Create the owned item as normal
-    //console.log(itemData, this);
-    //return super._onDropItemCreate(itemData);
+    return await super._onSubmit(event as Event, u);
   }
 }

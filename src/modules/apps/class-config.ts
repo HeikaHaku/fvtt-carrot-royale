@@ -1,3 +1,6 @@
+import ActorCarRoy from '../actor/entity';
+import ItemCarRoy from '../item/entity';
+
 /**
  * A simple form to set actor movement speeds
  * @implements {BaseEntitySheet}
@@ -18,7 +21,7 @@ export default class ActorClassConfig extends BaseEntitySheet {
 
   /** @override */
   get title() {
-    return `${game.i18n.localize('CarRoy.ClassConfig')}: ${this.object.name}`;
+    return `${game.i18n.localize('CarRoy.ClassConfig')}: ${(this.object as { name?: '' })?.name}`;
   }
 
   /* -------------------------------------------- */
@@ -90,7 +93,7 @@ export default class ActorClassConfig extends BaseEntitySheet {
 
   /** @override */
   async _updateObject(event: any, formData: any) {
-    const actor = this.object;
+    const actor = this.object as ActorCarRoy;
     let updateData = expandObject(formData);
 
     const oldBonus = actor.data.flags?.carroy?.classSpecial;
@@ -106,9 +109,9 @@ export default class ActorClassConfig extends BaseEntitySheet {
         }
         if (tmp2[0] === 'feature') {
           let toCreate = [];
-          let item = await fromUuid(tmp2[2]);
+          let item = (await fromUuid(tmp2[2])) as ItemCarRoy;
           const existing = new Set(actor.items.map((i: { name: any }) => i.name));
-          if (!existing.has(item.name)) {
+          if (!existing.has(item?.name)) {
             toCreate.push(item);
           }
 
@@ -121,9 +124,9 @@ export default class ActorClassConfig extends BaseEntitySheet {
         let tmp2 = newBonus.split(',');
         if (tmp2[0] === 'feature') {
           let toCreate = [];
-          let item = await fromUuid(tmp2[2]);
+          let item = (await fromUuid(tmp2[2])) as ItemCarRoy;
           const existing = new Set(actor.items.map((i: { name: any }) => i.name));
-          if (!existing.has(item.name)) {
+          if (!existing.has(item?.name)) {
             toCreate.push(item);
           }
 

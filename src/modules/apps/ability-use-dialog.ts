@@ -49,10 +49,10 @@ export default class AbilityUseDialog extends Dialog {
       //consumeResource: !!itemData.consume.target,
       //consumeUses: uses.max,
       //canUse: recharges ? recharge.charged : sufficientUses,
-      createTemplate: game.user.can('TEMPLATE_CREATE') && item.hasAreaTarget,
+      createTemplate: game.user!.can('TEMPLATE_CREATE') && item.hasAreaTarget,
       errors: [],
       isSpell: false,
-      canSummon: game.user.can('ACTOR_CREATE') && item.hasSummons,
+      canSummon: game.user!.can('ACTOR_CREATE') && item.hasSummons,
     };
     if (item.data.type === 'spell') this._getSpellData(actorData, itemData, data);
 
