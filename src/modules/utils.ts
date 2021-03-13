@@ -128,5 +128,6 @@ export async function getBonuses(actor: ActorCarRoy, bonusName: string, buffOnly
       }
     }
   }
+
   return sum;
 }
