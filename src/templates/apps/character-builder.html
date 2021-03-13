@@ -1,0 +1,67 @@
+<form autocomplete="off">
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+        <a class="item" data-tab="hero">{{localize 'CarRoy.Hero'}}</a>
+        <a class="item" data-tab="race">{{localize 'CarRoy.Race'}}</a>
+        <a class="item" data-tab="shop">{{localize 'CarRoy.Shop'}}</a>
+        <a class="item" data-tab="misc">{{localize 'CarRoy.Misc'}}</a>
+
+    </nav>
+
+    {{!-- Form Body --}}
+    <section class="form-body">
+        {{!-- Hero Tab --}}
+        <section class="tab cb" data-group="primary" data-tab="hero">
+            <div class="cb-controls">
+                {{#each cb as |class cid|}}
+                    <span>
+                        <a class="cb-toggle" data-name="{{cid}}">{{cid}}</a> — {{class}}
+                    </span>
+                {{/each}}
+            </div>
+        </section>
+
+        {{!-- Race Tab --}}
+        <section class="tab race" data-group="primary" data-tab="race">
+            <div class="race-controls">
+                {{#each races as |race|}}
+                    <span>
+                        <a class="race-select" data-name="{{race}}">{{race}}</a>
+                    </span>
+                {{/each}}
+            </div>
+        </section>
+
+        {{!-- Shop Tab --}}
+        <section class="tab shop" data-group="primary" data-tab="shop">
+            <ol class="items-list inventory-list">
+                {{#each sections as |section sid|}}
+                    <li class="items-header flexrow">
+                        <h3 class="item-name flexrow">{{localize section.label}}</h3>
+                    </li>
+
+                    <ol class="item-list">
+                        {{#each section.items as |item iid|}}
+                            <li class="item flexrow {{section.css}}" data-item-id="{{item.item._id}}">
+                                <div class="item-name flexrow">
+                                    <div class="item-image" style="background-image: url('{{item.item.img}}')"></div>
+                                    <h4><a class="item-select" data-name="{{item.item.name}}" data-id="{{iid}}" data-section="{{sid}}">{{item.item.name}}</a></h4>
+                                    <input type="text" name="shop.{{section.name}}.{{iid}}.quantity" value="{{item.quantity}}" placeholder="0" data-dtype="number" />
+                                </div>
+                            </li>
+                        {{/each}}
+                    </ol>
+                {{/each}}
+            </ol>
+        </section>
+
+        {{!-- Misc Tab --}}
+        <section class="tab misc" data-group="primary" data-tab="misc">
+        </section>
+    </section>
+
+    <footer class="form-footer">
+        <button class="cb-submit">{{localize 'CarRoy.BuildCharacter'}}</button>
+    </footer>
+</form>

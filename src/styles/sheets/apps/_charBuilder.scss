@@ -1,0 +1,27 @@
+&.char-builder {
+  .form-body {
+    .cb-controls {
+      span {
+        display: block;
+      }
+    }
+
+    .race-controls {
+      span {
+        display: block;
+      }
+
+      .race-select {
+        &.active {
+          font-weight: 900;
+        }
+      }
+    }
+
+    .shop-controls {
+    }
+
+    .misc-controls {
+    }
+  }
+}
