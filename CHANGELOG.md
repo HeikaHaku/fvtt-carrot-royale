@@ -1,3 +1,18 @@
+#### 0.5.1 (2021-03-13)
+
+##### New Features
+
+*  Character Builder. ([dcc826ea](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/dcc826eaae8e05cfbdf8139f0dd3dd46f6fcf0b7))
+
+##### Bug Fixes
+
+*  Fixed Initiative Craziness. ([c7208029](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/c7208029b858dc9d52ab4f50ccf8315b361a2757))
+
+##### Other Changes
+
+*  Removed Character Builder from Actor Sheet, added Button to open new one. ([f0d66d13](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/f0d66d13f87986a03da3c819fdaa247a15063fa1))
+*  More strings. ([c11a32dc](https://github.com/HeikaHaku/fvtt-carrot-royale/commit/c11a32dc52f6a9909213cbace0f4060604e27b1b))
+
 ### 0.5.0 (2021-03-09)
 
 ##### New Features
