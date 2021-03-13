@@ -75,7 +75,7 @@ export default class ActorCarRoy extends Actor {
       // Determine Initiative Modifier
       const init = data.attributes.init;
       init.mod = data.abilities.dex.mod;
-      init.bonus = (await getBonuses(this, 'init')).number + (init?.bonus || 0);
+      init.bonus = (await getBonuses(this, 'init')).number;
       init.total = init.mod + init.bonus;
       //init.total = init.mod + init.bonus + (await getBonuses(this, 'init')) + (raceConfig?.bonus?.stats?.init || 0) + (classBonuses?.init || 0);
 
@@ -166,7 +166,6 @@ export default class ActorCarRoy extends Actor {
     className = className.toLowerCase();
 
     const clsConfig = CONFIG.CarrotRoyale.classFeatures[className];
-    console.log(clsConfig);
     if (!clsConfig) return [];
 
     let ids: string[] = [];
@@ -181,8 +180,6 @@ export default class ActorCarRoy extends Actor {
       }
     }
 
-    //console.log(ids);
-
     const features: any[] = await Promise.all(
       ids.map(async (id) => {
         //console.log(id);
@@ -192,8 +189,6 @@ export default class ActorCarRoy extends Actor {
         return item;
       })
     );
-
-    //console.log(features);
 
     return features;
   }
