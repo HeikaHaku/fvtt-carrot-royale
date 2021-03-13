@@ -329,6 +329,12 @@
   "CarRoy.Team1": "Squadra 1",
   "CarRoy.Team2": "Squadra 2",
 
+  "CarRoy.BuildCharacter": "Crea Personaggio",
+  "CarRoy.CharBuilder": "Character Builder",
+  "CarRoy.Hero": "Eroe",
+  "CarRoy.Shop": "Shop",
+  "CarRoy.Misc": "Miscellaneous",
+
   "CarRoy.DeathSaveUnnecessary": "TS contro Morte non necessario.",
   "CarRoy.DeathSaveSuccess": "{name} si alza.",
   "CarRoy.DeathSaveFailure": "{name} è morto.",

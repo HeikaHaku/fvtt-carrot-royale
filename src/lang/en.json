@@ -329,6 +329,12 @@
   "CarRoy.Team1": "Team 1",
   "CarRoy.Team2": "Team 2",
 
+  "CarRoy.BuildCharacter": "Build Character",
+  "CarRoy.CharBuilder": "Character Builder",
+  "CarRoy.Hero": "Hero",
+  "CarRoy.Shop": "Shop",
+  "CarRoy.Misc": "Miscellaneous",
+
   "CarRoy.DeathSaveUnnecessary": "Rolling a Death Save is unnecessary at the moment.",
   "CarRoy.DeathSaveSuccess": "{name} stands up.",
   "CarRoy.DeathSaveFailure": "{name} has died.",
