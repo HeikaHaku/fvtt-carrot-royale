@@ -1,4 +1,4 @@
-import ActorClassConfig from '../../apps/class-config.js';
+import CharacterBuilder from '../../apps/character-builder.js';
 import ItemCarRoy from '../../item/entity.js';
 import { prepareMainClass } from '../../utils.js';
 import ActorCarRoy from '../entity.js';
@@ -17,11 +17,6 @@ export class HeroSheet extends ActorSheetCarRoy {
     });
   }
 
-  cb: { [key: string]: number } = Object.keys(CONFIG.CarrotRoyale.classFeatures).reduce((a: { [key: string]: number }, b: string): {} => {
-    a[b] = 0;
-    return a;
-  }, {});
-
   /* -------------------------------------------- */
 
   /**
@@ -39,7 +34,6 @@ export class HeroSheet extends ActorSheetCarRoy {
     sheetData.isMelee;
 
     sheetData.classList = Object.keys(CONFIG.CarrotRoyale.classFeatures);
-    sheetData.cb = this.cb;
 
     sheetData.race = this.actor.itemTypes.race.find((r: any) => r);
 
@@ -151,10 +145,6 @@ export class HeroSheet extends ActorSheetCarRoy {
     super.activateListeners(html);
     if (!this.options.editable) return;
 
-    html.find('.cb-submit').click(this._onCBSubmit.bind(this));
-    html.find('.cb-toggle').contextmenu(this._onCBRemove.bind(this));
-    html.find('.cb-toggle').click(this._onCBAdd.bind(this));
-
     // Item State Toggling
     //html.find('.item-toggle').click(this._onToggleItem.bind(this));
 
@@ -167,113 +157,6 @@ export class HeroSheet extends ActorSheetCarRoy {
   }
 
   /* -------------------------------------------- */
-
-  /**
-   * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
-   * @param {Event} event   The originating click event
-   * @private
-   */
-  async _onCBSubmit(event: any) {
-    event.preventDefault();
-    this.actor.items.forEach((item: { delete: () => any }) => item.delete());
-    const cb = Object.entries(this.cb).reduce((a: { [name: string]: number }, b) => {
-      if (b[1]) a[b[0]] = b[1];
-      return a;
-    }, {});
-
-    const pack = game.packs?.get('carroy.classes-cr');
-    if (!pack) return;
-    await pack.getIndex();
-    for (let [cls, level] of Object.entries(cb)) {
-      let entry = pack.index.find((i) => i.name.toLowerCase() === cls.toLowerCase());
-      if (!entry) continue;
-      await pack.getEntity(entry._id).then(async (cl: any) => {
-        const c = duplicate(cl);
-        c.data.levels = level;
-        //c?.update({ 'data.levels': level });
-        //cl?.data.data.levels = level;
-        await this.actor.createEmbeddedEntity('OwnedItem', c);
-        let toCreate = [];
-        for (let index = 1; index <= level; index++) {
-          const features = await ActorCarRoy.getClassFeatures({ className: cls, level: index, priorLevel: index - 1 });
-          const existing = new Set(this.actor.items.map((i: { name: any }) => i.name));
-          for (let f of features)
-            if (!existing.has(f.name)) {
-              if (CONFIG.CarrotRoyale.featureScale.hasOwnProperty(f.name)) {
-                const { name, formula } = CONFIG.CarrotRoyale.featureScale[f.name][f.data.level] || [f.name, f.data.formula];
-                let f2: any = duplicate(f);
-                [f2.name, f2.data.formula] = [name, formula];
-                if (!existing.has(f2.name)) toCreate.push(f2);
-              } else toCreate.push(f);
-            }
-        }
-        await (this.actor as ActorCarRoy).update({ 'data.attributes.hp.value': 500 });
-
-        if (toCreate.length) await this.actor.createEmbeddedEntity('OwnedItem', toCreate);
-
-        //const features = await ActorCarRoy.getClassFeatures({ className: cls, level: level, priorLevel: 0 });
-        //console.log(features);
-        //await this.actor.createEmbeddedEntity('OwnedItem', features);
-        this.render();
-      });
-    }
-    /* 
-    const pack = game.packs.get('carroy.classes-cr');
-    pack.getIndex();
-    let entry = pack.index.find(i => i.name === name);
-    pack.getEntity(entry.id).then(spell => console.log(spell));
-    */
-    /*const header = event.currentTarget;
-    const type = header.dataset.type;
-    if (type === 'class') {
-      if (this.actor.data.data.details.level >= 5) return;
-    }
-    if (type === 'race') {
-      if (!!this.actor.itemTypes.race) return;
-    }
-    const itemData = {
-      name: game.i18n.format('CarRoy.ItemNew', { type: type === 'magic' ? 'magic item'.capitalize() : type.capitalize() }),
-      type: type,
-      data: duplicate(header.dataset),
-    };
-    delete itemData.data['type'];
-    return this.actor.createEmbeddedEntity('OwnedItem', itemData);*/
-  }
-
-  /**
-   * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
-   * @param {Event} event   The originating click event
-   * @private
-   */
-  _onCBAdd(event: any) {
-    event.preventDefault();
-    const header = event.currentTarget;
-
-    const cb: { [key: string]: number } = this.cb || {};
-    //sheetData.cb = sheetData.cb || ({} as { [key: string]: number });
-    const sum = Object.values(cb).reduce((a: number, b: number) => {
-      return a + b;
-    }, 0);
-    if (sum >= 5) return;
-    cb[header.dataset.name] = Math.clamped(cb[header.dataset.name] + 1, 0, 5);
-    this.cb = cb;
-    this.render();
-  }
-
-  /**
-   * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
-   * @param {Event} event   The originating click event
-   * @private
-   */
-  _onCBRemove(event: any) {
-    event.preventDefault();
-    const header = event.currentTarget;
-
-    const cb: { [key: string]: number } = this.cb || {};
-    cb[header.dataset.name] = Math.clamped(cb[header.dataset.name] - 1, 0, 5);
-    this.cb = cb;
-    this.render();
-  }
 
   /**
    * Handle mouse click events for character sheet actions
@@ -388,6 +271,12 @@ export class HeroSheet extends ActorSheetCarRoy {
     if (this.options.editable && canConfigure) {
       buttons = ([
         {
+          label: game.i18n.localize('CarRoy.CharBuilder'),
+          class: 'char-builder',
+          icon: 'fas fa-puzzle-piece',
+          onclick: (ev) => this._onCharBuild(ev),
+        },
+        {
           label: game.i18n.localize('CarRoy.ResetSheet'),
           class: 'reset-sheet',
           icon: 'fas fa-eraser',
@@ -410,5 +299,17 @@ export class HeroSheet extends ActorSheetCarRoy {
         await this.actor.deleteOwnedItem(id, {});
       }
     }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle spawning the TraitSelector application which allows a checkbox of multiple trait options
+   * @param {Event} event   The click event which originated the selection
+   * @private
+   */
+  async _onCharBuild(event: { preventDefault: () => void; currentTarget: any }) {
+    event.preventDefault();
+    new CharacterBuilder(this.object).render(true);
   }
 }
