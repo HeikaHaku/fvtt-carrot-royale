@@ -332,8 +332,8 @@
   "CarRoy.BuildCharacter": "Crea Personaggio",
   "CarRoy.CharBuilder": "Character Builder",
   "CarRoy.Hero": "Eroe",
-  "CarRoy.Shop": "Shop",
-  "CarRoy.Misc": "Miscellaneous",
+  "CarRoy.Shop": "Negozio",
+  "CarRoy.Misc": "Generico",
 
   "CarRoy.DeathSaveUnnecessary": "TS contro Morte non necessario.",
   "CarRoy.DeathSaveSuccess": "{name} si alza.",
