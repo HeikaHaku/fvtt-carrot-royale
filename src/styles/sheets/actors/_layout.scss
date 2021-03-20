@@ -1,0 +1,178 @@
+&.actor.layout {
+  .sheet-body {
+    //display: grid;
+    //grid-auto-rows: 1fr;
+    //grid-auto-columns: 1fr;
+
+    position: relative;
+
+    .ability-scores {
+      //grid-column: 1;
+      //grid-row: 1/7;
+
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      width: 74px;
+      height: calc(92px * 6);
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      .ability {
+        background-image: url('/systems/carroy/assets/ui/MARCADOR2-STATISTICA.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+
+        list-style: none;
+
+        height: 84px;
+        width: 92px;
+        margin-bottom: 10px;
+      }
+    }
+
+    .equipment {
+      grid-column: 2;
+      grid-row: 1/4;
+
+      background-image: url('/systems/carroy/assets/ui/MARCADOR2-equipaggimento.png');
+      background-repeat: no-repeat;
+      background-size: 240px 250px;
+
+      width: 240px;
+      height: 250px;
+
+      top: 0;
+      left: 7em;
+      position: absolute;
+    }
+
+    .portrait {
+      grid-column: 2;
+      grid-row: 4/6;
+
+      outline: 1px solid black;
+      height: 150px;
+      width: 150px;
+      position: absolute;
+      top: 265px;
+      left: 11.5em;
+    }
+
+    .stats {
+      grid-column: 2;
+      grid-row: 6/8;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      position: absolute;
+      top: 430px;
+      left: 8em;
+      height: 200px;
+      width: 250px;
+
+      .ac {
+        background-image: url('/systems/carroy/assets/ui/MARCADOR2-CA.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      .movement {
+        background-image: url('/systems/carroy/assets/ui/MARCADOR2-velocità.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      .init {
+        grid-column: 1/3;
+
+        background-image: url('/systems/carroy/assets/ui/MARCADOR2-iniziativa.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+    }
+
+    .saves {
+      grid-column: 1;
+      grid-row: 7;
+
+      background-image: url('/systems/carroy/assets/ui/MARCADOR2-TSmorte.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+
+      top: 555px;
+      width: 74px;
+      left: 1em;
+      height: 84px;
+      position: absolute;
+    }
+
+    .top-stats {
+      grid-column: 3/5;
+      grid-row: 1;
+
+      position: absolute;
+      top: 20px;
+      left: 362px;
+      height: 100px;
+      width: 291px;
+
+      display: grid;
+      grid-template-columns: auto auto;
+
+      .hp {
+        background-image: url('/systems/carroy/assets/ui/MARCADOR2-PuntiFerita.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 100px;
+        width: 115px;
+        grid-row: 1;
+        margin-top: 0.5em;
+      }
+
+      .attacks {
+        background-image: url('/systems/carroy/assets/ui/MARCADOR2-colpire&danni.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+
+        height: 100px;
+        width: 176px;
+        grid-row: 1;
+      }
+    }
+
+    .spells {
+      grid-column: 3/5;
+      grid-row: 2/4;
+
+      background-image: url('/systems/carroy/assets/ui/MARCADOR2-incantesimi.png');
+      background-repeat: no-repeat;
+      background-size: 325px 162.5px;
+
+      position: absolute;
+      width: 325px;
+      height: 162.5px;
+      left: 26.5em;
+      top: 125px;
+    }
+
+    .abilities {
+      grid-column: 3/5;
+      grid-row: 5/8;
+
+      background-image: url('/systems/carroy/assets/ui/MARCADOR2-abilità.png');
+      background-repeat: no-repeat;
+      background-size: 325px 250px;
+
+      position: absolute;
+      top: 330px;
+      left: 26.5em;
+      height: 250px;
+      width: 325px;
+    }
+  }
+}

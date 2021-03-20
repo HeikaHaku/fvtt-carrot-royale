@@ -1,0 +1,48 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Ability Scores --}}
+        <ul class="ability-scores">
+            {{#each data.abilities as |ability name|}}
+                <li class="ability" data-ability="{{name}}">
+                    <h4 class="ability-name box-title rollable">{{firstUpper (localize (prepAbilityLocale name))}}</h4>
+                    <span class="ability-score">{{ability.total}}</span>
+                    <span class="ability-mod" title="{{localize 'CarRoy.Modifier'}}">{{numberFormat ability.mod decimals=0 sign=true}}</span>
+                </li>
+            {{/each}}
+        </ul>
+
+        {{!-- Equipment Section --}}
+        <div class="equipment"></div>
+
+        {{!-- Portrait --}}
+        <div class="portrait"></div>
+
+        {{!-- Stats --}}
+        <div class="stats">
+            <!-- Armor Class, Movement, Initiative -->
+            <div class="ac"></div>
+            <div class="movement"></div>
+            <div class="init"></div>
+        </div>
+
+        {{!-- Saves --}}
+        <div class="saves"></div>
+
+        {{!-- Hit Points and Attack Bonuses --}}
+        <div class="top-stats">
+            <div class="hp"></div>
+            <div class="attacks"></div>
+        </div>
+
+        {{!-- Spells --}}
+        <div class="spells"></div>
+
+        {{!-- Abilities --}}
+        <div class="abilities">
+            <!-- Total Group Bonus -->
+        </div>
+
+    </section>
+</form>

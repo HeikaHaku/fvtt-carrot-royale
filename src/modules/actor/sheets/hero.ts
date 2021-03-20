@@ -10,9 +10,9 @@ import ActorSheetCarRoy from './base.js';
 export class HeroSheet extends ActorSheetCarRoy {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: ['carroy', 'actor', 'sheet', 'hero'],
+      classes: ['carroy', 'actor', 'sheet', 'hero', 'layout'],
       //template: 'systems/carroy/templates/actor/hero-sheet.html',
-      width: 600,
+      width: 700,
       height: 680,
     });
   }

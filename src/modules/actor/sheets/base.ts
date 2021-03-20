@@ -35,8 +35,8 @@ export default class ActorSheetCarRoy extends ActorSheet {
 
   /** @override */
   get template() {
-    if (!game.user!.isGM && this.actor.limited) return 'systems/carroy/templates/actor/limited-sheet.html';
-    return `systems/carroy/templates/actor/${this.actor.data.type}-sheet.html`;
+    if (!game.user!.isGM && this.actor.limited) return 'systems/carroy/templates/actor/limited-sheet-layout.html';
+    return `systems/carroy/templates/actor/${this.actor.data.type}-sheet-layout.html`;
   }
 
   /* -------------------------------------------- */
